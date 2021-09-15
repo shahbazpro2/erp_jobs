@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Rubik:wght@300;500;600;700&display=swap");
+@import "./_colors";
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+.user-navbar {
+  box-shadow: 0px 3px 6px $shadow-clr;
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Rubik", sans-serif;
+  font-size: 28px;
+}
+
+.user-links {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
