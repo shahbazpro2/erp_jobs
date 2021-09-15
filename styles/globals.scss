@@ -29,3 +29,51 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+.social-links {
+  & .social-box {
+    border: 1px solid $medium-clr;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+}
+
+.primary-clr {
+  color: $primary-clr;
+}
+.secondary-clr {
+  color: $secondary-clr;
+}
+.divider {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  color: $light-clr;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.divider > span {
+  position: relative;
+  display: inline-block;
+}
+
+.divider > span:before,
+.divider > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9999px;
+  border-top: 1px solid #f1f1f5;
+}
+
+.divider > span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.divider > span:after {
+  left: 100%;
+  margin-left: 15px;
+}
