@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import React from "react";
-import UserLogin from "../../components/userLogin/UserLogin";
+import UserSignup from "../../components/userAuth/singup/UserSignup";
 
 const user: NextPage = () => {
-  return <UserLogin />;
+  return <UserSignup />;
 };
 
 export default user;
