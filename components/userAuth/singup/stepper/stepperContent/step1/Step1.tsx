@@ -1,4 +1,4 @@
-import { Button, NoSsr, TextField } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 import React from 'react'
 import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
 
@@ -40,8 +40,28 @@ const Step1 = () => {
                                 Continue
                             </Button>
                         </div>
+                        <div className="my-6">
+                            <div className="divider">
+                                <span>or</span>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-3 gap-3 social-links">
+                            <div className="social-box">
+                                google
+                            </div>
+                            <div className="social-box">
+                                google
+                            </div>
+                            <div className="social-box">
+                                google
+                            </div>
+                        </div>
+
                     </div>
                 </AuthWrapper>
+                <div className="text-xl mt-6 text-center text-[#92929D] tracking-[0.11px]">
+                    Already have an account?<a href="#" className="primary-clr"> . Sign In</a>
+                </div>
             </div>
         </div>
     )
