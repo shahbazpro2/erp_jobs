@@ -4,7 +4,7 @@ import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
 
 const Step1 = () => {
     return (
-        <div className="grid grid-cols-6 justify-center">
+        <div className="grid grid-cols-6 justify-center mt-8">
             <div className="col-start-3 col-span-2">
                 <AuthWrapper>
                     <div className="mt-6">
