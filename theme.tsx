@@ -24,7 +24,12 @@ const theme = createTheme({
         },
       },
     },
-
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: '10px',
+        height: '48px'
+      }
+    }
 
   },
   palette: {
@@ -38,6 +43,7 @@ const theme = createTheme({
   typography: {
     fontFamily: '"DM Sans", sans-serif'
   },
+
 });
 
 export default theme;
