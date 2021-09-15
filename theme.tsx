@@ -12,6 +12,20 @@ const theme = createTheme({
         textTransform: "unset",
       },
     },
+    MuiStepIcon: {
+      root: {
+        width: '30px',
+        height: '30px',
+        '&$completed': {
+          color: '#318940',
+        },
+        '&$active': {
+          color: '#473BF0',
+        },
+      },
+    },
+
+
   },
   palette: {
     primary: {
@@ -22,7 +36,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"DM Sans", sans-serif',
+    fontFamily: '"DM Sans", sans-serif'
   },
 });
 
