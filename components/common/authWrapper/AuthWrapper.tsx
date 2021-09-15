@@ -5,7 +5,7 @@ interface Props {
 }
 const AuthWrapper = ({ children }: Props) => {
     return (
-        <div className="bg-white rounded-[20px] text-center py-8 px-7 mt-14">
+        <div className="bg-white rounded-[20px] text-center py-8 px-7">
             <div className="space-text">
                 Get started
             </div>
