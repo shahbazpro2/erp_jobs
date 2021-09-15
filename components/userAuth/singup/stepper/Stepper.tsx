@@ -1,4 +1,3 @@
-import { NoSsr } from '@material-ui/core'
 import React, { useState } from 'react'
 import HorizontalStepper from '../../../common/stepper/HorizontalStepper'
 import Step1 from './stepperContent/step1/Step1';
@@ -21,9 +20,7 @@ const Stepper = () => {
     }
     return (
         <>
-            <NoSsr>
-                <HorizontalStepper activeStep={activeStep} steps={steps} />
-            </NoSsr>
+            <HorizontalStepper activeStep={activeStep} steps={steps} />
             {getStepperContent()}
         </>
     )
