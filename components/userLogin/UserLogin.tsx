@@ -1,10 +1,18 @@
 import React from "react";
 import UserNavbar from "../common/userNavbar/UserNavbar";
+import Stepper from "./stepper/Stepper";
 
 const UserLogin = () => {
   return (
     <div>
       <UserNavbar />
+      <div className="container mx-auto">
+        <div className="flex justify-center items-center h-screen">
+          <div className="w-full">
+            <Stepper />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
