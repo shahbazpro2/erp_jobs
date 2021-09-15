@@ -4,10 +4,10 @@ import Stepper from "./stepper/Stepper";
 
 const UserSignup = () => {
   return (
-    <div className="bg-[#F2F2F2]">
+    <div className="bg-[#F2F2F2] ">
       <UserNavbar />
       <div className="container mx-auto">
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center min-h-[91vh]">
           <div className="w-full">
             <Stepper />
           </div>
