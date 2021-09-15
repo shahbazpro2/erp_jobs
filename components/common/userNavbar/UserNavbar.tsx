@@ -1,8 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { NextPage } from "next";
 
-const UserNavbar: NextPage = () => {
+const UserNavbar = () => {
   return (
     <div className="user-navbar">
       <div className="container mx-auto">
