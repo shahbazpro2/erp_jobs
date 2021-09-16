@@ -38,6 +38,24 @@ body {
   }
 }
 
+.dotted-spaced {
+  background-image: linear-gradient(
+    to right,
+    #92929d 12%,
+    rgba(255, 255, 255, 0) 0%
+  );
+  background-position: top;
+  background-size: 22px 2px;
+  background-repeat: repeat-x;
+  padding-left: 0;
+  width: 60%;
+  height: 10px;
+  top: 48px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
 .primary-clr {
   color: $primary-clr;
 }
