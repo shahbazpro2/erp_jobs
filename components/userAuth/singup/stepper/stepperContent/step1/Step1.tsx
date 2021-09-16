@@ -1,8 +1,12 @@
 import { Button, TextField } from '@material-ui/core'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
 
-const Step1 = () => {
+interface Props {
+    setActiveStep: Dispatch<SetStateAction<number>>
+}
+
+const Step1 = ({ setActiveStep }: Props) => {
     return (
         <div className="grid grid-cols-6 justify-center mt-8">
             <div className="col-start-3 col-span-2">
@@ -36,7 +40,7 @@ const Step1 = () => {
                                     shrink: true,
                                 }}
                             />
-                            <Button variant="contained" color="primary" disableElevation>
+                            <Button variant="contained" color="primary" disableElevation onClick={() => setActiveStep(1)}>
                                 Continue
                             </Button>
                         </div>
