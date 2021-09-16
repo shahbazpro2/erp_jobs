@@ -9,7 +9,7 @@ const Stepper = () => {
     const getStepperContent = () => {
         switch (activeStep) {
             case 0:
-                return <Step1 />;
+                return <Step1 setActiveStep={setActiveStep} />;
             case 1:
                 return 'What is an ad group anyways?';
             case 2:
