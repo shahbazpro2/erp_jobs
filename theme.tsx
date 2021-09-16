@@ -12,16 +12,6 @@ const theme = createTheme({
         textTransform: "unset",
       },
     },
-    MuiStep: {
-      horizontal: {
-        alternativeLabel: {
-          line: {
-            borderStyle: 'dashed',
-            borderWidth: '3px'
-          }
-        }
-      }
-    },
     MuiStepIcon: {
       root: {
         width: '40px',
