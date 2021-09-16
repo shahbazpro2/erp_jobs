@@ -16,6 +16,7 @@ const theme = createTheme({
       root: {
         width: '40px',
         height: '40px',
+        fontWeight: 'bold',
         '&$completed': {
           color: '#318940',
           zIndex: 111
