@@ -12,15 +12,27 @@ const theme = createTheme({
         textTransform: "unset",
       },
     },
+    MuiStep: {
+      horizontal: {
+        alternativeLabel: {
+          line: {
+            borderStyle: 'dashed',
+            borderWidth: '3px'
+          }
+        }
+      }
+    },
     MuiStepIcon: {
       root: {
-        width: '30px',
-        height: '30px',
+        width: '40px',
+        height: '40px',
         '&$completed': {
           color: '#318940',
+          zIndex: 111
         },
         '&$active': {
           color: '#473BF0',
+          zIndex: 111
         },
       },
     },
