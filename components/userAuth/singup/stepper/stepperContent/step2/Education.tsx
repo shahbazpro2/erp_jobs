@@ -1,6 +1,6 @@
-import { Button, Divider } from '@material-ui/core'
 import React, { Dispatch, SetStateAction } from 'react'
-import AddIcon from '@material-ui/icons/Add';
+import { Button, Divider } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import AddItemsWrapper from '../../../../../common/addItemsWrapper/AddItemsWrapper';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>

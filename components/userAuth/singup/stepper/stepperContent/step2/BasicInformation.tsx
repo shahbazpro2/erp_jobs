@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@material-ui/core'
+import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
 import BoxWrapper from '../../../../../common/boxWrapper/BoxWrapper'
 

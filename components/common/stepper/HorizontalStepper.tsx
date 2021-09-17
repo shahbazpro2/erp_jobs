@@ -1,15 +1,10 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import { StepConnector } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import React from 'react';
 import classNames from 'classnames';
+import { Step, Stepper, StepLabel, StepConnector } from '@mui/material';
+import { makeStyles, withStyles } from '@mui/styles';
 
 const ColorlibConnector = withStyles({
     alternativeLabel: {
-        top: 17,
         zIndex: 111
     },
 
@@ -19,7 +14,7 @@ const ColorlibConnector = withStyles({
 })(StepConnector);
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
     root: {
         background: 'transparent',
     },
@@ -51,7 +46,7 @@ export default function HorizontalStepper({ steps, activeStep }: Props) {
 
                 {steps.map((label) => (
                     <Step key={label} id="step">
-                        <StepLabel >
+                        <StepLabel>
                             <div className={classes.label}>
                                 {label}
                             </div>

@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import classNames from 'classnames'
 import React from 'react'
 import BoxWrapper from '../boxWrapper/BoxWrapper'

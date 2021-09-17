@@ -1,5 +1,6 @@
-import { Button, TextField } from '@material-ui/core'
+import { Button, TextField } from '@mui/material'
 import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
+import { registerUser } from '../../../../../../api/auth'
 import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
 import validateEmail from '../../../../../functions/emailValidation'
 
@@ -30,9 +31,13 @@ const Step1 = ({ setActiveStep }: Props) => {
             setInputError(true)
             return
         }
-
-        setActiveStep(1)
+        const data = {
+            username, first_name: firstname, last_name: lastname, email, password: password1, password2
+        }
+        registerUser(data)
+        //setActiveStep(1)
     }
+
     return (
         <div className="grid grid-cols-6 justify-center mt-8">
             <div className="col-start-3 col-span-2">
@@ -100,7 +105,7 @@ const Step1 = ({ setActiveStep }: Props) => {
                                 <TextField
                                     required
                                     error={inputError && !state.password1 ? true : inputError && state.password1 !== state.password2 ? true : false}
-                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
+                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
                                     id="outlined-password"
                                     name="password1"
                                     type="password"
