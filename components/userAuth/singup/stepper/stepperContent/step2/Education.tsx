@@ -19,7 +19,7 @@ const Education = ({ setActive }: Props) => {
     }
 
     return (
-        <div className="grid grid-cols-7 justify-center mt-8">
+        <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
                 <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onSkip={onSkip} onContinue={onContinue}>
                     <div className="mt-7">

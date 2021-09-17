@@ -21,7 +21,9 @@ const Stepper = () => {
     }
     return (
         <>
-            <HorizontalStepper activeStep={activeStep} steps={steps} />
+            <div className="mb-12">
+                <HorizontalStepper activeStep={activeStep} steps={steps} />
+            </div>
             {getStepperContent()}
         </>
     )

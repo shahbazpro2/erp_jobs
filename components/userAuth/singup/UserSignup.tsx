@@ -8,7 +8,7 @@ const UserSignup = () => {
       <UserNavbar />
       <div className="container mx-auto py-10">
         <div className="flex justify-center min-h-[83vh]">
-          <div className="w-full">
+          <div className="w-full mt-7">
             <Stepper />
           </div>
         </div>

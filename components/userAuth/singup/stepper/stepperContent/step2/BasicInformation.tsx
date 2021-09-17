@@ -30,7 +30,7 @@ const BasicInformation = ({ setActive }: Props) => {
         setActive('career')
     }
     return (
-        <div className="grid grid-cols-7 justify-center mt-8">
+        <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
                 <BoxWrapper title="Basic Information" subtitle="Please Complete Your Basic Information in the Form Below">
                     <div className="mt-8">

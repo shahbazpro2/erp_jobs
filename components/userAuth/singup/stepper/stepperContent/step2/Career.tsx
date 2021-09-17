@@ -14,7 +14,7 @@ const Career = ({ setActive }: Props) => {
         setActive('education')
     }
     return (
-        <div className="grid grid-cols-7 justify-center mt-8">
+        <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
                 <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} skip={false}>
                     <div className="mt-7">

@@ -39,7 +39,7 @@ const Step1 = ({ setActiveStep }: Props) => {
     }
 
     return (
-        <div className="grid grid-cols-6 justify-center mt-8">
+        <div className="grid grid-cols-6 justify-center">
             <div className="col-start-3 col-span-2">
                 <AuthWrapper>
                     <div className="mt-6">
