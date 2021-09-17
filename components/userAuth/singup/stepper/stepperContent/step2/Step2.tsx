@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import BasicInformation from './BasicInformation'
 import Career from './Career'
+import Education from './Education'
 
 interface Props {
     setActiveStep: Dispatch<SetStateAction<number>>
@@ -15,6 +16,8 @@ const Step2 = ({ setActiveStep }: Props) => {
                 return <BasicInformation setActive={setActive} />
             case 'career':
                 return <Career setActive={setActive} />
+            case 'education':
+                return <Education setActive={setActive} />
         }
     }
     return (
