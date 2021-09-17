@@ -1,4 +1,4 @@
-import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core'
+import { Button, Checkbox, FormControl, FormControlLabel, MenuItem, Select, TextField } from '@material-ui/core'
 import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
 import BoxWrapper from '../../../../../common/boxWrapper/BoxWrapper'
 import validateEmail from '../../../../../functions/emailValidation'
@@ -78,9 +78,12 @@ const Step2 = ({ setActiveStep }: Props) => {
                                 <TextField
                                     id="outlined-select-gender"
                                     select
-                                    label="Gender"
                                     value="male"
+                                    label="Gender"
                                     variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
 
                                 >
                                     <MenuItem value={'male'}>Male</MenuItem>
@@ -190,7 +193,6 @@ const Step2 = ({ setActiveStep }: Props) => {
                                 />
                                 <div className="grid grid-cols-12 gap-3">
                                     <div className="col-span-7">
-
                                         <TextField
                                             required
                                             error={inputError && !state.password ? true : false}
@@ -222,7 +224,10 @@ const Step2 = ({ setActiveStep }: Props) => {
                                         </TextField>
                                     </div>
 
-                                    <div className="flex items-center text-sm">Confidential</div>
+                                    <FormControlLabel
+                                        control={<Checkbox name="confidential" color="primary" />}
+                                        label="Confidential"
+                                    />
 
                                 </div>
 
