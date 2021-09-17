@@ -1,15 +1,27 @@
 import { Button, Divider } from '@material-ui/core'
 import React, { Dispatch, SetStateAction } from 'react'
-import BoxWrapper from '../../../../../common/boxWrapper/BoxWrapper'
 import AddIcon from '@material-ui/icons/Add';
+import AddItemsWrapper from '../../../../../common/addItemsWrapper/AddItemsWrapper';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
 const Education = ({ setActive }: Props) => {
+    const onBack = () => {
+        setActive('career')
+    }
+
+    const onSkip = () => {
+        setActive('skills')
+    }
+
+    const onContinue = () => {
+        setActive('skills')
+    }
+
     return (
         <div className="grid grid-cols-7 justify-center mt-8">
             <div className="col-start-3 col-span-3">
-                <BoxWrapper title="Education" subtitle="Add your education, you can add multiple educations">
+                <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onSkip={onSkip} onContinue={onContinue}>
                     <div className="mt-7">
 
                         <Button variant="outlined" className="w-full" color="primary">
@@ -19,14 +31,8 @@ const Education = ({ setActive }: Props) => {
                     <div className="my-7">
                         <Divider />
                     </div>
-                    <Button variant="contained" className="w-full" color="primary" disableElevation >
-                        Continue
-                    </Button>
-                    <div className="mt-5 flex justify-between">
-                        <Button onClick={() => setActive('career')}>Back</Button>
-                        <Button onClick={() => setActive('education')}>Skip</Button>
-                    </div>
-                </BoxWrapper>
+                </AddItemsWrapper>
+
             </div>
         </div>
     )
