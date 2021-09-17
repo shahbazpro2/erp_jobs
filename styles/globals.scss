@@ -52,19 +52,26 @@ body {
 .dotted-spaced {
   background-image: linear-gradient(
     to right,
-    #92929d 12%,
+    #a7a7ac 12%,
     rgba(255, 255, 255, 0) 0%
   );
   background-position: top;
   background-size: 22px 2px;
   background-repeat: repeat-x;
   padding-left: 0;
-  width: 60%;
   height: 10px;
-  top: 48px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 43px;
   position: absolute;
+  width: 27%;
+}
+.dotted-spaced1 {
+  left: 20.5%;
+}
+.dotted-spaced2 {
+  left: 52.5%;
+}
+.dotted-active {
+  background-image: linear-gradient(to right, #000000 12%, rgba(0, 0, 0, 0) 0%);
 }
 
 .select {

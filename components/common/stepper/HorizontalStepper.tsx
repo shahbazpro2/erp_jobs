@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import { StepConnector } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
+import classNames from 'classnames';
 
 const ColorlibConnector = withStyles({
     alternativeLabel: {
@@ -40,17 +41,16 @@ interface Props {
     steps: string[],
     activeStep: number
 }
-
-
 export default function HorizontalStepper({ steps, activeStep }: Props) {
     const classes = useStyles();
+
     return (
         <div className="max-w-[1100px] relative m-auto">
 
             <Stepper className={classes.root} activeStep={activeStep} alternativeLabel connector={<ColorlibConnector />}>
 
                 {steps.map((label) => (
-                    <Step key={label}>
+                    <Step key={label} id="step">
                         <StepLabel >
                             <div className={classes.label}>
                                 {label}
@@ -59,7 +59,17 @@ export default function HorizontalStepper({ steps, activeStep }: Props) {
                     </Step>
                 ))}
             </Stepper>
-            <div className="dotted-spaced"></div>
+            {
+
+                steps.map((st, index) => {
+
+                    if (index < steps.length - 1) {
+                        return <div key={index} className={classNames(`dotted-spaced dotted-spaced${index + 1}`, { 'dotted-active': activeStep >= index + 1 })}></div>
+                    }
+                })
+
+
+            }
         </div>
     );
 }
