@@ -19,11 +19,11 @@ const Career = ({ setActive }: Props) => {
                     <div className="my-7">
                         <Divider />
                     </div>
-                    <Button variant="contained" className="w-full" color="primary" disableElevation >
+                    <Button onClick={() => setActive('education')} variant="contained" className="w-full" color="primary" disableElevation >
                         Continue
                     </Button>
                     <div className="mt-5 text-center">
-                        <Button onClick={() => setActive('education')}>Back</Button>
+                        <Button onClick={() => setActive('basic')}>Back</Button>
                     </div>
                 </BoxWrapper>
             </div>
