@@ -9,9 +9,8 @@ interface RegisterUser {
     password2: string,
     email: string
 }
-export const registerUser = (data: RegisterUser) => {
-    axios.post(registerUserUrl, data)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+export const registerUser = async (data: RegisterUser) => {
+    const res = await axios.post(registerUserUrl, data)
+    return res
 
 }
