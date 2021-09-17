@@ -9,9 +9,12 @@ interface Props {
 
 const Step1 = ({ setActiveStep }: Props) => {
     const [state, setState] = useState({
-        name: '',
+        username: '',
+        firstname: '',
+        lastname: '',
         email: '',
-        password: ''
+        password1: '',
+        password2: ''
     })
     const [inputError, setInputError] = useState(false)
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +25,8 @@ const Step1 = ({ setActiveStep }: Props) => {
     const onSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        const { name, email, password } = state
-        if (!validateEmail(email) || !name || !password) {
+        const { username, firstname, lastname, email, password1, password2 } = state
+        if (!firstname || !lastname || !username || !validateEmail(email) || !password1 || !password2 || password1 !== password2) {
             setInputError(true)
             return
         }
@@ -38,11 +41,40 @@ const Step1 = ({ setActiveStep }: Props) => {
                         <form noValidate autoComplete="off" onSubmit={onSubmit}>
                             <div className="grid gap-5">
                                 <TextField
-                                    error={inputError && !state.name ? true : false}
+                                    error={inputError && !state.firstname ? true : false}
+                                    helperText={inputError && !state.firstname ? 'Please provide a firstname' : ''}
                                     required
-                                    id="outlined-name"
-                                    name="name"
-                                    label="Your Name"
+                                    id="outlined-firstname"
+                                    name="firstname"
+                                    label="Your Firstname"
+                                    variant="outlined"
+                                    className="w-full"
+                                    onChange={onChangeInput}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                                <TextField
+                                    error={inputError && !state.lastname ? true : false}
+                                    helperText={inputError && !state.lastname ? 'Please provide a lastname' : ''}
+                                    required
+                                    id="outlined-lastname"
+                                    name="lastname"
+                                    label="Your Lastname"
+                                    variant="outlined"
+                                    className="w-full"
+                                    onChange={onChangeInput}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                                <TextField
+                                    error={inputError && !state.username ? true : false}
+                                    helperText={inputError && !state.username ? 'Please provide a username' : ''}
+                                    required
+                                    id="outlined-username"
+                                    name="username"
+                                    label="Your Username"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -52,6 +84,7 @@ const Step1 = ({ setActiveStep }: Props) => {
                                 />
                                 <TextField
                                     error={inputError && !validateEmail(state.email) ? true : false}
+                                    helperText={inputError && !validateEmail(state.email) ? 'Email is invalid or empty' : ''}
                                     required
                                     id="outlined-email"
                                     name="email"
@@ -66,11 +99,27 @@ const Step1 = ({ setActiveStep }: Props) => {
                                 />
                                 <TextField
                                     required
-                                    error={inputError && !state.password ? true : false}
+                                    error={inputError && !state.password1 ? true : inputError && state.password1 !== state.password2 ? true : false}
+                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
                                     id="outlined-password"
-                                    name="password"
+                                    name="password1"
                                     type="password"
                                     label="Enter Password"
+                                    variant="outlined"
+                                    className="w-full"
+                                    onChange={onChangeInput}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                                <TextField
+                                    error={inputError && !state.password2 ? true : inputError && state.password1 !== state.password2 ? true : false}
+                                    helperText={inputError && !state.password2 ? 'Please provide a confirm password' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
+                                    required
+                                    id="outlined-name"
+                                    name="password2"
+                                    type="password"
+                                    label="Confirm Password"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
