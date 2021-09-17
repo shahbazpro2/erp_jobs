@@ -3,12 +3,15 @@ import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState 
 import { registerUser } from '../../../../../../api/auth'
 import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
 import validateEmail from '../../../../../functions/emailValidation'
+import { useRouter } from 'next/router'
+import SnakbarAlert from '../../../../../common/snakbarAlert/SnakbarAlert'
 
 interface Props {
     setActiveStep: Dispatch<SetStateAction<number>>
 }
 
 const Step1 = ({ setActiveStep }: Props) => {
+    const router = useRouter()
     const [state, setState] = useState({
         username: '',
         firstname: '',
@@ -18,6 +21,9 @@ const Step1 = ({ setActiveStep }: Props) => {
         password2: ''
     })
     const [inputError, setInputError] = useState(false)
+    const [apiError, setApiError] = useState([])
+
+
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         setState({ ...state, [name]: value })
@@ -35,6 +41,14 @@ const Step1 = ({ setActiveStep }: Props) => {
             username, first_name: firstname, last_name: lastname, email, password: password1, password2
         }
         registerUser(data)
+            .then((res) => {
+                console.log(res.data)
+                //router.push('/login')
+            })
+            .catch(err => {
+                setApiError(err.response?.data.password)
+                console.log(err.response?.data)
+            })
         //setActiveStep(1)
     }
 
@@ -105,7 +119,7 @@ const Step1 = ({ setActiveStep }: Props) => {
                                 <TextField
                                     required
                                     error={inputError && !state.password1 ? true : inputError && state.password1 !== state.password2 ? true : false}
-                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
+                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 2 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
                                     id="outlined-password"
                                     name="password1"
                                     type="password"
@@ -160,6 +174,7 @@ const Step1 = ({ setActiveStep }: Props) => {
                     Already have an account?<a href="#" className="primary-clr"> . Sign In</a>
                 </div>
             </div>
+            <SnakbarAlert open={apiError.length ? true : false} handleClose={() => setApiError([])} message={apiError} type="error" />
         </div>
     )
 }
