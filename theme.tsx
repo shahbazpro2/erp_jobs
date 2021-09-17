@@ -4,6 +4,14 @@ import { createTheme } from "@material-ui/core/styles";
 const theme = createTheme({
   overrides: {
     MuiButton: {
+      root: {
+        borderRadius: "7px",
+        fontSize: "17px",
+        letterSpacing: "-0.5px",
+        padding: "7px 35px",
+        textTransform: "unset",
+        color: '#44444F'
+      },
       disableElevation: {
         borderRadius: "7px",
         fontSize: "17px",
@@ -11,6 +19,13 @@ const theme = createTheme({
         padding: "7px 35px",
         textTransform: "unset",
       },
+      outlined: {
+        borderRadius: "7px",
+        fontSize: "17px",
+        letterSpacing: "-0.5px",
+        padding: "5px 35px",
+        textTransform: "unset",
+      }
     },
     MuiStepIcon: {
       root: {
