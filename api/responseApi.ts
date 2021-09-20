@@ -2,13 +2,21 @@ import axios, { AxiosError } from "axios"
 import ObjectToArray from "../components/functions/ObjectToArray"
 
 
-const responseApi = async (url: string, method: string, data?: {}) => {
+const responseApi = async (url: string, method: string, data?: {}, header = true) => {
+    let token: any = localStorage.getItem('token')
+    if (token)
+        token = JSON.parse(token)
+    let config = {
+        headers: {
+            authorization: token && `Token ${token.token}`,
+        }
+    }
     let res
     try {
         if (method === 'post') {
-            res = await axios.post(url, data)
+            res = await axios.post(url, data, header ? config : {})
         } else if (method === 'get') {
-            res = await axios.get(url)
+            res = await axios.get(url, header ? config : {})
         }
         if (res?.data)
             return { error: false, data: res.data }
