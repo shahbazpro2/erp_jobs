@@ -2,11 +2,11 @@ import { LoadingButton } from '@mui/lab'
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { loginUser } from '../../../../api/auth'
+import Link from 'next/link'
+import { getUserApi, loginUser } from '../../../../api/auth'
 import AuthWrapper from '../../../common/authWrapper/AuthWrapper'
 import SnakbarAlert from '../../../common/snakbarAlert/SnakbarAlert'
 import UserNavbar from '../../../common/userNavbar/UserNavbar'
-import validateEmail from '../../../functions/emailValidation'
 import EmptyFieldCheck from '../../../functions/emptyFieldCheck'
 
 const UserLogin = () => {
@@ -37,14 +37,15 @@ const UserLogin = () => {
         }
         setLoading(true)
         const res = await loginUser({ username, password })
-        if (res.error) {
+        if (res?.error) {
             setApiError(res.data)
             setLoading(false)
         } else {
+            localStorage.setItem('token', JSON.stringify(res?.data))
             setTimeout(() => {
                 router.push('/register/user/')
             }, 1000);
-            setApiSuccess(['User loggedin successfully'])
+            setApiSuccess(['User logged in successfully'])
             setLoading(false)
         }
 
@@ -110,6 +111,9 @@ const UserLogin = () => {
                                 </div>
                             </div>
                         </AuthWrapper>
+                        <div className="text-xl mt-6 text-center text-[#92929D] tracking-[0.11px]">
+                            Forgot Password?<Link href="/register/user"><a href="#" className="primary-clr"> . Sign up for new user?</a></Link>
+                        </div>
                     </div>
                 </div>
             </div>
