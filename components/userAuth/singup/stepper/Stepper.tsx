@@ -10,7 +10,7 @@ const Stepper = () => {
     const getStepperContent = () => {
         switch (activeStep) {
             case 0:
-                return <Step1 setActiveStep={setActiveStep} />;
+                return <Step1 />;
             case 1:
                 return <Step2 setActiveStep={setActiveStep} />;
             case 2:
