@@ -1,5 +1,5 @@
+import responseApi from "./responseApi"
 import { loginUserUrl, registerUserUrl } from "./urls"
-import fetchApi from "./fetchApi"
 
 interface RegisterUser {
     username: string,
@@ -10,12 +10,12 @@ interface RegisterUser {
     email: string
 }
 export const registerUser = async (data: RegisterUser) => {
-    return fetchApi(registerUserUrl, data)
+    return responseApi(registerUserUrl, 'post', data)
 }
 interface LoginUser {
     password: string,
     username: string
 }
-export const loginUser = async (data: LoginUser) => {
-    return fetchApi(loginUserUrl, data)
+export const loginUser = (data: LoginUser) => {
+    return responseApi(loginUserUrl, 'post', data)
 }
