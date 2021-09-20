@@ -46,7 +46,7 @@ const Step1 = () => {
         }
 
         const res = await registerUser(data)
-        if (res.error) {
+        if (res?.error) {
             setApiError(res.data)
             setLoading(false)
         } else {
