@@ -1,5 +1,5 @@
 import responseApi from "./responseApi"
-import { loginUserUrl, registerUserUrl } from "./urls"
+import { getUserUrl, loginUserUrl, registerUserUrl } from "./urls"
 
 interface RegisterUser {
     username: string,
@@ -12,10 +12,16 @@ interface RegisterUser {
 export const registerUser = async (data: RegisterUser) => {
     return responseApi(registerUserUrl, 'post', data)
 }
+
+
 interface LoginUser {
     password: string,
     username: string
 }
 export const loginUser = (data: LoginUser) => {
-    return responseApi(loginUserUrl, 'post', data)
+    return responseApi(loginUserUrl, 'post', data, false)
+}
+
+export const getUserApi = () => {
+    return responseApi(getUserUrl, 'get')
 }
