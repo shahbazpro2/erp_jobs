@@ -1,5 +1,8 @@
 const ObjectToArray = (val: any) => {
-    return Array.from(Object.keys(val), k => val[k])[0]
+    if (typeof val === 'object')
+        return Array.prototype.concat.apply([], Array.from(Object.keys(val), k => val[k]))
+    else
+        return [val]
 }
 
 export default ObjectToArray
