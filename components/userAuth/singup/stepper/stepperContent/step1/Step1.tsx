@@ -1,17 +1,16 @@
 import { Button, TextField } from '@mui/material'
-import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
+import LoadingButton from '@mui/lab/LoadingButton';
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { registerUser } from '../../../../../../api/auth'
 import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
 import validateEmail from '../../../../../functions/emailValidation'
 import { useRouter } from 'next/router'
 import SnakbarAlert from '../../../../../common/snakbarAlert/SnakbarAlert'
-import ObjectToArray from '../.././../../../functions/ObjectToArray'
+import EmptyFieldCheck from '../../../../../functions/emptyFieldCheck';
 
-interface Props {
-    setActiveStep: Dispatch<SetStateAction<number>>
-}
 
-const Step1 = ({ setActiveStep }: Props) => {
+
+const Step1 = () => {
     const router = useRouter()
     const [state, setState] = useState({
         username: '',
@@ -21,6 +20,7 @@ const Step1 = ({ setActiveStep }: Props) => {
         password1: '',
         password2: ''
     })
+    const [loading, setLoading] = useState(false)
     const [inputError, setInputError] = useState(false)
     const [apiError, setApiError] = useState<any[]>([])
     const [apiSuccess, setApiSuccess] = useState<any[]>([])
@@ -33,10 +33,13 @@ const Step1 = ({ setActiveStep }: Props) => {
 
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
+        setLoading(true)
         setInputError(false)
         const { username, firstname, lastname, email, password1, password2 } = state
-        if (!firstname || !lastname || !username || !validateEmail(email) || !password1 || !password2 || password1 !== password2 || password1.length < 8) {
+
+        if (EmptyFieldCheck({ firstname, lastname, username, email, password1, password2 }) || !validateEmail(email) || password1 !== password2 || password1.length < 8) {
             setInputError(true)
+            setLoading(false)
             return
         }
         const data = {
@@ -46,12 +49,13 @@ const Step1 = ({ setActiveStep }: Props) => {
         const res = await registerUser(data)
         if (res.error) {
             setApiError(res.data)
+            setLoading(false)
         } else {
-            console.log(res.data)
             setTimeout(() => {
-                router.push('/login')
+                router.push('/login/user/')
             }, 1000);
             setApiSuccess(['User registered successfully'])
+            setLoading(false)
         }
 
     }
@@ -150,9 +154,9 @@ const Step1 = ({ setActiveStep }: Props) => {
                                         shrink: true,
                                     }}
                                 />
-                                <Button type="submit" variant="contained" color="primary" disableElevation >
+                                <LoadingButton type="submit" variant="contained" color="primary" loading={loading} disableElevation >
                                     Continue
-                                </Button>
+                                </LoadingButton>
                             </div>
                         </form>
                         <div className="my-6">
