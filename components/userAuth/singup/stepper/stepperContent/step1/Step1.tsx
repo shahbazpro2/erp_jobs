@@ -33,15 +33,14 @@ const Step1 = () => {
 
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
-        setLoading(true)
         setInputError(false)
         const { username, firstname, lastname, email, password1, password2 } = state
 
         if (EmptyFieldCheck({ firstname, lastname, username, email, password1, password2 }) || !validateEmail(email) || password1 !== password2 || password1.length < 8) {
             setInputError(true)
-            setLoading(false)
             return
         }
+        setLoading(true)
         const data = {
             username, first_name: firstname, last_name: lastname, email, password: password1, password2
         }
