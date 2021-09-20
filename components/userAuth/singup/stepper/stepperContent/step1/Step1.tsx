@@ -1,4 +1,5 @@
-import { Button, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
+import Link from 'next/link'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { registerUser } from '../../../../../../api/auth'
@@ -178,7 +179,7 @@ const Step1 = () => {
                     </div>
                 </AuthWrapper>
                 <div className="text-xl mt-6 text-center text-[#92929D] tracking-[0.11px]">
-                    Already have an account?<a href="#" className="primary-clr"> . Sign In</a>
+                    Already have an account?<Link href="/login/user"><a href="#" className="primary-clr"> . Sign In</a></Link>
                 </div>
             </div>
             <SnakbarAlert open={apiError.length ? true : false} handleClose={() => setApiError([])} message={apiError} type="error" />
