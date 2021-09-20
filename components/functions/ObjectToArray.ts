@@ -1,5 +1,5 @@
-const ObjetToArray = (val: any) => {
+const ObjectToArray = (val: any) => {
     return Array.from(Object.keys(val), k => val[k])[0]
 }
 
-export default ObjetToArray
+export default ObjectToArray
