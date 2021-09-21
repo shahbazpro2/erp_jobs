@@ -10,11 +10,9 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  useQuery,
-  gql
 } from "@apollo/client";
 
-function MyApp({ Component, pageProps, router }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
     uri: 'http://10.104.45.78:8000/graphql',
     cache: new InMemoryCache()
@@ -25,9 +23,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <ThemeProvider theme={theme}>
         <NoSsr>
           <IsUserWrapper>
-
             <Component {...pageProps} />
-
           </IsUserWrapper>
         </NoSsr>
       </ThemeProvider>
