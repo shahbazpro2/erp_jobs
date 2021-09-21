@@ -1,9 +1,9 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import generalReducer from './general'
+import authReducer from './auth'
 
 export const store = configureStore({
-    reducer: { generalReducer },
+    reducer: { authReducer },
     middleware: getDefaultMiddleware({
         serializableCheck: false
     }),
