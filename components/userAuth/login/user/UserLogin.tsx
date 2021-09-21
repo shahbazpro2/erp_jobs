@@ -8,8 +8,11 @@ import AuthWrapper from '../../../common/authWrapper/AuthWrapper'
 import SnakbarAlert from '../../../common/snakbarAlert/SnakbarAlert'
 import UserNavbar from '../../../common/userNavbar/UserNavbar'
 import EmptyFieldCheck from '../../../functions/emptyFieldCheck'
+import { useAppDispatch } from '../../../../redux/Store'
+import { setUserState } from '../../../../redux/auth'
 
 const UserLogin = () => {
+    const dispatch = useAppDispatch()
     const router = useRouter()
     const [state, setState] = useState({
         username: '',
@@ -42,6 +45,7 @@ const UserLogin = () => {
             setLoading(false)
         } else {
             localStorage.setItem('token', JSON.stringify(res?.data))
+            dispatch(getUserApi())
             setTimeout(() => {
                 router.push('/register/user/')
             }, 1000);
