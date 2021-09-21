@@ -6,28 +6,19 @@ import theme from '../theme'
 import { Provider } from 'react-redux'
 import { store } from '../redux/Store'
 import IsUserWrapper from '../components/IsUserWrapper'
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-} from "@apollo/client";
+
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const client = new ApolloClient({
-    uri: 'http://10.104.45.78:8000/graphql',
-    cache: new InMemoryCache()
-  });
+
 
   return <Provider store={store}>
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <NoSsr>
-          <IsUserWrapper>
-            <Component {...pageProps} />
-          </IsUserWrapper>
-        </NoSsr>
-      </ThemeProvider>
-    </ApolloProvider>
+    <ThemeProvider theme={theme}>
+      <NoSsr>
+        <IsUserWrapper>
+          <Component {...pageProps} />
+        </IsUserWrapper>
+      </NoSsr>
+    </ThemeProvider>
   </Provider>
 }
 export default MyApp
