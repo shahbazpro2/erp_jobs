@@ -1,45 +1,24 @@
 import '../styles/globals.scss'
 import 'tailwindcss/tailwind.css'
 import type { AppProps } from 'next/app'
-import { CircularProgress, NoSsr, ThemeProvider } from '@mui/material'
+import { NoSsr, ThemeProvider } from '@mui/material'
 import theme from '../theme'
-import { useEffect, useState } from 'react'
-import { getUserApi } from '../api/auth'
-import { isLoggedInRoute, isProtectedRoute } from '../components/functions/paths'
-import { Box } from '@mui/system'
+import { Provider } from 'react-redux'
+import { store } from '../redux/Store'
+import IsUserWrapper from '../components/IsUserWrapper'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    getUser()
-  }, [router])
+  return <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <NoSsr>
+        <IsUserWrapper>
 
-  const getUser = async () => {
-    const res = await getUserApi()
-    if (isProtectedRoute(router) && res?.error) {
-      router.push('/login/user/')
-    } else if (isLoggedInRoute(router) && !res?.error) {
-      router.push('/')
-    }
+          <Component {...pageProps} />
 
-    setTimeout(() => {
-      setLoading(false)
-    }, 500);
-
-
-
-    console.log('getUser', res, isProtectedRoute(router))
-  }
-
-  return <ThemeProvider theme={theme}>
-    <NoSsr>
-      {loading ? <Box className="flex justify-center items-center h-[100vh]" sx={{ display: 'flex' }}>
-        <CircularProgress />
-      </Box> :
-        <Component {...pageProps} />
-      }
-    </NoSsr>
-  </ThemeProvider>
+        </IsUserWrapper>
+      </NoSsr>
+    </ThemeProvider>
+  </Provider>
 }
 export default MyApp
