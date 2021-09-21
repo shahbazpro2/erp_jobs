@@ -2,7 +2,6 @@ interface Props {
     pathname: string
 }
 export const isProtectedRoute = ({ pathname }: Props) => {
-    console.log('oat', pathname)
     if (
         [
             "/test",
@@ -13,7 +12,6 @@ export const isProtectedRoute = ({ pathname }: Props) => {
     return false;
 };
 export const isLoggedInRoute = ({ pathname }: Props) => {
-    console.log('oat', pathname)
     if (
         [
             "/login/user",
