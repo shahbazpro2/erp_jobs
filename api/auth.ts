@@ -1,3 +1,4 @@
+import { createAsyncThunk } from "@reduxjs/toolkit"
 import responseApi from "./responseApi"
 import { getUserUrl, loginUserUrl, registerUserUrl } from "./urls"
 
@@ -13,15 +14,19 @@ export const registerUser = async (data: RegisterUser) => {
     return responseApi(registerUserUrl, 'post', data)
 }
 
-
 interface LoginUser {
     password: string,
     username: string
 }
+
 export const loginUser = (data: LoginUser) => {
     return responseApi(loginUserUrl, 'post', data, false)
 }
 
-export const getUserApi = () => {
-    return responseApi(getUserUrl, 'get')
+interface GetUserApi {
+    data: any,
+    error: boolean
 }
+export const getUserApi = createAsyncThunk("auth/getUserApi", async () => {
+    return await responseApi(getUserUrl, 'get') as GetUserApi
+})
