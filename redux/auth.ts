@@ -1,41 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-interface HeaderTypes {
-    header: boolean,
-    headerHeight: number,
-    scrollOnOff: boolean,
-    navigation: any
-}
-const initialState: HeaderTypes = {
-    header: true,
-    headerHeight: 0,
-    scrollOnOff: true,
-    navigation: {}
+import { getUserApi } from "../api/auth";
+
+interface userTypes {
+    user: {}
 }
 
-export const generalSlice = createSlice({
-    name: "header",
+const initialState: userTypes = {
+    user: {}
+}
+
+
+export const authSlice = createSlice({
+    name: "auth",
     initialState,
     reducers: {
-        setHeaderState: (state, action: PayloadAction<boolean>) => {
-            state.header = action.payload
+        setUserState: (state, action: PayloadAction<any>) => {
+            state.user = action.payload
         },
-        setHeaderHight: (state, action: PayloadAction<number>) => {
-            state.headerHeight = action.payload
-        },
-        setScrollOnOff: (state, action: PayloadAction<boolean>) => {
-            state.scrollOnOff = action.payload
-        },
-        setNavigation: (state, action: PayloadAction<any>) => {
-            state.navigation = action.payload
-        }
-    }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getUserApi.fulfilled, (state, { payload }) => {
+            if (!payload.error) {
+                state.user = payload.data.user[0]
+            } else {
+                localStorage.removeItem('token')
+                state.user = {}
+            }
+        })
+    },
 })
 
 export const {
-    setHeaderState,
-    setHeaderHight,
-    setScrollOnOff,
-    setNavigation
-} = generalSlice.actions;
+    setUserState
+} = authSlice.actions;
 
-export default generalSlice.reducer;
+export default authSlice.reducer;
