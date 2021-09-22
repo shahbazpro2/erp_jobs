@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import classNames from 'classnames'
 import React from 'react'
 import BoxWrapper from '../boxWrapper/BoxWrapper'
-import HeadingStyle1 from '../boxWrapper/HeadingStyle1'
+import HeadingStyle1 from '../headerStyles/HeadingStyle1'
 
 interface Props {
     children: React.ReactNode,
