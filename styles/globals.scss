@@ -73,6 +73,12 @@ body {
 .dotted-active {
   background-image: linear-gradient(to right, #000000 12%, rgba(0, 0, 0, 0) 0%);
 }
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .select {
   background: none;
