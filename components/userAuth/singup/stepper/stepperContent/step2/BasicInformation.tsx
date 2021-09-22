@@ -1,30 +1,32 @@
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
 import BoxWrapper from '../../../../../common/boxWrapper/BoxWrapper'
-import { useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { getAllCountries } from '../../../../../../Graphql/Queries'
 import EmptyFieldCheck from '../../../../../functions/emptyFieldCheck'
+import { CreateCandidate } from '../../../../../../Graphql/Mutations'
 
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
 
 const BasicInformation = ({ setActive }: Props) => {
-    const { data, error } = useQuery(getAllCountries)
-    console.log('graphql', data)
+    /*   const { data, error } = useQuery(getAllCountries) */
+    const [createCandidate, { error }] = useMutation(CreateCandidate)
+    console.log('err', error)
     const [state, setState] = useState({
-        job_title: '',
-        birth_date: '',
+        jobTitle: '',
+        dateOfBirth: '',
         gender: 'MALE',
         nationality: 'PK',
-        residence_country: 'PK',
+        residenceCountry: 'PK',
         city: '',
         phone: '',
         address: '',
-        job_status: ' ',
-        profile_visibility: ' ',
-        years_of_experience: '',
-        minimum_salary: '',
+        jobStatus: ' ',
+        profileVisibility: ' ',
+        yearsOfExperience: '',
+        minimumSalary: '',
         currency: 'EURO',
         confidential: false
     })
@@ -32,7 +34,7 @@ const BasicInformation = ({ setActive }: Props) => {
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
-        if (e.nativeEvent.type === 'click') {
+        if (e.nativeEvent?.type === 'click') {
             setState({ ...state, [name]: e.target.checked })
         } else
             setState({ ...state, [name]: value })
@@ -41,25 +43,31 @@ const BasicInformation = ({ setActive }: Props) => {
     const onSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        const { job_title,
-            birth_date,
+        const { jobTitle,
+            dateOfBirth,
             gender,
             nationality,
-            residence_country,
+            residenceCountry,
             city,
             phone,
             address,
-            job_status,
-            profile_visibility,
-            years_of_experience,
-            minimum_salary,
+            jobStatus,
+            profileVisibility,
+            yearsOfExperience,
+            minimumSalary,
             currency,
             confidential } = state
-        if (EmptyFieldCheck({ job_title, birth_date, address, job_status, profile_visibility, minimum_salary })) {
+        if (EmptyFieldCheck({ jobTitle, dateOfBirth, address, jobStatus, profileVisibility, minimumSalary })) {
             setInputError(true)
             return
         }
-        console.log(state)
+        try {
+
+            createCandidate({ variables: { ...state } })
+            console.log(state)
+        } catch (err: any) {
+            console.log('catcg', err)
+        }
         //setActive('career')
     }
     return (
@@ -71,14 +79,14 @@ const BasicInformation = ({ setActive }: Props) => {
                             <div className="grid gap-5">
                                 <TextField
                                     required
-                                    error={inputError && !state.job_title ? true : false}
-                                    helperText={inputError && !state.job_title ? 'Please provide a job title' : ''}
+                                    error={inputError && !state.jobTitle ? true : false}
+                                    helperText={inputError && !state.jobTitle ? 'Please provide a job title' : ''}
                                     id="outlined-jobTitle"
-                                    name="job_title"
+                                    name="jobTitle"
                                     label="Job Title"
                                     variant="outlined"
                                     className="w-full"
-                                    value={state.job_title}
+                                    value={state.jobTitle}
                                     onChange={onChangeInput}
                                     InputLabelProps={{
                                         shrink: true,
@@ -86,15 +94,15 @@ const BasicInformation = ({ setActive }: Props) => {
                                 />
                                 <TextField
                                     required
-                                    error={inputError && !state.birth_date ? true : false}
-                                    helperText={inputError && !state.birth_date ? 'Please select birth date' : ''}
+                                    error={inputError && !state.dateOfBirth ? true : false}
+                                    helperText={inputError && !state.dateOfBirth ? 'Please select birth date' : ''}
                                     id="outlined-date"
-                                    name="birth_date"
+                                    name="dateOfBirth"
                                     label="Birth Date"
                                     variant="outlined"
                                     type="date"
                                     className="w-full"
-                                    value={state.birth_date}
+                                    value={state.dateOfBirth}
                                     onChange={onChangeInput}
                                     InputLabelProps={{
                                         shrink: true,
@@ -135,11 +143,11 @@ const BasicInformation = ({ setActive }: Props) => {
                                 </TextField>
                                 <TextField
                                     id="outlined-residenceCountry"
-                                    name="residence_country"
+                                    name="residenceCountry"
                                     select
                                     label="Residence Country"
                                     variant="outlined"
-                                    value={state.residence_country}
+                                    value={state.residenceCountry}
                                     onChange={onChangeInput}
                                     InputLabelProps={{
                                         shrink: true,
@@ -191,14 +199,14 @@ const BasicInformation = ({ setActive }: Props) => {
                                 />
                                 <TextField
                                     required
-                                    error={inputError && EmptyFieldCheck({ job: state.job_status }) ? true : false}
-                                    helperText={inputError && EmptyFieldCheck({ job: state.job_status }) ? 'Please select job status' : ''}
+                                    error={inputError && EmptyFieldCheck({ job: state.jobStatus }) ? true : false}
+                                    helperText={inputError && EmptyFieldCheck({ job: state.jobStatus }) ? 'Please select job status' : ''}
                                     id="outlined-select-jobStatus"
-                                    name="job_status"
+                                    name="jobStatus"
                                     select
                                     label="Job Status"
                                     variant="outlined"
-                                    value={state.job_status}
+                                    value={state.jobStatus}
                                     onChange={onChangeInput}
                                     InputLabelProps={{
                                         shrink: true,
@@ -213,14 +221,14 @@ const BasicInformation = ({ setActive }: Props) => {
                                 </TextField>
                                 <TextField
                                     required
-                                    error={inputError && EmptyFieldCheck({ profile: state.profile_visibility }) ? true : false}
-                                    helperText={inputError && EmptyFieldCheck({ profile: state.profile_visibility }) ? 'Please select profile visibility' : ''}
+                                    error={inputError && EmptyFieldCheck({ profile: state.profileVisibility }) ? true : false}
+                                    helperText={inputError && EmptyFieldCheck({ profile: state.profileVisibility }) ? 'Please select profile visibility' : ''}
                                     id="outlined-select-profileVisibility"
-                                    name="profile_visibility"
+                                    name="profileVisibility"
                                     select
                                     label="Profile Visibility"
                                     variant="outlined"
-                                    value={state.profile_visibility}
+                                    value={state.profileVisibility}
                                     onChange={onChangeInput}
                                     InputLabelProps={{
                                         shrink: true,
@@ -235,11 +243,11 @@ const BasicInformation = ({ setActive }: Props) => {
                                 </TextField>
                                 <TextField
                                     id="outlined-yearsOfExperience"
-                                    name="years_of_experience"
+                                    name="yearsOfExperience"
                                     label="Years Of Experience"
                                     variant="outlined"
                                     className="w-full"
-                                    value={state.years_of_experience}
+                                    value={state.yearsOfExperience}
                                     onChange={onChangeInput}
                                     InputLabelProps={{
                                         shrink: true,
@@ -249,15 +257,15 @@ const BasicInformation = ({ setActive }: Props) => {
                                     <div className="col-span-7">
                                         <TextField
                                             required
-                                            error={inputError && !state.minimum_salary ? true : false}
-                                            helperText={inputError && !state.minimum_salary ? 'Please provide a minimum salary' : ''}
+                                            error={inputError && !state.minimumSalary ? true : false}
+                                            helperText={inputError && !state.minimumSalary ? 'Please provide a minimum salary' : ''}
                                             type="number"
                                             id="outlined-minimumSalary"
-                                            name="minimum_salary"
+                                            name="minimumSalary"
                                             label="Minimum Salary"
                                             variant="outlined"
                                             className="w-full"
-                                            value={state.minimum_salary}
+                                            value={state.minimumSalary}
                                             onChange={onChangeInput}
                                             InputLabelProps={{
                                                 shrink: true,
