@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 export const CreateCandidate = gql`
     mutation createCandidate(
-        
+            $jobTitle:String!,
             $phone: String!,
             $gender:CandidateGender!,
             $dateOfBirth:Date!,
@@ -10,13 +10,17 @@ export const CreateCandidate = gql`
             $nationality:CandidateNationality!,
             $residenceCountry:CandidateCountry!,
             $city:String!,
+            $yearOfExperience:String!,
             $jobStatus:CandidateJobStatus!,
             $profileVisibility:CandidateProfileVisibilty!,
+            $currency:CandidateCurrency!,
+            $minSalary:String!,
             $confidential:Boolean!
         
     ){
     createCandidate(
     input:{
+            jobTitle:$jobTitle,
             phone:$phone,
             gender:$gender,
             dateOfBirth:$dateOfBirth,
@@ -24,16 +28,16 @@ export const CreateCandidate = gql`
             nationality:$nationality,
             residenceCountry:$residenceCountry,
             city:$city,
+            yearOfExperience:$yearOfExperience,
             jobStatus:$jobStatus,
             profileVisibility:$profileVisibility,
-            confidential:$confidential
+            currency:$currency,
+            minSalary:$minSalary
+            confidential:$confidential,
         
     }){
         Candidate{
         id
-        phone
-        gender
-        dateOfBirth
     }}
     }
 `
