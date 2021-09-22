@@ -1,5 +1,6 @@
 import React from 'react'
 import BoxWrapper from '../../../../../../common/boxWrapper/BoxWrapper'
+import ModalHeading from '../../../../../../common/modals/ModalHeading'
 import ModalWrapper from '../../../../../../common/modals/ModalWrapper'
 
 const CareerContent = () => {
@@ -9,7 +10,7 @@ const CareerContent = () => {
 
                 <div className="w-[40%] absolute-center">
                     <BoxWrapper>
-                        hello
+                        <ModalHeading title="Add Career" />
                     </BoxWrapper>
                 </div>
 
