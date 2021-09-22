@@ -3,6 +3,7 @@ import ObjectToArray from "../components/functions/ObjectToArray"
 
 
 const responseApi = async (url: string, method: string, data?: {}, header = true) => {
+    if (!navigator.onLine) return { error: true, data: ["Oops! You're offline. Please check your network connection..."] }
     let token: any = localStorage.getItem('token')
     if (token)
         token = JSON.parse(token)
