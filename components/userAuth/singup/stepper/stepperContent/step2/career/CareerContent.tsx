@@ -1,23 +1,33 @@
+import { useMutation } from '@apollo/client'
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useContext, useState } from 'react'
+import { CandidateCareer } from '../../../../../../../Graphql/mutations/CandidateCareer'
 import BoxWrapper from '../../../../../../common/boxWrapper/BoxWrapper'
 import ModalHeading from '../../../../../../common/modals/ModalHeading'
 import ModalWrapper from '../../../../../../common/modals/ModalWrapper'
+import SnakbarAlert from '../../../../../../common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '../../../../../../functions/emptyFieldCheck'
+import objectIsEmpty from '../../../../../../functions/objectIsEmpty'
+import { ModalContext } from '../../../../../../../context/ModalContext'
+
+
 
 const CareerContent = () => {
+    const [createCareer, { error }] = useMutation(CandidateCareer)
+    const context = useContext(ModalContext);
     const [state, setState] = useState({
         jobTitle: '',
         companyName: '',
         companyLocation: '',
         fromDate: '',
         toDate: '',
-        workStatus: false,
+        currentWorkHere: false,
         confidential: false,
         description: ''
     })
 
     const [inputError, setInputError] = useState(false)
+    const [apiSuccess, setApiSuccess] = useState<string[]>([])
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -44,19 +54,18 @@ const CareerContent = () => {
             setInputError(true)
             return
         }
-        /*   try {
-              const res = await createCandidate({ variables: { ...state } })
-              console.log(res)
-              if (!objectIsEmpty(res)) {
-                  setApiSuccess(['Profile updated successfully'])
-                  setTimeout(() => {
-                      setActive('career')
-                  }, 500);
-              }
-          } catch (err: any) {
-              console.log('catcg', err.message)
-          }  */
-        //setActive('career')
+        try {
+            const res = await createCareer({ variables: { ...state } })
+            console.log(res)
+            if (!objectIsEmpty(res)) {
+                console.log('res', res)
+                context.handleClose()
+                setApiSuccess(['Career added successfully'])
+
+            }
+        } catch (err: any) {
+            console.log('catcg', err.message)
+        }
     }
 
 
@@ -152,7 +161,7 @@ const CareerContent = () => {
                                     </div>
                                     <div className="grid grid-cols-3 gap-3">
                                         <FormControlLabel
-                                            control={<Checkbox onChange={onChangeInput} checked={state.workStatus} name="workStatus" color="primary" />}
+                                            control={<Checkbox onChange={onChangeInput} checked={state.currentWorkHere} name="currentWorkHere" color="primary" />}
                                             label="I Currently work here"
                                         />
                                         <FormControlLabel
@@ -189,6 +198,7 @@ const CareerContent = () => {
                 </div>
 
             </ModalWrapper>
+            <SnakbarAlert open={apiSuccess.length ? true : false} handleClose={() => setApiSuccess([])} message={apiSuccess} type="success" />
         </>
     )
 }
