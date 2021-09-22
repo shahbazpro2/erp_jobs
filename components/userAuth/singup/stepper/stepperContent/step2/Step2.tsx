@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import BasicInformation from './BasicInformation'
-import Career from './Career'
+import Career from './career/Career'
 import Education from './Education'
 
 interface Props {
