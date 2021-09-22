@@ -24,7 +24,7 @@ const responseApi = async (url: string, method: string, data?: {}, header = true
         if (err.response?.data) {
             return { error: true, data: ObjectToArray(err.response?.data) }
         } else if (err.message === "Network Error") {
-            return { error: true, data: ['There was a network error.'] }
+            return { error: true, data: ['Server is not responding.'] }
         } else
             return { error: true, data: ['There is something went wrong.'] }
     }
