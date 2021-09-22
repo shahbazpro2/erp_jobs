@@ -5,10 +5,10 @@ export const CreateCandidate = gql`
         
             $phone: String!,
             $gender:CandidateGender!,
-            $dateOfBirth:DateTime!,
+            $dateOfBirth:Date!,
             $address:String!,
             $nationality:CandidateNationality!,
-            $residenceCountry:[CandidateCountry]!,
+            $residenceCountry:CandidateCountry!,
             $city:String!,
             $jobStatus:CandidateJobStatus!,
             $profileVisibility:CandidateProfileVisibilty!,
