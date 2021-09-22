@@ -50,7 +50,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '10px',
-          height: '48px'
+          height: '48px',
+        },
+        multiline: {
+          height: '100%',
         }
       }
     }
