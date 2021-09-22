@@ -2,6 +2,7 @@ import { Button } from '@mui/material'
 import classNames from 'classnames'
 import React from 'react'
 import BoxWrapper from '../boxWrapper/BoxWrapper'
+import HeadingStyle1 from '../boxWrapper/HeadingStyle1'
 
 interface Props {
     children: React.ReactNode,
@@ -16,7 +17,8 @@ interface Props {
 
 const AddItemsWrapper = ({ children, title, subtitle, skip = true, onBack, onSkip, onContinue }: Props) => {
     return (
-        <BoxWrapper title={title} subtitle={subtitle}>
+        <BoxWrapper>
+            <HeadingStyle1 title={title} subtitle={subtitle} />
             {children}
             <Button onClick={onContinue} variant="contained" className="w-full" color="primary" disableElevation >
                 Continue
