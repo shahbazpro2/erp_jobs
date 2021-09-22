@@ -3,21 +3,19 @@ import { Button, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddItemsWrapper from '../../../../../../common/addItemsWrapper/AddItemsWrapper';
 import CareerContent from './CareerContent';
+import { ModalContext } from '../../../../../../../context/ModalContext'
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
-export const ModalContext = createContext({
-    open: false,
-    handleClose: (val: boolean) => { }
-})
+
 
 const Career = ({ setActive }: Props) => {
     const [open, setOpen] = useState(false)
 
     const ContextValue = {
         open: open,
-        handleClose: (val: boolean) => {
-            setOpen(val)
+        handleClose: () => {
+            setOpen(false)
         }
     }
 
