@@ -12,8 +12,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["api/*"],
+      "@pages/*": ["pages/*"],
+      "@styles/*": ["styles/*"],
+      "@redux/*": ["redux/*"],
+      "@graphql/*": ["graphql/*"],
+      "@context/*":["context/*"],
+      "@components/*":["components/*"]
+    },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+ 
+"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/**/*","redux/*","api/*", "styles/**/*", "graphql/*,components/*"],
   "exclude": ["node_modules"]
 }
