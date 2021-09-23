@@ -4,16 +4,16 @@ export const CreateCandidate = gql`
     mutation createCandidate(
             $jobTitle:String!,
             $phone: String!,
-            $gender:CandidateGender!,
+            $gender:GenderEnum!,
             $dateOfBirth:Date!,
             $address:String!,
-            $nationality:CandidateNationality!,
+            $nationality:NationalityEnum!,
             $residenceCountry:CandidateCountry!,
             $city:String!,
             $yearOfExperience:String!,
-            $jobStatus:CandidateJobStatus!,
-            $profileVisibility:CandidateProfileVisibilty!,
-            $currency:CandidateCurrency!,
+            $jobStatus:JobStatusEnum!,
+            $profileVisibility:ProfileVisibiltyEnum!,
+            $currency:CurrencyEnum!,
             $minSalary:String!,
             $confidential:Boolean!
         
