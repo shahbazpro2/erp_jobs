@@ -7,7 +7,7 @@ import { getUserApi } from '../api/auth'
 import { useAppDispatch } from '../redux/Store'
 import Spinner from './common/spinner/Spinner'
 import { isLoggedInRoute, isProtectedRoute } from './functions/paths'
-import SnakbarAlert from './common/snakbarAlert/SnakbarAlert';
+import { setGraphqlError } from '@redux/errors';
 
 interface Props {
   children: ReactNode
@@ -25,8 +25,9 @@ const IsUserWrapper = ({ children }: Props) => {
   });
 
 
-  const errorLink = onError(({ graphQLErrors, networkError }) => {
+  const errorLink = onError(({ graphQLErrors, networkError, response }) => {
     let err = []
+
     if (graphQLErrors) {
 
       graphQLErrors.forEach(({ message, locations, path }) => {
@@ -39,10 +40,12 @@ const IsUserWrapper = ({ children }: Props) => {
       );
 
     }
+    if (!response || !response.data) {
+      console.log('reserro')
+    }
 
     if (networkError) err.push(`Response not successful`)
-
-    setError(err)
+    dispatch(setGraphqlError(err))
   });
 
 
@@ -91,7 +94,6 @@ const IsUserWrapper = ({ children }: Props) => {
       {loading ? <Spinner /> :
         <ApolloProvider client={client}>
           {children}
-          <SnakbarAlert open={error.length ? true : false} handleClose={() => setError([])} message={error} type="error" />
         </ApolloProvider>
       }
     </>
