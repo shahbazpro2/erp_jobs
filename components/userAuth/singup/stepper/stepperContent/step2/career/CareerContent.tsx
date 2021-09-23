@@ -1,14 +1,14 @@
 import { useMutation } from '@apollo/client'
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useContext, useState } from 'react'
-import { CandidateCareer } from '../../../../../../../Graphql/mutations/CandidateCareer'
-import BoxWrapper from '../../../../../../common/boxWrapper/BoxWrapper'
-import ModalHeading from '../../../../../../common/modals/ModalHeading'
-import ModalWrapper from '../../../../../../common/modals/ModalWrapper'
-import SnakbarAlert from '../../../../../../common/snakbarAlert/SnakbarAlert'
-import EmptyFieldCheck from '../../../../../../functions/emptyFieldCheck'
-import objectIsEmpty from '../../../../../../functions/objectIsEmpty'
-import { ModalContext } from '../../../../../../../context/ModalContext'
+import { CandidateCareer } from '@graphql/mutations/CandidateCareer'
+import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
+import ModalHeading from '@components/common/modals/ModalHeading'
+import ModalWrapper from '@components/common/modals/ModalWrapper'
+import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
+import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
+import objectIsEmpty from '@components/functions/objectIsEmpty'
+import { ModalContext } from '@context/ModalContext'
 
 
 
