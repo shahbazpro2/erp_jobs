@@ -14,7 +14,7 @@ export const CandidateCareer = gql`
     ){
 createCareer(
     input:{
-            jobTitle:$jobTitle,
+            jobTitle:{  id:$jobTitle},
             companyName:$companyName,
             companyLocation:$companyLocation,
             fromDate:$fromDate,
