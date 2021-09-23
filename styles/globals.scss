@@ -91,6 +91,9 @@ body {
     outline: none;
   }
 }
+.primary-clr-hover:hover {
+  color: $primary-clr;
+}
 
 .primary-clr {
   color: $primary-clr;
