@@ -40,9 +40,7 @@ const IsUserWrapper = ({ children }: Props) => {
       );
 
     }
-    if (!response || !response.data) {
-      console.log('reserro')
-    }
+
 
     if (networkError) err.push(`Response not successful`)
     dispatch(setGraphqlError(err))
