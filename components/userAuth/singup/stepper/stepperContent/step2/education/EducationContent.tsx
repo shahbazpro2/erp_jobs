@@ -1,7 +1,6 @@
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useContext, useState } from 'react'
-import { CandidateCareer } from '@graphql/mutations/CandidateCareer'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import ModalHeading from '@components/common/modals/ModalHeading'
 import ModalWrapper from '@components/common/modals/ModalWrapper'
@@ -10,6 +9,7 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import objectIsEmpty from '@components/functions/objectIsEmpty'
 import { ModalContext } from '@context/ModalContext'
 import { DropdownContext } from '@context/DropdownContext'
+import { CandidateCareer } from '@graphql/mutations/candidate/CandidateCareer'
 
 
 
@@ -55,7 +55,6 @@ const EducationContent = () => {
             console.log(res)
             if (!objectIsEmpty(res)) {
                 console.log('res', res)
-                context.handleSubmit()
                 context.handleClose()
                 setApiSuccess(['Education added successfully'])
 
