@@ -6,7 +6,7 @@ export const CandidateCareer = gql`
             $companyName: String!,
             $companyLocation:String!,
             $fromDate:Date!,
-            $toDate:Date!,
+            $toDate:Date,
             $currentWorkHere:Boolean,
             $confidential:Boolean
             $description:String!,
