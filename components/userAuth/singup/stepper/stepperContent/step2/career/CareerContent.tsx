@@ -1,6 +1,6 @@
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useContext, useState } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { CandidateCareer } from '@graphql/mutations/CandidateCareer'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import ModalHeading from '@components/common/modals/ModalHeading'
@@ -13,21 +13,21 @@ import { DropdownContext } from '@context/DropdownContext'
 import { getAllCareers } from '@graphql/queries/AllCareers'
 
 
-
+const initialState = {
+    jobTitle: ' ',
+    companyName: '',
+    companyLocation: '',
+    fromDate: '',
+    toDate: '',
+    currentWorkHere: false,
+    confidential: false,
+    description: ''
+}
 const CareerContent = () => {
     const [createCareer] = useMutation(CandidateCareer, { refetchQueries: [{ query: getAllCareers }] })
     const context = useContext(ModalContext);
     const jobContext = useContext(DropdownContext)
-    const [state, setState] = useState({
-        jobTitle: ' ',
-        companyName: '',
-        companyLocation: '',
-        fromDate: '',
-        toDate: '',
-        currentWorkHere: false,
-        confidential: false,
-        description: ''
-    })
+    const [state, setState] = useState(initialState)
 
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
@@ -40,6 +40,11 @@ const CareerContent = () => {
             setState({ ...state, [name]: value })
     }
 
+    useEffect(() => {
+        return () => {
+            setState(initialState)
+        }
+    }, [context.open])
 
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
@@ -50,10 +55,11 @@ const CareerContent = () => {
             fromDate,
             toDate,
             description,
+            currentWorkHere
         } = state
         var d1 = new Date(fromDate);
         var d2 = new Date(toDate);
-        if (EmptyFieldCheck({ jobTitle, companyName, companyLocation, fromDate, toDate, description }) || d1 >= d2) {
+        if (EmptyFieldCheck({ jobTitle, companyName, companyLocation, fromDate, description }) || d1 >= d2 || (!currentWorkHere && !toDate)) {
             setInputError(true)
             return
         }
@@ -61,6 +67,16 @@ const CareerContent = () => {
             const stateData = { ...state, jobTitle: Number(jobTitle) }
             const res = await createCareer({ variables: { ...stateData } })
             if (!objectIsEmpty(res)) {
+                setState({
+                    jobTitle: ' ',
+                    companyName: '',
+                    companyLocation: '',
+                    fromDate: '',
+                    toDate: '',
+                    currentWorkHere: false,
+                    confidential: false,
+                    description: ''
+                })
                 context.handleClose()
                 setApiSuccess(['Career added successfully'])
 
@@ -69,7 +85,6 @@ const CareerContent = () => {
             console.log('catcg', err.message)
         }
     }
-
 
 
     return (
@@ -150,8 +165,9 @@ const CareerContent = () => {
                                         />
                                         <TextField
                                             required
-                                            error={inputError && !state.toDate ? true : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
-                                            helperText={inputError && !state.toDate ? 'Please select to date' : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
+                                            error={inputError && !state.toDate ? true : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
+                                            helperText={inputError && !state.toDate ? 'Please select to date' : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
+                                            disabled={state.currentWorkHere}
                                             type="date"
                                             name="toDate"
                                             label="To Date"
