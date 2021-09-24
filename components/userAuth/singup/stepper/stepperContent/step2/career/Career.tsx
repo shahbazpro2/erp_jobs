@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react'
 import { Button, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddItemsWrapper from '@components/common/addItemsWrapper/AddItemsWrapper';
@@ -11,16 +11,31 @@ interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
 
+export interface CareerProps {
+    id: string,
+    jobTitle: { name: string },
+    companyName: string,
+    companyLocation: string,
+    confidential: string,
+    fromDate: string,
+    toDate: string,
+    description: string
+}
 
 const Career = ({ setActive }: Props) => {
-    const [allCareers, { data }] = useLazyQuery(getAllCareers)
+    const [allCareers, { data, refetch, called }] = useLazyQuery(getAllCareers)
     const [open, setOpen] = useState(false)
+    const [submit, setSubmit] = useState(false)
 
     console.log('data', data)
     const ContextValue = {
         open: open,
+        submit: submit,
         handleClose: () => {
             setOpen(false)
+        },
+        handleSubmit: () => {
+            setSubmit(true)
         }
     }
 
@@ -31,10 +46,21 @@ const Career = ({ setActive }: Props) => {
     const onContinue = () => {
         setActive('education')
     }
-
     useEffect(() => {
         allCareers()
     }, [])
+
+    /* useEffect(() => {
+        console.log('called')
+        allCareers()
+    }, [called]) */
+
+    /*  useEffect(() => {
+         if (submit && refetch) {
+             refetch()
+             setSubmit(false)
+         }
+     }, [submit]) */
 
     return (
         <div className="grid grid-cols-7 justify-center">
@@ -42,8 +68,8 @@ const Career = ({ setActive }: Props) => {
 
                 <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} skip={false}>
                     <div className="mt-7 grid gap-2">
-                        <CareerCard />
-                        <CareerCard />
+                        {data?.allCareers?.map((career: CareerProps, index: string) => <Fragment key={index}><CareerCard data={career} /></Fragment>)}
+
                     </div>
                     <div className="mt-7">
                         <Button variant="outlined" className="w-full" color="primary" onClick={() => setOpen(true)}>
