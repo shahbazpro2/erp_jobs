@@ -10,11 +10,12 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import objectIsEmpty from '@components/functions/objectIsEmpty'
 import { ModalContext } from '@context/ModalContext'
 import { DropdownContext } from '@context/DropdownContext'
+import { getAllCareers } from '@graphql/queries/AllCareers'
 
 
 
 const CareerContent = () => {
-    const [createCareer] = useMutation(CandidateCareer)
+    const [createCareer] = useMutation(CandidateCareer, { refetchQueries: [{ query: getAllCareers }] })
     const context = useContext(ModalContext);
     const jobContext = useContext(DropdownContext)
     const [state, setState] = useState({
@@ -59,10 +60,7 @@ const CareerContent = () => {
         try {
             const stateData = { ...state, jobTitle: Number(jobTitle) }
             const res = await createCareer({ variables: { ...stateData } })
-            console.log(res)
             if (!objectIsEmpty(res)) {
-                console.log('res', res)
-                context.handleSubmit()
                 context.handleClose()
                 setApiSuccess(['Career added successfully'])
 
