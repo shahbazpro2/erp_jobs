@@ -17,16 +17,17 @@ export interface CareerProps {
     jobTitle: { name: string },
     companyName: string,
     companyLocation: string,
-    confidential: string,
+    confidential: boolean,
     fromDate: string,
     toDate: string,
-    description: string
+    description: string,
+    currentWorkHere: boolean
 }
 
 const Career = ({ setActive }: Props) => {
-    const [allCareers, { data }] = useLazyQuery(getAllCareers)
+    const [allCareers, { data, loading }] = useLazyQuery(getAllCareers)
     const [open, setOpen] = useState(false)
-
+    console.log(data, loading)
     const ContextValue = {
         open: open,
         handleClose: () => {
