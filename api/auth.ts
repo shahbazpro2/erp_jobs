@@ -25,6 +25,7 @@ export const loginUser = (data: LoginUser) => {
 
 interface GetUserApi {
     data: any,
+    status: number,
     error: boolean
 }
 export const getUserApi = createAsyncThunk("auth/getUserApi", async () => {
