@@ -28,7 +28,7 @@ const CareerCard = ({ data }: Props) => {
                     <div className="col-span-3">
                         <div className="text-sm flex">
                             <div className="ml-auto">
-                                {data.fromDate} - {data.toDate}
+                                {data.fromDate} - {data.currentWorkHere ? 'Present' : data.toDate}
                                 {data.confidential && <div className="subtitle-clr">Confidential</div>}
                                 <div className="flex mt-3 justify-center text-xs subtitle-clr">
                                     <div className="cursor-pointer mr-3 flex items-center primary-clr-hover">
