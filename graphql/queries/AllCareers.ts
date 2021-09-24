@@ -10,6 +10,7 @@ export const getAllCareers = gql`
             companyName,
             companyLocation,
             confidential,
+            currentWorkHere,
             fromDate,
             toDate,
             description
