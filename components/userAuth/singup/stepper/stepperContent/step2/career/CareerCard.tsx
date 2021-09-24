@@ -1,9 +1,13 @@
 import { Card, CardContent } from '@mui/material'
-import React from 'react'
+import React, { Fragment } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { CareerProps } from './Career'
 
-const CareerCard = () => {
+interface Props {
+    data: CareerProps,
+}
+const CareerCard = ({ data }: Props) => {
     return (
         <Card variant="outlined">
             <CardContent>
@@ -11,12 +15,12 @@ const CareerCard = () => {
                     <div className="col-span-9">
 
                         <div className="text-sm">
-                            UI/UX Designer
+                            {data.jobTitle.name}
                             <div className="subtitle-clr">
-                                Creative Khan | Pakistan
+                                {data.companyName} | {data.companyLocation}
                             </div>
                             <div className="mt-2">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
+                                {data.description}
                             </div>
                         </div>
 
@@ -24,8 +28,8 @@ const CareerCard = () => {
                     <div className="col-span-3">
                         <div className="text-sm flex">
                             <div className="ml-auto">
-                                May 2021 - Present
-                                <div className="subtitle-clr">Confidential</div>
+                                {data.fromDate} - {data.toDate}
+                                {data.confidential && <div className="subtitle-clr">Confidential</div>}
                                 <div className="flex mt-3 justify-center text-xs subtitle-clr">
                                     <div className="cursor-pointer mr-3 flex items-center primary-clr-hover">
                                         <EditIcon style={{ width: 16, marginRight: '3px' }} /> Edit
