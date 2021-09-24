@@ -23,7 +23,7 @@ const responseApi = async (url: string, method: string, data?: {}, header = true
             return { error: false, data: res.data }
     } catch (err: any) {
         if (err.response?.data) {
-            return { error: true, data: ObjectToArray(err.response?.data) }
+            return { error: true, status: err.response?.status, data: ObjectToArray(err.response?.data) }
         } else if (err.message === "Network Error") {
             return { error: true, data: ['Server is not responding.'] }
         } else
