@@ -1,13 +1,15 @@
 import { Card, CardContent } from '@mui/material'
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { CareerProps } from './Career'
+import { ModalContext } from '@context/ModalContext';
+import { CareerQueryProps } from './types';
 
 interface Props {
-    data: CareerProps,
+    data: CareerQueryProps,
 }
 const CareerCard = ({ data }: Props) => {
+    const context = useContext(ModalContext)
     return (
         <Card variant="outlined">
             <CardContent>
@@ -31,7 +33,7 @@ const CareerCard = ({ data }: Props) => {
                                 {data.fromDate} - {data.currentWorkHere ? 'Present' : data.toDate}
                                 {data.confidential && <div className="subtitle-clr">Confidential</div>}
                                 <div className="flex mt-3 justify-center text-xs subtitle-clr">
-                                    <div className="cursor-pointer mr-3 flex items-center primary-clr-hover">
+                                    <div className="cursor-pointer mr-3 flex items-center primary-clr-hover" onClick={() => context.handleEdit(data)}>
                                         <EditIcon style={{ width: 16, marginRight: '3px' }} /> Edit
                                     </div>
                                     <div className="cursor-pointer flex items-center hover:text-red-600">
