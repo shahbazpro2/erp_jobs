@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import BasicInformation from './BasicInformation'
 import Career from './career/Career'
-import Education from './Education'
+import Education from './education/Education'
 
 interface Props {
     setActiveStep: Dispatch<SetStateAction<number>>
