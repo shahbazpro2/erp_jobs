@@ -1,7 +1,6 @@
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useContext, useEffect, useState } from 'react'
-import { CandidateCareer } from '@graphql/mutations/CandidateCareer'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import ModalHeading from '@components/common/modals/ModalHeading'
 import ModalWrapper from '@components/common/modals/ModalWrapper'
@@ -11,23 +10,20 @@ import objectIsEmpty from '@components/functions/objectIsEmpty'
 import { ModalContext } from '@context/ModalContext'
 import { DropdownContext } from '@context/DropdownContext'
 import { getAllCareers } from '@graphql/queries/AllCareers'
+import { CareerProps } from './types'
+import { initialCareerState } from './initialStates'
+import { CandidateCareer } from '@graphql/mutations/candidate/CandidateCareer'
+import { UpdateUserCareer } from '@graphql/mutations/candidate/UpdateUserCareer'
 
 
-const initialState = {
-    jobTitle: ' ',
-    companyName: '',
-    companyLocation: '',
-    fromDate: '',
-    toDate: '',
-    currentWorkHere: false,
-    confidential: false,
-    description: ''
-}
+
 const CareerContent = () => {
     const [createCareer] = useMutation(CandidateCareer, { refetchQueries: [{ query: getAllCareers }] })
+    const [updateUserCareer] = useMutation(UpdateUserCareer, { refetchQueries: [{ query: getAllCareers }] })
     const context = useContext(ModalContext);
     const jobContext = useContext(DropdownContext)
-    const [state, setState] = useState(initialState)
+    const [state, setState] = useState<CareerProps>(initialCareerState)
+    const [editId, setEditId] = useState('')
 
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
@@ -41,8 +37,17 @@ const CareerContent = () => {
     }
 
     useEffect(() => {
+        if (context.editData?.id) {
+            const { id, jobTitle, companyLocation, companyName, confidential, description, currentWorkHere, fromDate, toDate } = context.editData
+            setState({ companyLocation, companyName, confidential, description, currentWorkHere, fromDate, toDate, jobTitle: jobTitle.id })
+            setEditId(id)
+        }
+
+    }, [context.editData])
+
+    useEffect(() => {
         return () => {
-            setState(initialState)
+            setState(initialCareerState)
         }
     }, [context.open])
 
@@ -63,9 +68,15 @@ const CareerContent = () => {
             setInputError(true)
             return
         }
+
+        editId ? submitCareer(state, updateUserCareer, 'Career updated successfully') : submitCareer(state, createCareer, 'Career added successfully')
+
+    }
+
+    const submitCareer = async (state: CareerProps, api: any, res: string) => {
         try {
-            const stateData = { ...state, jobTitle: Number(jobTitle) }
-            const res = await createCareer({ variables: { ...stateData } })
+            const stateData = { ...state, jobTitle: Number(state.jobTitle) }
+            const res = await updateUserCareer({ variables: { ...stateData, id: Number(editId) } })
             if (!objectIsEmpty(res)) {
                 setState({
                     jobTitle: ' ',
@@ -77,8 +88,9 @@ const CareerContent = () => {
                     confidential: false,
                     description: ''
                 })
+                setEditId('')
                 context.handleClose()
-                setApiSuccess(['Career added successfully'])
+                setApiSuccess(['Career updated successfully'])
 
             }
         } catch (err: any) {
@@ -208,7 +220,7 @@ const CareerContent = () => {
                                         }}
                                     />
                                     <Button type="submit" variant="contained" color="primary" disableElevation >
-                                        Save
+                                        {editId ? 'Update' : 'Save'}
                                     </Button>
                                 </div>
 
