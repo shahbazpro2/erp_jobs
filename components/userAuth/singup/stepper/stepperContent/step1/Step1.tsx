@@ -2,12 +2,12 @@ import { TextField } from '@mui/material'
 import Link from 'next/link'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { registerUser } from '../../../../../../api/auth'
-import AuthWrapper from '../../../../../common/authWrapper/AuthWrapper'
-import validateEmail from '../../../../../functions/emailValidation'
+import { registerUser } from '@api/auth'
+import AuthWrapper from '@components/common/authWrapper/AuthWrapper'
+import validateEmail from '@components/functions/emailValidation'
 import { useRouter } from 'next/router'
-import SnakbarAlert from '../../../../../common/snakbarAlert/SnakbarAlert'
-import EmptyFieldCheck from '../../../../../functions/emptyFieldCheck';
+import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
+import EmptyFieldCheck from '@components/functions/emptyFieldCheck';
 
 
 
