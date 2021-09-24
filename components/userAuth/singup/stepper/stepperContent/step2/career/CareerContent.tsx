@@ -88,7 +88,6 @@ const CareerContent = () => {
                                         required
                                         error={inputError && EmptyFieldCheck({ job: state.jobTitle }) ? true : false}
                                         helperText={inputError && EmptyFieldCheck({ job: state.jobTitle }) ? 'Please select a job title' : ''}
-                                        id="outlined-jobTitle"
                                         name="jobTitle"
                                         select
                                         label="Job Title"
@@ -111,7 +110,6 @@ const CareerContent = () => {
                                         required
                                         error={inputError && !state.companyName ? true : false}
                                         helperText={inputError && !state.companyName ? 'Please provide a company name' : ''}
-                                        id="outlined-companyName"
                                         name="companyName"
                                         label="Company Name"
                                         variant="outlined"
@@ -126,7 +124,6 @@ const CareerContent = () => {
                                         required
                                         error={inputError && !state.companyLocation ? true : false}
                                         helperText={inputError && !state.companyLocation ? 'Please provide a company location' : ''}
-                                        id="outlined-companyLocation"
                                         name="companyLocation"
                                         label="Company Location"
                                         variant="outlined"
@@ -142,7 +139,6 @@ const CareerContent = () => {
                                             required
                                             error={inputError && !state.fromDate ? true : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
                                             helperText={inputError && !state.fromDate ? 'Please select from date' : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
-                                            id="outlined-fromDate"
                                             type="date"
                                             name="fromDate"
                                             label="From Date"
@@ -158,7 +154,6 @@ const CareerContent = () => {
                                             required
                                             error={inputError && !state.toDate ? true : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
                                             helperText={inputError && !state.toDate ? 'Please select to date' : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
-                                            id="outlined-toDate"
                                             type="date"
                                             name="toDate"
                                             label="To Date"
@@ -186,7 +181,6 @@ const CareerContent = () => {
                                         required
                                         error={inputError && !state.description ? true : false}
                                         helperText={inputError && !state.description ? 'Please provide a description' : ''}
-                                        id="filled-multiline-static"
                                         multiline
                                         rows={4}
                                         name="description"

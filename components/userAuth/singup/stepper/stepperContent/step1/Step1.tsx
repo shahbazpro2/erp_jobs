@@ -71,7 +71,6 @@ const Step1 = () => {
                                     error={inputError && !state.firstname ? true : false}
                                     helperText={inputError && !state.firstname ? 'Please provide a firstname' : ''}
                                     required
-                                    id="outlined-firstname"
                                     name="firstname"
                                     label="Your Firstname"
                                     variant="outlined"
@@ -85,7 +84,6 @@ const Step1 = () => {
                                     error={inputError && !state.lastname ? true : false}
                                     helperText={inputError && !state.lastname ? 'Please provide a lastname' : ''}
                                     required
-                                    id="outlined-lastname"
                                     name="lastname"
                                     label="Your Lastname"
                                     variant="outlined"
@@ -99,7 +97,6 @@ const Step1 = () => {
                                     error={inputError && !state.username ? true : false}
                                     helperText={inputError && !state.username ? 'Please provide a username' : ''}
                                     required
-                                    id="outlined-username"
                                     name="username"
                                     label="Your Username"
                                     variant="outlined"
@@ -113,7 +110,6 @@ const Step1 = () => {
                                     error={inputError && !validateEmail(state.email) ? true : false}
                                     helperText={inputError && !validateEmail(state.email) ? 'Email is invalid or empty' : ''}
                                     required
-                                    id="outlined-email"
                                     name="email"
                                     label="Your Email"
                                     type="email"
@@ -128,7 +124,6 @@ const Step1 = () => {
                                     required
                                     error={inputError && !state.password1 ? true : inputError && state.password1.length < 8 ? true : inputError && state.password1 !== state.password2 ? true : false}
                                     helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
-                                    id="outlined-password"
                                     name="password1"
                                     type="password"
                                     label="Enter Password"
@@ -143,7 +138,6 @@ const Step1 = () => {
                                     error={inputError && !state.password2 ? true : inputError && state.password1.length < 8 ? true : inputError && state.password1 !== state.password2 ? true : false}
                                     helperText={inputError && !state.password2 ? 'Please provide a confirm password' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
                                     required
-                                    id="outlined-name"
                                     name="password2"
                                     type="password"
                                     label="Confirm Password"
