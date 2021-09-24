@@ -2,13 +2,13 @@ import { gql } from '@apollo/client'
 
 export const CandidateCareer = gql`
     mutation createCareer(
-            $jobTitle:String!,
+            $jobTitle:ID!,
             $companyName: String!,
             $companyLocation:String!,
             $fromDate:Date!,
             $toDate:Date!,
-            $currentWorkHere:Boolean!,
-            $confidential:Boolean!
+            $currentWorkHere:Boolean,
+            $confidential:Boolean
             $description:String!,
         
     ){
