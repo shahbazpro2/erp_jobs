@@ -23,7 +23,6 @@ export const authSlice = createSlice({
             if (!payload.error) {
                 state.user = payload.data.user[0]
             } else {
-                localStorage.removeItem('token')
                 state.user = {}
             }
         })
