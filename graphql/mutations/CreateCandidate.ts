@@ -2,35 +2,27 @@ import { gql } from '@apollo/client'
 
 export const CreateCandidate = gql`
     mutation createCandidate(
-            $jobTitle:String!,
+            $jobTitle:ID!,
             $phone: String!,
             $gender:GenderEnum!,
-            $dateOfBirth:Date!,
-            $address:String!,
-            $nationality:NationalityEnum!,
-            $residenceCountry:CandidateCountry!,
-            $city:String!,
-            $yearOfExperience:String!,
-            $jobStatus:JobStatusEnum!,
-            $profileVisibility:ProfileVisibiltyEnum!,
-            $currency:CurrencyEnum!,
-            $minSalary:String!,
-            $confidential:Boolean!
+            $dateOfBirth:Date,
+            $address:String,
+            $city:String,
+            $yearOfExperience:String,
+            $currency:CurrencyEnum,
+            $minSalary:String,
+            $confidential:Boolean
         
     ){
     createCandidate(
     input:{
-            jobTitle:$jobTitle,
+            jobTitle:{  id:$jobTitle},
             phone:$phone,
             gender:$gender,
             dateOfBirth:$dateOfBirth,
             address:$address,
-            nationality:$nationality,
-            residenceCountry:$residenceCountry,
             city:$city,
             yearOfExperience:$yearOfExperience,
-            jobStatus:$jobStatus,
-            profileVisibility:$profileVisibility,
             currency:$currency,
             minSalary:$minSalary
             confidential:$confidential,
