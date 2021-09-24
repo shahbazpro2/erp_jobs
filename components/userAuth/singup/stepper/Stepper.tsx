@@ -1,19 +1,19 @@
 import { useLazyQuery } from '@apollo/client';
 import { DropdownContext } from '@context/DropdownContext';
-import { GetAllJobtitles } from '@graphql/queries/AllJobTitles';
 import React, { useEffect, useState } from 'react'
-import { useAppSelector } from '../../../../redux/Store';
-import Spinner from '../../../common/spinner/Spinner';
-import HorizontalStepper from '../../../common/stepper/HorizontalStepper'
+import { useAppSelector } from '@redux/Store';
+import Spinner from '@components/common/spinner/Spinner';
+import HorizontalStepper from '@components/common/stepper/HorizontalStepper'
 import Step1 from './stepperContent/step1/Step1';
 import Step2 from './stepperContent/step2/Step2';
+import { GetAllJobtitles } from '@graphql/queries/AllJobTitles';
 
 const steps = ["Create an account", "Build your profile", "Upload your CV"];
 const Stepper = () => {
     const [getAllJobtitles, { data }] = useLazyQuery(GetAllJobtitles)
     const { user }: any = useAppSelector(state => state.authReducer)
     const [loading, setLoading] = useState(true)
-    const [activeStep, setActiveStep] = useState(0)
+    const [activeStep, setActiveStep] = useState(1)
 
     const ContextValue = {
         jobTitles: data?.allJobtitles,
