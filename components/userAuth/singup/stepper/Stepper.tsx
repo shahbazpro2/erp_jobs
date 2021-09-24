@@ -13,7 +13,7 @@ const Stepper = () => {
     const [getAllJobtitles, { data }] = useLazyQuery(GetAllJobtitles)
     const { user }: any = useAppSelector(state => state.authReducer)
     const [loading, setLoading] = useState(true)
-    const [activeStep, setActiveStep] = useState(1)
+    const [activeStep, setActiveStep] = useState(0)
 
     const ContextValue = {
         jobTitles: data?.allJobtitles,
