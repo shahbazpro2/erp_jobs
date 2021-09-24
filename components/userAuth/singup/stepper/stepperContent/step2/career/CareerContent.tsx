@@ -1,5 +1,5 @@
-import { useMutation } from '@apollo/client'
-import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { useLazyQuery, useMutation } from '@apollo/client'
+import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useContext, useState } from 'react'
 import { CandidateCareer } from '@graphql/mutations/CandidateCareer'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
@@ -9,14 +9,16 @@ import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import objectIsEmpty from '@components/functions/objectIsEmpty'
 import { ModalContext } from '@context/ModalContext'
+import { DropdownContext } from '@context/DropdownContext'
 
 
 
 const CareerContent = () => {
-    const [createCareer, { error }] = useMutation(CandidateCareer)
+    const [createCareer] = useMutation(CandidateCareer)
     const context = useContext(ModalContext);
+    const jobContext = useContext(DropdownContext)
     const [state, setState] = useState({
-        jobTitle: '',
+        jobTitle: ' ',
         companyName: '',
         companyLocation: '',
         fromDate: '',
@@ -55,10 +57,12 @@ const CareerContent = () => {
             return
         }
         try {
-            const res = await createCareer({ variables: { ...state } })
+            const stateData = { ...state, jobTitle: Number(jobTitle) }
+            const res = await createCareer({ variables: { ...stateData } })
             console.log(res)
             if (!objectIsEmpty(res)) {
                 console.log('res', res)
+                context.handleSubmit()
                 context.handleClose()
                 setApiSuccess(['Career added successfully'])
 
@@ -82,10 +86,11 @@ const CareerContent = () => {
                                 <div className="grid gap-5">
                                     <TextField
                                         required
-                                        error={inputError && !state.jobTitle ? true : false}
-                                        helperText={inputError && !state.jobTitle ? 'Please provide a job title' : ''}
+                                        error={inputError && EmptyFieldCheck({ job: state.jobTitle }) ? true : false}
+                                        helperText={inputError && EmptyFieldCheck({ job: state.jobTitle }) ? 'Please select a job title' : ''}
                                         id="outlined-jobTitle"
                                         name="jobTitle"
+                                        select
                                         label="Job Title"
                                         variant="outlined"
                                         className="w-full"
@@ -94,7 +99,14 @@ const CareerContent = () => {
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
-                                    />
+
+                                    >
+                                        <MenuItem disabled value={" "}>
+                                            Select job title
+                                        </MenuItem>
+                                        {jobContext?.jobTitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
+
+                                    </TextField>
                                     <TextField
                                         required
                                         error={inputError && !state.companyName ? true : false}
