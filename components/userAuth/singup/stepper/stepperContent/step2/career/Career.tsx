@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react'
 import { Button, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -23,19 +24,13 @@ export interface CareerProps {
 }
 
 const Career = ({ setActive }: Props) => {
-    const [allCareers, { data, refetch, called }] = useLazyQuery(getAllCareers)
+    const [allCareers, { data }] = useLazyQuery(getAllCareers)
     const [open, setOpen] = useState(false)
-    const [submit, setSubmit] = useState(false)
 
-    console.log('data', data)
     const ContextValue = {
         open: open,
-        submit: submit,
         handleClose: () => {
             setOpen(false)
-        },
-        handleSubmit: () => {
-            setSubmit(true)
         }
     }
 
@@ -50,17 +45,6 @@ const Career = ({ setActive }: Props) => {
         allCareers()
     }, [])
 
-    /* useEffect(() => {
-        console.log('called')
-        allCareers()
-    }, [called]) */
-
-    /*  useEffect(() => {
-         if (submit && refetch) {
-             refetch()
-             setSubmit(false)
-         }
-     }, [submit]) */
 
     return (
         <div className="grid grid-cols-7 justify-center">
