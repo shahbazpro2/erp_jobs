@@ -1,3 +1,6 @@
+import { useLazyQuery } from '@apollo/client';
+import { DropdownContext } from '@context/DropdownContext';
+import { GetAllJobtitles } from '@graphql/queries/AllJobTitles';
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from '../../../../redux/Store';
 import Spinner from '../../../common/spinner/Spinner';
@@ -7,12 +10,18 @@ import Step2 from './stepperContent/step2/Step2';
 
 const steps = ["Create an account", "Build your profile", "Upload your CV"];
 const Stepper = () => {
+    const [getAllJobtitles, { data }] = useLazyQuery(GetAllJobtitles)
     const { user }: any = useAppSelector(state => state.authReducer)
     const [loading, setLoading] = useState(true)
     const [activeStep, setActiveStep] = useState(0)
 
+    const ContextValue = {
+        jobTitles: data?.allJobtitles,
+    }
+
 
     useEffect(() => {
+        getAllJobtitles()
         if (Object.keys(user).length && !user.isCompleted)
             setActiveStep(1)
         setLoading(false)
@@ -37,7 +46,10 @@ const Stepper = () => {
                     <div className="mb-12">
                         <HorizontalStepper activeStep={activeStep} steps={steps} />
                     </div>
-                    {getStepperContent()}
+                    <DropdownContext.Provider value={ContextValue}>
+                        {getStepperContent()}
+                    </DropdownContext.Provider>
+
                 </>
             }
         </>
