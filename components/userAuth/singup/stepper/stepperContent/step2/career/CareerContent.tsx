@@ -14,12 +14,13 @@ import { initialCareerState } from './initialStates'
 import { CreateCareer } from '@graphql/mutations/user/career/CreateCareer'
 import { UpdateCareer } from '@graphql/mutations/user/career/UpdateCareer'
 import { AllCareers } from '@graphql/queries/user/career/AllCareers'
+import moment from 'moment'
 
 
 
 const CareerContent = () => {
-    const [createCareer] = useMutation(CreateCareer, { refetchQueries: [{ query: AllCareers }] })
-    const [updateUserCareer] = useMutation(UpdateCareer, { refetchQueries: [{ query: AllCareers }] })
+    const [createCareer] = useMutation(CreateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
+    const [updateUserCareer] = useMutation(UpdateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
     const context = useContext(ModalContext);
     const jobContext = useContext(DropdownContext)
     const [state, setState] = useState<CareerProps>(initialCareerState)
@@ -27,6 +28,7 @@ const CareerContent = () => {
 
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
+    const [apiError, setApiError] = useState<string[]>([])
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -37,9 +39,10 @@ const CareerContent = () => {
     }
 
     useEffect(() => {
+        console.log(context.editData)
         if (context.editData?.id) {
             const { id, jobTitle, companyLocation, companyName, confidential, description, currentWorkHere, fromDate, toDate } = context.editData
-            setState({ companyLocation, companyName, confidential, description, currentWorkHere, fromDate, toDate, jobTitle: jobTitle.id })
+            setState({ companyLocation, companyName, confidential, description, currentWorkHere, fromDate, toDate: toDate || moment(Date.now()).format('YYYY-MM-DD'), jobTitle: jobTitle.id })
             setEditId(id)
         }
 
@@ -47,6 +50,8 @@ const CareerContent = () => {
 
     useEffect(() => {
         return () => {
+            setEditId('')
+            setInputError(false)
             setState(initialCareerState)
         }
     }, [context.open])
@@ -74,30 +79,29 @@ const CareerContent = () => {
     }
 
     const submitCareer = async (state: CareerProps, api: any, message: string) => {
+
+
+        const stateData = { ...state, jobTitle: Number(state.jobTitle) }
         try {
-            const stateData = { ...state, jobTitle: Number(state.jobTitle) }
             const res = await api({ variables: { ...stateData, id: Number(editId) } })
-            if (!objectIsEmpty(res)) {
-                setState({
-                    jobTitle: ' ',
-                    companyName: '',
-                    companyLocation: '',
-                    fromDate: '',
-                    toDate: '',
-                    currentWorkHere: false,
-                    confidential: false,
-                    description: ''
-                })
-                setEditId('')
+            if (res.data) {
+                setState(initialCareerState)
                 context.handleClose()
                 setApiSuccess([`${message}`])
 
+            } else {
+                if (res.errors.graphQLErrors.length) {
+                    setApiError(res.errors.graphQLErrors.map((err: any) => err.message))
+                } else {
+                    setApiError(['There is something went wrong!'])
+                }
             }
-        } catch (err: any) {
-            console.log('catcg', err.message)
+        } catch (err) {
+            setApiError(['There is something went wrong!'])
         }
-    }
 
+
+    }
 
     return (
         <>
@@ -230,6 +234,7 @@ const CareerContent = () => {
                 </div>
 
             </ModalWrapper>
+            <SnakbarAlert open={apiError.length ? true : false} handleClose={() => setApiError([])} message={apiError} type="error" />
             <SnakbarAlert open={apiSuccess.length ? true : false} handleClose={() => setApiSuccess([])} message={apiSuccess} type="success" />
         </>
     )
