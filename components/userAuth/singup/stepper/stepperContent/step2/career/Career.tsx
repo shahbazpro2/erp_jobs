@@ -13,6 +13,7 @@ import objectIsEmpty from '@components/functions/objectIsEmpty';
 import { DeleteCareer } from '@graphql/mutations/user/career/DeleteCareer';
 import { AllCareers } from '@graphql/queries/user/career/AllCareers';
 import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert';
+import DialogAlert from '@components/common/alerts/DialogAlert';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
@@ -26,6 +27,7 @@ const Career = ({ setActive }: Props) => {
     const [editData, setEditData] = useState<CareerQueryProps>(initialCareerEditState)
     const [apiError, setApiError] = useState<string[]>([])
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
+    const [delId, setDelId] = useState(-1)
 
     const ContextValue = {
         editData,
@@ -43,7 +45,6 @@ const Career = ({ setActive }: Props) => {
     const onBack = () => {
         setActive('basic')
     }
-    console.log('data', data)
 
     const onContinue = () => {
         data?.allCareers?.length ?
@@ -52,20 +53,21 @@ const Career = ({ setActive }: Props) => {
 
     }
 
-    const onDelete = async (id: number) => {
+    const onDelete = async () => {
+        const id = delId
+        setDelId(-1)
         console.log('delete', id)
         try {
             const res = await deleteCareer({ variables: { id } })
             if (!objectIsEmpty(res)) {
-                //setApiSuccess([`${message}`])
+                setApiSuccess([`Career deleted successfully`])
             }
         } catch (err: any) {
-            console.log('catcg', err.message)
+            setApiError([err.message])
         }
     }
 
     useEffect(() => {
-        console.log('useEffect career')
         allCareers()
     }, [])
 
@@ -77,7 +79,7 @@ const Career = ({ setActive }: Props) => {
                 <ModalContext.Provider value={ContextValue}>
                     <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} skip={false}>
                         <div className="mt-7 grid gap-2">
-                            {data?.allCareers?.map((career: CareerQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} onDelete={onDelete} /></Fragment>)}
+                            {data?.allCareers?.map((career: CareerQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} onDelete={setDelId} /></Fragment>)}
 
                         </div>
                         <div className="mt-7">
@@ -92,6 +94,7 @@ const Career = ({ setActive }: Props) => {
 
                     <CareerContent />
                 </ModalContext.Provider>
+                <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete career?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
                 <SnakbarAlert open={apiError.length ? true : false} handleClose={() => setApiError([])} message={apiError} type="error" />
                 <SnakbarAlert open={apiSuccess.length ? true : false} handleClose={() => setApiSuccess([])} message={apiSuccess} type="success" />
             </div>
