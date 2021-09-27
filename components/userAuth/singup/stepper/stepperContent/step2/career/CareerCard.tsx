@@ -7,8 +7,9 @@ import { CareerQueryProps } from './types';
 
 interface Props {
     data: CareerQueryProps,
+    onDelete: (id: number) => void
 }
-const CareerCard = ({ data }: Props) => {
+const CareerCard = ({ data, onDelete }: Props) => {
     const context = useContext(ModalContext)
     return (
         <Card variant="outlined">
@@ -36,7 +37,7 @@ const CareerCard = ({ data }: Props) => {
                                     <div className="cursor-pointer mr-3 flex items-center primary-clr-hover" onClick={() => context.handleEdit(data)}>
                                         <EditIcon style={{ width: 16, marginRight: '3px' }} /> Edit
                                     </div>
-                                    <div className="cursor-pointer flex items-center hover:text-red-600">
+                                    <div className="cursor-pointer flex items-center hover:text-red-600" onClick={() => onDelete(Number(data.id))}>
                                         <DeleteIcon style={{ width: 16, marginRight: '2px' }} /> Delete
                                     </div>
                                 </div>
