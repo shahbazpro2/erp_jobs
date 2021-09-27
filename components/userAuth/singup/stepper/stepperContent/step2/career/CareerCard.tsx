@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { ModalContext } from '@context/ModalContext';
 import { CareerQueryProps } from './types';
 import stringShort from '@components/functions/stringShort';
+import moment from 'moment'
 
 interface Props {
     data: CareerQueryProps,
@@ -32,7 +33,7 @@ const CareerCard = ({ data, onDelete }: Props) => {
                     <div className="col-span-3">
                         <div className="text-sm flex">
                             <div className="ml-auto">
-                                {data.fromDate} - {data.currentWorkHere ? 'Present' : data.toDate}
+                                {moment(data.fromDate).format('MMM YYYY')} - {data.currentWorkHere ? 'Present' : moment(data.toDate).format('MMM YYYY')}
                                 {data.confidential && <div className="subtitle-clr">Confidential</div>}
                                 <div className="flex mt-3 justify-center text-xs subtitle-clr">
                                     <div className="cursor-pointer mr-3 flex items-center primary-clr-hover" onClick={() => context.handleEdit(data)}>
