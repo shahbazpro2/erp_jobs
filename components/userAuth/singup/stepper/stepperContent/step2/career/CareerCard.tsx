@@ -17,7 +17,7 @@ const CareerCard = ({ data, onDelete }: Props) => {
         <Card variant="outlined">
             <CardContent>
                 <div className="grid grid-cols-12">
-                    <div className="col-span-9 pr-2">
+                    <div className="col-span-9">
 
                         <div className="text-sm">
                             {data.jobTitle.name}
