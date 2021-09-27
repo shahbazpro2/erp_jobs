@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CreateCandidate = gql`
+export const CreateProfile = gql`
     mutation createCandidate(
             $jobTitle:ID!,
             $phone: String!,

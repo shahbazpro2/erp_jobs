@@ -9,12 +9,12 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import objectIsEmpty from '@components/functions/objectIsEmpty'
 import { ModalContext } from '@context/ModalContext'
 import { DropdownContext } from '@context/DropdownContext'
-import { CandidateCareer } from '@graphql/mutations/candidate/CandidateCareer'
+import { CreateCareer } from '@graphql/mutations/user/career/CreateCareer'
 
 
 
 const EducationContent = () => {
-    const [createCareer] = useMutation(CandidateCareer)
+    const [createCareer] = useMutation(CreateCareer)
     const context = useContext(ModalContext);
     const jobContext = useContext(DropdownContext)
     const [state, setState] = useState({

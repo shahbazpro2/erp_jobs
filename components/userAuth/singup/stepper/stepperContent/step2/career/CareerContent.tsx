@@ -9,17 +9,17 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import objectIsEmpty from '@components/functions/objectIsEmpty'
 import { ModalContext } from '@context/ModalContext'
 import { DropdownContext } from '@context/DropdownContext'
-import { getAllCareers } from '@graphql/queries/AllCareers'
 import { CareerProps } from './types'
 import { initialCareerState } from './initialStates'
-import { CandidateCareer } from '@graphql/mutations/candidate/CandidateCareer'
-import { UpdateUserCareer } from '@graphql/mutations/candidate/UpdateUserCareer'
+import { CreateCareer } from '@graphql/mutations/user/career/CreateCareer'
+import { UpdateCareer } from '@graphql/mutations/user/career/UpdateCareer'
+import { AllCareers } from '@graphql/queries/user/career/AllCareers'
 
 
 
 const CareerContent = () => {
-    const [createCareer] = useMutation(CandidateCareer, { refetchQueries: [{ query: getAllCareers }] })
-    const [updateUserCareer] = useMutation(UpdateUserCareer, { refetchQueries: [{ query: getAllCareers }] })
+    const [createCareer] = useMutation(CreateCareer, { refetchQueries: [{ query: AllCareers }] })
+    const [updateUserCareer] = useMutation(UpdateCareer, { refetchQueries: [{ query: AllCareers }] })
     const context = useContext(ModalContext);
     const jobContext = useContext(DropdownContext)
     const [state, setState] = useState<CareerProps>(initialCareerState)

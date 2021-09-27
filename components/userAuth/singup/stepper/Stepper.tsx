@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLazyQuery } from '@apollo/client';
 import { DropdownContext } from '@context/DropdownContext';
 import React, { useEffect, useState } from 'react'
@@ -6,11 +7,11 @@ import Spinner from '@components/common/spinner/Spinner';
 import HorizontalStepper from '@components/common/stepper/HorizontalStepper'
 import Step1 from './stepperContent/step1/Step1';
 import Step2 from './stepperContent/step2/Step2';
-import { GetAllJobtitles } from '@graphql/queries/AllJobTitles';
+import { AllJobtitles } from '@graphql/queries/AllJobTitles';
 
 const steps = ["Create an account", "Build your profile", "Upload your CV"];
 const Stepper = () => {
-    const [getAllJobtitles, { data }] = useLazyQuery(GetAllJobtitles)
+    const [getAllJobtitles, { data }] = useLazyQuery(AllJobtitles)
     const { user }: any = useAppSelector(state => state.authReducer)
     const [loading, setLoading] = useState(true)
     const [activeStep, setActiveStep] = useState(0)
@@ -32,7 +33,10 @@ const Stepper = () => {
             case 0:
                 return <Step1 />;
             case 1:
-                return <Step2 setActiveStep={setActiveStep} />;
+                return <DropdownContext.Provider value={ContextValue}>
+
+                    <Step2 setActiveStep={setActiveStep} />
+                </DropdownContext.Provider>
             case 2:
                 return 'This is the bit I really care about!';
             default:
@@ -46,9 +50,8 @@ const Stepper = () => {
                     <div className="mb-12">
                         <HorizontalStepper activeStep={activeStep} steps={steps} />
                     </div>
-                    <DropdownContext.Provider value={ContextValue}>
-                        {getStepperContent()}
-                    </DropdownContext.Provider>
+
+                    {getStepperContent()}
 
                 </>
             }

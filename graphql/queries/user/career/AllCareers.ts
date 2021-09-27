@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const getAllCareers = gql`
+export const AllCareers = gql`
     query allCareers{
         allCareers{
             id,

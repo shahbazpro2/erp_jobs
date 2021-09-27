@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const DeleteUserCareer = gql`
+export const DeleteCareer = gql`
     mutation deleteCareer(
             $id:ID!,
     ){

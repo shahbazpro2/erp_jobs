@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client'
 
-export const CandidateCareer = gql`
-    mutation createCareer(
+export const UpdateCareer = gql`
+    mutation updateCareer(
+            $id:ID!,
             $jobTitle:ID!,
             $companyName: String!,
             $companyLocation:String!,
@@ -12,8 +13,10 @@ export const CandidateCareer = gql`
             $description:String!,
         
     ){
-createCareer(
-    input:{
+    updateCareer(
+        id:$id,
+        input:{
+            
             jobTitle:{  id:$jobTitle},
             companyName:$companyName,
             companyLocation:$companyLocation,

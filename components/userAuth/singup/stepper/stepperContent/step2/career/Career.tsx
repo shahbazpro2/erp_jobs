@@ -7,18 +7,18 @@ import CareerContent from './CareerContent';
 import { ModalContext } from '@context/ModalContext'
 import CareerCard from './CareerCard';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { getAllCareers } from '@graphql/queries/AllCareers';
 import { CareerProps, CareerQueryProps } from './types';
 import { initialCareerEditState, initialCareerState } from './initialStates';
-import { DeleteUserCareer } from '@graphql/mutations/candidate/DeleteUserCareer';
 import objectIsEmpty from '@components/functions/objectIsEmpty';
+import { DeleteCareer } from '@graphql/mutations/user/career/DeleteCareer';
+import { AllCareers } from '@graphql/queries/user/career/AllCareers';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
 
 
 const Career = ({ setActive }: Props) => {
-    const [deleteCareer] = useMutation(DeleteUserCareer, { refetchQueries: [{ query: getAllCareers }] })
+    const [deleteCareer] = useMutation(DeleteCareer, { refetchQueries: [{ query: AllCareers }] })
     const [allCareers, { data, loading }] = useLazyQuery(getAllCareers)
     const [open, setOpen] = useState(false)
     const [editData, setEditData] = useState<CareerQueryProps>(initialCareerEditState)
