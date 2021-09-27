@@ -1,4 +1,4 @@
-import { useLazyQuery, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
@@ -73,10 +73,10 @@ const CareerContent = () => {
 
     }
 
-    const submitCareer = async (state: CareerProps, api: any, res: string) => {
+    const submitCareer = async (state: CareerProps, api: any, message: string) => {
         try {
             const stateData = { ...state, jobTitle: Number(state.jobTitle) }
-            const res = await updateUserCareer({ variables: { ...stateData, id: Number(editId) } })
+            const res = await api({ variables: { ...stateData, id: Number(editId) } })
             if (!objectIsEmpty(res)) {
                 setState({
                     jobTitle: ' ',
@@ -90,7 +90,7 @@ const CareerContent = () => {
                 })
                 setEditId('')
                 context.handleClose()
-                setApiSuccess(['Career updated successfully'])
+                setApiSuccess([`${message}`])
 
             }
         } catch (err: any) {
