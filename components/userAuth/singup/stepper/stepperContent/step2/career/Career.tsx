@@ -56,7 +56,6 @@ const Career = ({ setActive }: Props) => {
     const onDelete = async () => {
         const id = delId
         setDelId(-1)
-        console.log('delete', id)
         try {
             const res = await deleteCareer({ variables: { id } })
             if (!objectIsEmpty(res)) {
