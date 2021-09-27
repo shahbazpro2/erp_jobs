@@ -177,8 +177,8 @@ const CareerContent = () => {
                                         />
                                         <TextField
                                             required
-                                            error={inputError && !state.toDate ? true : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
-                                            helperText={inputError && !state.toDate ? 'Please select to date' : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
+                                            error={inputError && !state.toDate && !state.currentWorkHere ? true : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
+                                            helperText={inputError && !state.toDate && !state.currentWorkHere ? 'Please select to date' : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
                                             disabled={state.currentWorkHere}
                                             type="date"
                                             name="toDate"
@@ -208,7 +208,7 @@ const CareerContent = () => {
                                         error={inputError && !state.description ? true : false}
                                         helperText={inputError && !state.description ? 'Please provide a description' : ''}
                                         multiline
-                                        rows={4}
+                                        rows={7}
                                         name="description"
                                         label="Description"
                                         variant="outlined"
