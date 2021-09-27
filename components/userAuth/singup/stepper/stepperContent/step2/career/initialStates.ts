@@ -17,7 +17,7 @@ export const initialCareerEditState = {
     companyName: '',
     companyLocation: '',
     fromDate: '',
-    toDate: moment(Date.now()).format('YYYY-MM-DD'),
+    toDate: '',
     currentWorkHere: false,
     confidential: false,
     description: ''
