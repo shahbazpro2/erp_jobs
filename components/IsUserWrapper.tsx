@@ -1,4 +1,4 @@
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, createHttpLink, DefaultOptions, InMemoryCache } from '@apollo/client'
 import { onError } from "@apollo/client/link/error";
 import { setContext } from '@apollo/client/link/context'
 import { useRouter, NextRouter } from 'next/router'
@@ -26,7 +26,7 @@ const IsUserWrapper = ({ children }: Props) => {
 
 
   const errorLink = onError(({ graphQLErrors, networkError, response }) => {
-    let err = []
+    let err: any = []
 
     if (graphQLErrors) {
 
@@ -40,11 +40,19 @@ const IsUserWrapper = ({ children }: Props) => {
       );
 
     }
-
+    console.log('main', err)
 
     if (networkError) err.push(`Response not successful`)
     dispatch(setGraphqlError(err))
   });
+
+  const defaultOptions: DefaultOptions = {
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  }
+
 
 
   const authLink = setContext((_, { headers }) => {
@@ -60,7 +68,8 @@ const IsUserWrapper = ({ children }: Props) => {
 
   const client = new ApolloClient({
     link: errorLink.concat(authLink.concat(httpLink)),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    defaultOptions: defaultOptions
   });
 
   useEffect(() => {
