@@ -6,16 +6,19 @@ import AddItemsWrapper from '@components/common/addItemsWrapper/AddItemsWrapper'
 import CareerContent from './CareerContent';
 import { ModalContext } from '@context/ModalContext'
 import CareerCard from './CareerCard';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { getAllCareers } from '@graphql/queries/AllCareers';
 import { CareerProps, CareerQueryProps } from './types';
 import { initialCareerEditState, initialCareerState } from './initialStates';
+import { DeleteUserCareer } from '@graphql/mutations/candidate/DeleteUserCareer';
+import objectIsEmpty from '@components/functions/objectIsEmpty';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
 
 
 const Career = ({ setActive }: Props) => {
+    const [deleteCareer] = useMutation(DeleteUserCareer, { refetchQueries: [{ query: getAllCareers }] })
     const [allCareers, { data, loading }] = useLazyQuery(getAllCareers)
     const [open, setOpen] = useState(false)
     const [editData, setEditData] = useState<CareerQueryProps>(initialCareerEditState)
@@ -41,6 +44,19 @@ const Career = ({ setActive }: Props) => {
         setActive('education')
     }
 
+    const onDelete = async (id: number) => {
+        console.log('delete', id)
+        try {
+            const res = await deleteCareer({ variables: { id } })
+            if (!objectIsEmpty(res)) {
+                //setApiSuccess([`${message}`])
+
+            }
+        } catch (err: any) {
+            console.log('catcg', err.message)
+        }
+    }
+
     useEffect(() => {
         allCareers()
     }, [])
@@ -52,7 +68,7 @@ const Career = ({ setActive }: Props) => {
                 <ModalContext.Provider value={ContextValue}>
                     <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} skip={false}>
                         <div className="mt-7 grid gap-2">
-                            {data?.allCareers?.map((career: CareerQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} /></Fragment>)}
+                            {data?.allCareers?.map((career: CareerQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} onDelete={onDelete} /></Fragment>)}
 
                         </div>
                         <div className="mt-7">
