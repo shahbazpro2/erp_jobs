@@ -13,9 +13,9 @@ export const UpdateUserCareer = gql`
             $description:String!,
         
     ){
-updateCareer(
-    id:$id,
-    input:{
+    updateCareer(
+        id:$id,
+        input:{
             
             jobTitle:{  id:$jobTitle},
             companyName:$companyName,
