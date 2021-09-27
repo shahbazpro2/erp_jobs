@@ -7,11 +7,12 @@ import CareerContent from './CareerContent';
 import { ModalContext } from '@context/ModalContext'
 import CareerCard from './CareerCard';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { CareerProps, CareerQueryProps } from './types';
-import { initialCareerEditState, initialCareerState } from './initialStates';
+import { CareerQueryProps } from './types';
+import { initialCareerEditState } from './initialStates';
 import objectIsEmpty from '@components/functions/objectIsEmpty';
 import { DeleteCareer } from '@graphql/mutations/user/career/DeleteCareer';
 import { AllCareers } from '@graphql/queries/user/career/AllCareers';
+import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
@@ -19,9 +20,12 @@ interface Props {
 
 const Career = ({ setActive }: Props) => {
     const [deleteCareer] = useMutation(DeleteCareer, { refetchQueries: [{ query: AllCareers }] })
-    const [allCareers, { data, loading }] = useLazyQuery(AllCareers)
+    const [allCareers, { data }] = useLazyQuery(AllCareers)
     const [open, setOpen] = useState(false)
+    /*  const [data, setData] = useState<CareerQueryProps[]>([]) */
     const [editData, setEditData] = useState<CareerQueryProps>(initialCareerEditState)
+    const [apiError, setApiError] = useState<string[]>([])
+    const [apiSuccess, setApiSuccess] = useState<string[]>([])
 
     const ContextValue = {
         editData,
@@ -39,9 +43,13 @@ const Career = ({ setActive }: Props) => {
     const onBack = () => {
         setActive('basic')
     }
+    console.log('data', data)
 
     const onContinue = () => {
-        setActive('education')
+        data?.allCareers?.length ?
+            setActive('education') :
+            setApiError([`You must need to add atleast one career to continue`])
+
     }
 
     const onDelete = async (id: number) => {
@@ -50,7 +58,6 @@ const Career = ({ setActive }: Props) => {
             const res = await deleteCareer({ variables: { id } })
             if (!objectIsEmpty(res)) {
                 //setApiSuccess([`${message}`])
-
             }
         } catch (err: any) {
             console.log('catcg', err.message)
@@ -58,8 +65,10 @@ const Career = ({ setActive }: Props) => {
     }
 
     useEffect(() => {
+        console.log('useEffect career')
         allCareers()
     }, [])
+
 
 
     return (
@@ -83,6 +92,8 @@ const Career = ({ setActive }: Props) => {
 
                     <CareerContent />
                 </ModalContext.Provider>
+                <SnakbarAlert open={apiError.length ? true : false} handleClose={() => setApiError([])} message={apiError} type="error" />
+                <SnakbarAlert open={apiSuccess.length ? true : false} handleClose={() => setApiSuccess([])} message={apiSuccess} type="success" />
             </div>
         </div>
     )
