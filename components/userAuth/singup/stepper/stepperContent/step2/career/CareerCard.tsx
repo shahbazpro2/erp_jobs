@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { ModalContext } from '@context/ModalContext';
 import { CareerQueryProps } from './types';
+import stringShort from '@components/functions/stringShort';
 
 interface Props {
     data: CareerQueryProps,
@@ -15,7 +16,7 @@ const CareerCard = ({ data, onDelete }: Props) => {
         <Card variant="outlined">
             <CardContent>
                 <div className="grid grid-cols-12">
-                    <div className="col-span-9">
+                    <div className="col-span-9 pr-2">
 
                         <div className="text-sm">
                             {data.jobTitle.name}
@@ -23,7 +24,7 @@ const CareerCard = ({ data, onDelete }: Props) => {
                                 {data.companyName} | {data.companyLocation}
                             </div>
                             <div className="mt-2">
-                                {data.description}
+                                {stringShort(data.description)}
                             </div>
                         </div>
 
