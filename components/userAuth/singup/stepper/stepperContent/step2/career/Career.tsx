@@ -63,7 +63,7 @@ const Career = ({ setActive }: Props) => {
                 setApiSuccess([`Career deleted successfully`])
             }
         } catch (err: any) {
-            setApiError([err.message])
+            setApiError(err.message)
         }
     }
 
