@@ -12,6 +12,7 @@ import { EducationProps } from './types'
 import { UpdateEducation } from '@graphql/mutations/user/education/UpdateEducation'
 import { CreateEducation } from '@graphql/mutations/user/education/CreateEducation'
 import { AllEducations } from '@graphql/queries/user/education/AllEducations'
+import graphqlRes from '@components/functions/graphqlRes'
 
 
 const EducationContent = () => {
@@ -58,24 +59,15 @@ const EducationContent = () => {
     }
 
     const submitData = async (state: EducationProps, api: any, message: string) => {
-
-        try {
-            const res = await api({ variables: { ...state, id: Number(editId) } })
-            if (res.data) {
-                setState(initialEducationState)
-                context.handleClose()
-                setApiSuccess([`${message}`])
-
-            } else {
-                if (res.errors.graphQLErrors.length) {
-                    setApiError(res.errors.graphQLErrors.map((err: any) => err.message))
-                } else {
-                    setApiError(['There is something went wrong!'])
-                }
-            }
-        } catch (err) {
-            setApiError(['There is something went wrong!'])
+        const { error, data } = await graphqlRes(api({ variables: { ...state, id: Number(editId) } }))
+        if (error) {
+            setApiError(data)
+            return
         }
+        setState(initialEducationState)
+        context.handleClose()
+        setApiSuccess([`${message}`])
+
     }
 
 
