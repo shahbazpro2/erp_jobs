@@ -13,6 +13,7 @@ import { AllCareers } from '@graphql/queries/user/career/AllCareers'
 import moment from 'moment'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import CareerInputs from './CareerInputs'
+import graphqlRes from '@components/functions/graphqlRes'
 
 
 const CareerContent = () => {
@@ -69,23 +70,16 @@ const CareerContent = () => {
 
     const submitData = async (state: CareerProps, api: any, message: string) => {
         const stateData = { ...state, jobTitle: Number(state.jobTitle) }
-        try {
-            const res = await api({ variables: { ...stateData, id: Number(editId) } })
-            if (res.data) {
-                setState(initialCareerState)
-                context.handleClose()
-                setApiSuccess([`${message}`])
 
-            } else {
-                if (res.errors.graphQLErrors.length) {
-                    setApiError(res.errors.graphQLErrors.map((err: any) => err.message))
-                } else {
-                    setApiError(['There is something went wrong!'])
-                }
-            }
-        } catch (err) {
-            setApiError(['There is something went wrong!'])
+        const { error, data } = await graphqlRes(api({ variables: { ...stateData, id: Number(editId) } }))
+        if (error) {
+            setApiError(data)
+            return
         }
+        setState(initialCareerState)
+        context.handleClose()
+        setApiSuccess([`${message}`])
+
     }
 
 
