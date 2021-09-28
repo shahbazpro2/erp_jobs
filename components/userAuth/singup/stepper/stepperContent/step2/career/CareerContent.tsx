@@ -95,7 +95,7 @@ const CareerContent = () => {
             <ModalWrapper open={context.open}>
                 <div className="w-[40%] absolute-center">
                     <BoxWrapper>
-                        <ModalHeading title="Add Career" handleClose={context.handleClose} />
+                        <ModalHeading title={editId ? "Update Career" : "Add Career"} handleClose={context.handleClose} />
                         <div className="mt-5">
                             <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
                         </div>
