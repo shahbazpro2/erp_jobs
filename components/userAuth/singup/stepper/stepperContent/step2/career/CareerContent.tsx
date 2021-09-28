@@ -4,7 +4,7 @@ import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import ModalHeading from '@components/common/modals/ModalHeading'
 import ModalWrapper from '@components/common/modals/ModalWrapper'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
-import { ModalContext } from '@context/ModalContext'
+import { CareerModalContext } from '@context/ModalContext'
 import { CareerProps } from './types'
 import { initialCareerState } from './initialStates'
 import { CreateCareer } from '@graphql/mutations/user/career/CreateCareer'
@@ -18,7 +18,7 @@ import CareerInputs from './CareerInputs'
 const CareerContent = () => {
     const [createCareer] = useMutation(CreateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
     const [updateUserCareer] = useMutation(UpdateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
-    const context = useContext(ModalContext);
+    const context = useContext(CareerModalContext);
 
 
     const [state, setState] = useState<CareerProps>(initialCareerState)
@@ -92,10 +92,10 @@ const CareerContent = () => {
 
     return (
         <>
-            <ModalWrapper>
+            <ModalWrapper open={context.open}>
                 <div className="w-[40%] absolute-center">
                     <BoxWrapper>
-                        <ModalHeading title="Add Career" />
+                        <ModalHeading title="Add Career" handleClose={context.handleClose} />
                         <div className="mt-5">
                             <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
                         </div>

@@ -2,7 +2,7 @@ import { Card, CardContent } from '@mui/material'
 import React, { Fragment, useContext } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { ModalContext } from '@context/ModalContext';
+import { CareerModalContext } from '@context/ModalContext';
 import { CareerQueryProps } from './types';
 import stringShort from '@components/functions/stringShort';
 import moment from 'moment'
@@ -12,7 +12,7 @@ interface Props {
     onDelete: (id: number) => void
 }
 const CareerCard = ({ data, onDelete }: Props) => {
-    const context = useContext(ModalContext)
+    const context = useContext(CareerModalContext)
     return (
         <Card variant="outlined">
             <CardContent>

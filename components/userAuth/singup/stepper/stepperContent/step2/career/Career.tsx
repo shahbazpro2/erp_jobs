@@ -4,7 +4,7 @@ import { Button, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddItemsWrapper from '@components/common/addItemsWrapper/AddItemsWrapper';
 import CareerContent from './CareerContent';
-import { ModalContext } from '@context/ModalContext'
+import { CareerModalContext } from '@context/ModalContext'
 import CareerCard from './CareerCard';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { CareerQueryProps } from './types';
@@ -76,7 +76,7 @@ const Career = ({ setActive }: Props) => {
     return (
         <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
-                <ModalContext.Provider value={ContextValue}>
+                <CareerModalContext.Provider value={ContextValue}>
                     <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} skip={false}>
                         <div className="mt-7 grid gap-2">
                             {data?.allCareers?.map((career: CareerQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} onDelete={setDelId} /></Fragment>)}
@@ -93,7 +93,7 @@ const Career = ({ setActive }: Props) => {
                     </AddItemsWrapper>
 
                     <CareerContent />
-                </ModalContext.Provider>
+                </CareerModalContext.Provider>
                 <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete career?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
                 <FeedbackApi apiError={apiError} apiSuccess={apiSuccess} setApiError={setApiError} setApiSuccess={setApiSuccess} />
             </div>
