@@ -52,6 +52,10 @@ const Education = ({ setActive }: Props) => {
         setActive('skills')
     }
 
+    const onSkip = () => {
+        setActive('skills')
+    }
+
     const onDelete = async () => {
         const id = delId
         setDelId(-1)
@@ -69,13 +73,13 @@ const Education = ({ setActive }: Props) => {
         allEducations()
     }, [])
 
-
+    console.log('data', data)
 
     return (
         <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
                 <EducationModalContext.Provider value={ContextValue}>
-                    <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onContinue={onContinue} skip={false}>
+                    <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onContinue={onContinue} disabled={objectIsEmpty(data?.allEducations)} skip={true} onSkip={onSkip}>
                         <div className="mt-7 grid gap-2">
                             {data?.allEducations?.map((education: EducationQueryProps, index: string) => <Fragment key={index}><EducationCard data={education} onDelete={setDelId} /></Fragment>)}
 
