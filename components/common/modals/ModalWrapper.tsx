@@ -1,17 +1,17 @@
 import { Modal } from '@mui/material'
-import React, { ReactNode, useContext } from 'react'
-import { ModalContext } from '../../../context/ModalContext'
+import React, { ReactNode } from 'react'
+
 
 interface Props {
+    open: boolean,
     children: ReactNode
 }
 
-const ModalWrapper = ({ children }: Props) => {
-    const context = useContext(ModalContext);
+const ModalWrapper = ({ children, open }: Props) => {
     return (
         <Modal
             keepMounted
-            open={context.open}
+            open={open}
             closeAfterTransition
             aria-labelledby="keep-mounted-modal-title"
             aria-describedby="keep-mounted-modal-description"
