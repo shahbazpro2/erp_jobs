@@ -3,11 +3,7 @@ import BasicInformation from './BasicInformation'
 import Career from './career/Career'
 import Education from './education/Education'
 
-interface Props {
-    setActiveStep: Dispatch<SetStateAction<number>>
-}
-
-const Step2 = ({ setActiveStep }: Props) => {
+const Step2 = () => {
     const [active, setActive] = useState('basic')
 
     const showItems = () => {
