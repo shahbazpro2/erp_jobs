@@ -43,7 +43,7 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                     {jobContext?.jobTitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
                 </SelectField>
                 <TextFieldSimple inputError={inputError} value={state.companyName} name="companyName" label="Company Name" onChange={onChangeInput} />
-                <TextFieldSimple inputError={inputError} value={state.companyName} name="companyLocation" label="Company Location" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.companyLocation} name="companyLocation" label="Company Location" onChange={onChangeInput} />
 
                 <div className="grid grid-cols-2 gap-3">
                     <TextField
@@ -88,7 +88,7 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                         label="Confidential"
                     />
                 </div>
-                <TextFieldSimple multiline={true} inputError={inputError} value={state.companyName} name="description" label="Description" onChange={onChangeInput} />
+                <TextFieldSimple multiline={true} inputError={inputError} value={state.description} name="description" label="Description" onChange={onChangeInput} />
 
                 <Button type="submit" variant="contained" color="primary" disableElevation >
                     {editId ? 'Update' : 'Save'}
