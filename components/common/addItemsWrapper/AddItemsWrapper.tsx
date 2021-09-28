@@ -9,23 +9,24 @@ interface Props {
     title: string,
     subtitle: string,
     skip?: boolean,
+    disabled: boolean,
     onBack: () => void,
     onSkip?: () => void,
     onContinue: () => void
 }
 
 
-const AddItemsWrapper = ({ children, title, subtitle, skip = true, onBack, onSkip, onContinue }: Props) => {
+const AddItemsWrapper = ({ children, title, subtitle, skip = true, onBack, onSkip, onContinue, disabled }: Props) => {
     return (
         <BoxWrapper>
             <HeadingStyle1 title={title} subtitle={subtitle} />
             {children}
-            <Button onClick={onContinue} variant="contained" className="w-full" color="primary" disableElevation >
+            <Button onClick={onContinue} variant="contained" disabled={disabled} className="w-full" color="primary" disableElevation >
                 Continue
             </Button>
             <div className={classNames("mt-5 flex", { 'justify-center': !skip, 'justify-between': skip })}>
-                <Button onClick={onBack}>Back</Button>
-                {skip && <Button onClick={onSkip}>Skip</Button>}
+                <Button color="secondary" onClick={onBack}>Back</Button>
+                {skip && <Button color="secondary" onClick={onSkip}>Skip</Button>}
             </div>
         </BoxWrapper>
     )
