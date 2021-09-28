@@ -63,11 +63,11 @@ const CareerContent = () => {
             return
         }
 
-        editId ? submitCareer(state, updateUserCareer, 'Career updated successfully') : submitCareer(state, createCareer, 'Career added successfully')
+        editId ? submitData(state, updateUserCareer, 'Career updated successfully') : submitData(state, createCareer, 'Career added successfully')
 
     }
 
-    const submitCareer = async (state: CareerProps, api: any, message: string) => {
+    const submitData = async (state: CareerProps, api: any, message: string) => {
         const stateData = { ...state, jobTitle: Number(state.jobTitle) }
         try {
             const res = await api({ variables: { ...stateData, id: Number(editId) } })
