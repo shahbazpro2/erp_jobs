@@ -1,4 +1,5 @@
-import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
+import SelectField from '@components/common/textFields/SelectField'
+import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { DropdownContext } from '@context/DropdownContext'
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useContext } from 'react'
@@ -16,8 +17,6 @@ interface Props {
 const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) => {
     const jobContext = useContext(DropdownContext)
 
-
-
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         if (e.nativeEvent?.type === 'click') {
@@ -31,56 +30,21 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
-                <TextField
-                    required
-                    error={inputError && EmptyFieldCheck({ job: state.jobTitle }) ? true : false}
-                    helperText={inputError && EmptyFieldCheck({ job: state.jobTitle }) ? 'Please select a job title' : ''}
-                    name="jobTitle"
-                    select
-                    label="Job Title"
-                    variant="outlined"
-                    className="w-full"
+                <SelectField
+                    inputError={inputError}
                     value={state.jobTitle}
+                    name="jobTitle"
+                    label="Job Title"
                     onChange={onChangeInput}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-
                 >
                     <MenuItem disabled value={" "}>
                         Select job title
                     </MenuItem>
                     {jobContext?.jobTitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
+                </SelectField>
+                <TextFieldSimple inputError={inputError} value={state.companyName} name="companyName" label="Company Name" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.companyName} name="companyLocation" label="Company Location" onChange={onChangeInput} />
 
-                </TextField>
-                <TextField
-                    required
-                    error={inputError && !state.companyName ? true : false}
-                    helperText={inputError && !state.companyName ? 'Please provide a company name' : ''}
-                    name="companyName"
-                    label="Company Name"
-                    variant="outlined"
-                    className="w-full"
-                    value={state.companyName}
-                    onChange={onChangeInput}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <TextField
-                    required
-                    error={inputError && !state.companyLocation ? true : false}
-                    helperText={inputError && !state.companyLocation ? 'Please provide a company location' : ''}
-                    name="companyLocation"
-                    label="Company Location"
-                    variant="outlined"
-                    className="w-full"
-                    value={state.companyLocation}
-                    onChange={onChangeInput}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
                 <div className="grid grid-cols-2 gap-3">
                     <TextField
                         required
@@ -124,23 +88,8 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                         label="Confidential"
                     />
                 </div>
+                <TextFieldSimple multiline={true} inputError={inputError} value={state.companyName} name="description" label="Description" onChange={onChangeInput} />
 
-                <TextField
-                    required
-                    error={inputError && !state.description ? true : false}
-                    helperText={inputError && !state.description ? 'Please provide a description' : ''}
-                    multiline
-                    rows={7}
-                    name="description"
-                    label="Description"
-                    variant="outlined"
-                    className="w-full h-full"
-                    value={state.description}
-                    onChange={onChangeInput}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
                 <Button type="submit" variant="contained" color="primary" disableElevation >
                     {editId ? 'Update' : 'Save'}
                 </Button>
