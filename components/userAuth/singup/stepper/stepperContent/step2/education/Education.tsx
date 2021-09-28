@@ -3,25 +3,25 @@ import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from '
 import { Button, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddItemsWrapper from '@components/common/addItemsWrapper/AddItemsWrapper';
-import CareerContent from './EducationContent';
 import { EducationModalContext } from '@context/ModalContext'
-import CareerCard from './EducationCard';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { EducationQueryProps } from './types';
 import objectIsEmpty from '@components/functions/objectIsEmpty';
-import { DeleteCareer } from '@graphql/mutations/user/career/DeleteCareer';
-import { AllCareers } from '@graphql/queries/user/career/AllCareers';
 import DialogAlert from '@components/common/alerts/DialogAlert';
 import FeedbackApi from '@components/common/feedback/FeedbackAPi';
 import { initialEducationEditState } from './initialStates';
+import { AllEducations } from '@graphql/queries/user/education/AllEducations';
+import { DeleteEducation } from '@graphql/mutations/user/education/DeleteEducation';
+import EducationCard from './EducationCard';
+import EducationContent from './EducationContent';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
 
 
 const Education = ({ setActive }: Props) => {
-    const [deleteCareer] = useMutation(DeleteCareer, { refetchQueries: [{ query: AllCareers }] })
-    const [allCareers, { data }] = useLazyQuery(AllCareers)
+    const [deleteEducation] = useMutation(DeleteEducation, { refetchQueries: [{ query: AllEducations }] })
+    const [allEducations, { data }] = useLazyQuery(AllEducations, { fetchPolicy: 'cache-and-network' })
     const [open, setOpen] = useState(false)
     /*  const [data, setData] = useState<CareerQueryProps[]>([]) */
     const [editData, setEditData] = useState<EducationQueryProps>(initialEducationEditState)
@@ -42,25 +42,23 @@ const Education = ({ setActive }: Props) => {
         }
     }
 
+    console.log('data', data)
+
     const onBack = () => {
         setActive('career')
     }
 
     const onContinue = () => {
-        console.log('data', data)
-        data?.allCareers?.length ?
-            setActive('education') :
-            setApiError([`You must need to add atleast one career to continue`])
-
+        setActive('skills')
     }
 
     const onDelete = async () => {
         const id = delId
         setDelId(-1)
         try {
-            const res = await deleteCareer({ variables: { id } })
+            const res = await deleteEducation({ variables: { id } })
             if (!objectIsEmpty(res)) {
-                setApiSuccess([`Career deleted successfully`])
+                setApiSuccess([`Education deleted successfully`])
             }
         } catch (err: any) {
             setApiError(err.message)
@@ -68,7 +66,7 @@ const Education = ({ setActive }: Props) => {
     }
 
     useEffect(() => {
-        allCareers()
+        allEducations()
     }, [])
 
 
@@ -79,7 +77,7 @@ const Education = ({ setActive }: Props) => {
                 <EducationModalContext.Provider value={ContextValue}>
                     <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onContinue={onContinue} skip={false}>
                         <div className="mt-7 grid gap-2">
-                            {data?.allCareers?.map((career: EducationQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} onDelete={setDelId} /></Fragment>)}
+                            {data?.allEducations?.map((education: EducationQueryProps, index: string) => <Fragment key={index}><EducationCard data={education} onDelete={setDelId} /></Fragment>)}
 
                         </div>
                         <div className="mt-7">
@@ -92,9 +90,9 @@ const Education = ({ setActive }: Props) => {
                         </div>
                     </AddItemsWrapper>
 
-                    <CareerContent />
+                    <EducationContent />
                 </EducationModalContext.Provider>
-                <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete career?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
+                <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete education?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
                 <FeedbackApi apiError={apiError} apiSuccess={apiSuccess} setApiError={setApiError} setApiSuccess={setApiSuccess} />
             </div>
         </div>
