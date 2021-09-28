@@ -21,7 +21,7 @@ interface Props {
 
 const Career = ({ setActive }: Props) => {
     const [deleteCareer] = useMutation(DeleteCareer, { refetchQueries: [{ query: AllCareers }] })
-    const [allCareers, { data }] = useLazyQuery(AllCareers)
+    const [allCareers, { data }] = useLazyQuery(AllCareers, { fetchPolicy: 'cache-and-network' })
     const [open, setOpen] = useState(false)
     /*  const [data, setData] = useState<CareerQueryProps[]>([]) */
     const [editData, setEditData] = useState<CareerQueryProps>(initialCareerEditState)
