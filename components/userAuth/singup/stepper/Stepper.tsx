@@ -35,7 +35,7 @@ const Stepper = () => {
             case 1:
                 return <DropdownContext.Provider value={ContextValue}>
 
-                    <Step2 setActiveStep={setActiveStep} />
+                    <Step2 />
                 </DropdownContext.Provider>
             case 2:
                 return 'This is the bit I really care about!';
