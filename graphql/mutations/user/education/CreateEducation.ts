@@ -12,7 +12,7 @@ export const CreateEducation = gql`
         createEducation(
     input:{
             degreeTitle:$degreeTitle,
-            university:$companyName,
+            university:$university,
             field:$field,
             passYear:$passYear,
             grade:$grade,
