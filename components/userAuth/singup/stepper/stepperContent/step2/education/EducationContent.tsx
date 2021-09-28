@@ -5,18 +5,18 @@ import ModalHeading from '@components/common/modals/ModalHeading'
 import ModalWrapper from '@components/common/modals/ModalWrapper'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { EducationModalContext } from '@context/ModalContext'
-import { CreateCareer } from '@graphql/mutations/user/career/CreateCareer'
-import { UpdateCareer } from '@graphql/mutations/user/career/UpdateCareer'
-import { AllCareers } from '@graphql/queries/user/career/AllCareers'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import CareerInputs from './EducationInputs'
 import { initialEducationState } from './initialStates'
 import { EducationProps } from './types'
+import { UpdateEducation } from '@graphql/mutations/user/education/UpdateEducation'
+import { CreateEducation } from '@graphql/mutations/user/education/CreateEducation'
+import { AllEducations } from '@graphql/queries/user/education/AllEducations'
 
 
 const EducationContent = () => {
-    const [createCareer] = useMutation(CreateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
-    const [updateUserCareer] = useMutation(UpdateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
+    const [createEducation] = useMutation(CreateEducation, { refetchQueries: [{ query: AllEducations }], onError: () => null })
+    const [updateEducation] = useMutation(UpdateEducation, { refetchQueries: [{ query: AllEducations }], onError: () => null })
     const context = useContext(EducationModalContext);
 
 
@@ -48,16 +48,16 @@ const EducationContent = () => {
         e.preventDefault()
         setInputError(false)
 
-        if (EmptyFieldCheck({ state })) {
+        if (EmptyFieldCheck({ ...state })) {
             setInputError(true)
             return
         }
 
-        editId ? submitCareer(state, updateUserCareer, 'Career updated successfully') : submitCareer(state, createCareer, 'Career added successfully')
+        editId ? submitData(state, updateEducation, 'Education updated successfully') : submitData(state, createEducation, 'Education added successfully')
 
     }
 
-    const submitCareer = async (state: EducationProps, api: any, message: string) => {
+    const submitData = async (state: EducationProps, api: any, message: string) => {
 
         try {
             const res = await api({ variables: { ...state, id: Number(editId) } })
@@ -85,7 +85,7 @@ const EducationContent = () => {
             <ModalWrapper open={context.open}>
                 <div className="w-[40%] absolute-center">
                     <BoxWrapper>
-                        <ModalHeading title="Add Career" handleClose={context.handleClose} />
+                        <ModalHeading title={editId ? "Update Education" : "Add Education"} handleClose={context.handleClose} />
                         <div className="mt-5">
                             <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
                         </div>
