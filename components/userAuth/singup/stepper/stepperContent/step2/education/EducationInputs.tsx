@@ -31,8 +31,8 @@ const EducationInputs = ({ onSubmit, setState, inputError, state, editId }: Prop
                 <TextFieldSimple inputError={inputError} value={state.university} name="university" label="University" onChange={onChangeInput} />
                 <TextFieldSimple inputError={inputError} value={state.field} name="field" label="Field" onChange={onChangeInput} />
                 <div className="grid grid-cols-2 gap-3">
-                    <TextFieldSimple inputError={inputError} value={state.passYear} name="passYear" label="Passing Year" onChange={onChangeInput} />
-                    <TextFieldSimple inputError={inputError} value={state.grade} name="grade" label="Grade" onChange={onChangeInput} />
+                    <TextFieldSimple inputError={inputError} type={'number'} value={state.passYear} name="passYear" label="Passing Year" onChange={onChangeInput} />
+                    <TextFieldSimple inputError={inputError} type={'number'} value={state.grade} name="grade" label="Grade" onChange={onChangeInput} />
                 </div>
 
                 <Button type="submit" variant="contained" color="primary" disableElevation >
