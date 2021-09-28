@@ -77,7 +77,7 @@ const Career = ({ setActive }: Props) => {
         <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
                 <CareerModalContext.Provider value={ContextValue}>
-                    <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} skip={false}>
+                    <AddItemsWrapper title="Career Journey" subtitle="Add your career journey, you can add multiple careers." onBack={onBack} onContinue={onContinue} disabled={objectIsEmpty(data?.allCareers)} skip={false}>
                         <div className="mt-7 grid gap-2">
                             {data?.allCareers?.map((career: CareerQueryProps, index: string) => <Fragment key={index}><CareerCard data={career} onDelete={setDelId} /></Fragment>)}
 
