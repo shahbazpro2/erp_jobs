@@ -1,66 +1,80 @@
-import { useLazyQuery, useMutation } from '@apollo/client'
-import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useContext, useState } from 'react'
+import { useMutation } from '@apollo/client'
+import React, { SyntheticEvent, useContext, useEffect, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import ModalHeading from '@components/common/modals/ModalHeading'
 import ModalWrapper from '@components/common/modals/ModalWrapper'
-import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
-import objectIsEmpty from '@components/functions/objectIsEmpty'
-import { ModalContext } from '@context/ModalContext'
-import { DropdownContext } from '@context/DropdownContext'
+import { EducationModalContext } from '@context/ModalContext'
 import { CreateCareer } from '@graphql/mutations/user/career/CreateCareer'
-
+import { UpdateCareer } from '@graphql/mutations/user/career/UpdateCareer'
+import { AllCareers } from '@graphql/queries/user/career/AllCareers'
+import FeedbackApi from '@components/common/feedback/FeedbackAPi'
+import CareerInputs from './EducationInputs'
+import { initialEducationState } from './initialStates'
+import { EducationProps } from './types'
 
 
 const EducationContent = () => {
-    const [createCareer] = useMutation(CreateCareer)
-    const context = useContext(ModalContext);
-    const jobContext = useContext(DropdownContext)
-    const [state, setState] = useState({
-        degree: ' ',
-        university: '',
-        field: '',
-        graduationYear: '',
-        grade: '',
-    })
+    const [createCareer] = useMutation(CreateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
+    const [updateUserCareer] = useMutation(UpdateCareer, { refetchQueries: [{ query: AllCareers }], onError: () => null })
+    const context = useContext(EducationModalContext);
 
+
+    const [state, setState] = useState<EducationProps>(initialEducationState)
+    const [editId, setEditId] = useState('')
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
+    const [apiError, setApiError] = useState<string[]>([])
 
-    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value, name } = e.target
-        if (e.nativeEvent?.type === 'click') {
-            setState({ ...state, [name]: e.target.checked })
-        } else
-            setState({ ...state, [name]: value })
-    }
 
+
+    useEffect(() => {
+        if (context.editData?.id) {
+            setState({ ...context.editData })
+            setEditId(context.editData.id)
+        }
+
+    }, [context.editData])
+
+    useEffect(() => {
+        return () => {
+            setEditId('')
+            setInputError(false)
+            setState(initialEducationState)
+        }
+    }, [context.open])
 
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        const { degree,
-            university,
-            field,
-            graduationYear,
-            grade
-        } = state
-        if (EmptyFieldCheck({ degree, university, field, graduationYear, grade })) {
+
+        if (EmptyFieldCheck({ state })) {
             setInputError(true)
             return
         }
-        try {
-            const res = await createCareer({ variables: { ...state } })
-            console.log(res)
-            if (!objectIsEmpty(res)) {
-                console.log('res', res)
-                context.handleClose()
-                setApiSuccess(['Education added successfully'])
 
+        editId ? submitCareer(state, updateUserCareer, 'Career updated successfully') : submitCareer(state, createCareer, 'Career added successfully')
+
+    }
+
+    const submitCareer = async (state: EducationProps, api: any, message: string) => {
+
+        try {
+            const res = await api({ variables: { ...state, id: Number(editId) } })
+            if (res.data) {
+                setState(initialEducationState)
+                context.handleClose()
+                setApiSuccess([`${message}`])
+
+            } else {
+                if (res.errors.graphQLErrors.length) {
+                    setApiError(res.errors.graphQLErrors.map((err: any) => err.message))
+                } else {
+                    setApiError(['There is something went wrong!'])
+                }
             }
-        } catch (err: any) {
-            console.log('catcg', err.message)
+        } catch (err) {
+            setApiError(['There is something went wrong!'])
         }
     }
 
@@ -68,99 +82,17 @@ const EducationContent = () => {
 
     return (
         <>
-            <ModalWrapper>
-
+            <ModalWrapper open={context.open}>
                 <div className="w-[40%] absolute-center">
                     <BoxWrapper>
-                        <ModalHeading title="Add Education" />
+                        <ModalHeading title="Add Career" handleClose={context.handleClose} />
                         <div className="mt-5">
-                            <form noValidate autoComplete="off" onSubmit={onSubmit}>
-                                <div className="grid gap-5">
-                                    <TextField
-                                        required
-                                        error={inputError && !state.degree ? true : false}
-                                        helperText={inputError && !state.degree ? 'Please provide a degree' : ''}
-                                        name="degree"
-                                        label="Degree"
-                                        variant="outlined"
-                                        className="w-full"
-                                        value={state.degree}
-                                        onChange={onChangeInput}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        required
-                                        error={inputError && !state.university ? true : false}
-                                        helperText={inputError && !state.university ? 'Please provide a university' : ''}
-                                        name="university"
-                                        label="University/Institute Name"
-                                        variant="outlined"
-                                        className="w-full"
-                                        value={state.university}
-                                        onChange={onChangeInput}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        required
-                                        error={inputError && !state.field ? true : false}
-                                        helperText={inputError && !state.field ? 'Please provide a field' : ''}
-                                        name="field"
-                                        label="Field"
-                                        variant="outlined"
-                                        className="w-full"
-                                        value={state.field}
-                                        onChange={onChangeInput}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <TextField
-                                            required
-                                            error={inputError && !state.graduationYear ? true : false}
-                                            helperText={inputError && !state.graduationYear ? 'Please provide a graduation year' : ''}
-                                            name="graduationYear"
-                                            label="Graduation Year"
-                                            variant="outlined"
-                                            className="w-full"
-                                            value={state.graduationYear}
-                                            onChange={onChangeInput}
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                        />
-                                        <TextField
-                                            required
-                                            error={inputError && !state.grade ? true : false}
-                                            helperText={inputError && !state.grade ? 'Please provide a grade' : ''}
-                                            name="grade"
-                                            label="Grade"
-                                            variant="outlined"
-                                            className="w-full"
-                                            value={state.grade}
-                                            onChange={onChangeInput}
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                        />
-                                    </div>
-
-                                    <Button type="submit" variant="contained" color="primary" disableElevation >
-                                        Save
-                                    </Button>
-                                </div>
-
-                            </form>
+                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
                         </div>
                     </BoxWrapper>
                 </div>
-
             </ModalWrapper>
-            <SnakbarAlert open={apiSuccess.length ? true : false} handleClose={() => setApiSuccess([])} message={apiSuccess} type="success" />
+            <FeedbackApi setApiError={setApiError} setApiSuccess={setApiSuccess} apiError={apiError} apiSuccess={apiSuccess} />
         </>
     )
 }
