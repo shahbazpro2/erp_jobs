@@ -8,16 +8,18 @@ interface Props {
     name: string,
     label: string,
     multiline?: boolean,
+    type?: string,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextFieldSimple = ({ inputError, value, name, label, onChange, multiline = false }: Props) => {
+const TextFieldSimple = ({ inputError, value, name, label, onChange, multiline = false, type = 'text' }: Props) => {
     return (
         <TextField
             required
             error={inputError && EmptyFieldCheck({ value }) ? true : false}
             helperText={inputError && EmptyFieldCheck({ value }) ? `Please provide a ${label.toLowerCase()}` : ''}
             multiline={multiline}
+            type={type}
             rows={7}
             name={name}
             label={label}
