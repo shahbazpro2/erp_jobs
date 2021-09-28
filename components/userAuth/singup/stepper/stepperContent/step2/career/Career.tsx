@@ -12,8 +12,8 @@ import { initialCareerEditState } from './initialStates';
 import objectIsEmpty from '@components/functions/objectIsEmpty';
 import { DeleteCareer } from '@graphql/mutations/user/career/DeleteCareer';
 import { AllCareers } from '@graphql/queries/user/career/AllCareers';
-import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert';
 import DialogAlert from '@components/common/alerts/DialogAlert';
+import FeedbackApi from '@components/common/feedback/FeedbackAPi';
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
@@ -47,6 +47,7 @@ const Career = ({ setActive }: Props) => {
     }
 
     const onContinue = () => {
+        console.log('data', data)
         data?.allCareers?.length ?
             setActive('education') :
             setApiError([`You must need to add atleast one career to continue`])
@@ -94,8 +95,7 @@ const Career = ({ setActive }: Props) => {
                     <CareerContent />
                 </ModalContext.Provider>
                 <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete career?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
-                <SnakbarAlert open={apiError.length ? true : false} handleClose={() => setApiError([])} message={apiError} type="error" />
-                <SnakbarAlert open={apiSuccess.length ? true : false} handleClose={() => setApiSuccess([])} message={apiSuccess} type="success" />
+                <FeedbackApi apiError={apiError} apiSuccess={apiSuccess} setApiError={setApiError} setApiSuccess={setApiSuccess} />
             </div>
         </div>
     )
