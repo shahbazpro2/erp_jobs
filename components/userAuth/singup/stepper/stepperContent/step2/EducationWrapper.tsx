@@ -22,6 +22,10 @@ const EducationWrapper = ({ setActive }: Props) => {
 
     }
 
+    const onSkip = () => {
+        setActive('skills')
+    }
+
     useEffect(() => {
         allEducations()
     }, [])
@@ -31,9 +35,9 @@ const EducationWrapper = ({ setActive }: Props) => {
     return (
         <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
-                <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onContinue={onContinue} disabled={objectIsEmpty(data?.allCareers)} skip={false}>
+                <AddItemsWrapper title="Education" subtitle="Add your education, you can add multiple educations" onBack={onBack} onContinue={onContinue} disabled={objectIsEmpty(data?.allEducations)} skip={true} onSkip={onSkip}>
 
-                    <Education data={data?.allCareers} />
+                    <Education data={data?.allEducations} />
 
                     <div className="my-7">
                         <Divider />
