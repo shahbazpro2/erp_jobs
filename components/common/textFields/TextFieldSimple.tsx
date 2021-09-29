@@ -3,6 +3,7 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { TextField } from '@mui/material'
 
 interface Props {
+    required?: boolean,
     inputError: boolean,
     value: string,
     name: string,
@@ -12,10 +13,10 @@ interface Props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextFieldSimple = ({ inputError, value, name, label, onChange, multiline = false, type = 'text' }: Props) => {
+const TextFieldSimple = ({ inputError = false, required = true, value, name, label, onChange, multiline = false, type = 'text' }: Props) => {
     return (
         <TextField
-            required
+            required={required}
             error={inputError && EmptyFieldCheck({ value }) ? true : false}
             helperText={inputError && EmptyFieldCheck({ value }) ? `Please provide a ${label.toLowerCase()}` : ''}
             multiline={multiline}
