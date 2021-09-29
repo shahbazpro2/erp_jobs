@@ -1,5 +1,5 @@
-import { initialCareerEditState } from "@components/userAuth/singup/stepper/stepperContent/step2/career/initialStates";
-import { CareerQueryProps } from "@components/userAuth/singup/stepper/stepperContent/step2/career/types";
+import { initialCareerEditState } from "@components/common/career/initialStates";
+import { CareerQueryProps } from "@components/common/career/types";
 import { initialEducationEditState } from "@components/userAuth/singup/stepper/stepperContent/step2/education/initialStates";
 import { EducationQueryProps } from "@components/userAuth/singup/stepper/stepperContent/step2/education/types";
 import { createContext } from "react";
