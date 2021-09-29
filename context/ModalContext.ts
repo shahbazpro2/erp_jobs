@@ -1,7 +1,7 @@
 import { initialCareerEditState } from "@components/common/career/initialStates";
 import { CareerQueryProps } from "@components/common/career/types";
-import { initialEducationEditState } from "@components/userAuth/singup/stepper/stepperContent/step2/education/initialStates";
-import { EducationQueryProps } from "@components/userAuth/singup/stepper/stepperContent/step2/education/types";
+import { initialEducationEditState } from "@components/common/education/initialStates";
+import { EducationQueryProps } from "@components/common/education/types";
 import { createContext } from "react";
 
 export const CareerModalContext = createContext({
