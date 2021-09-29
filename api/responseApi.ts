@@ -1,33 +1,44 @@
-import axios from "axios"
+import axios, { Method } from "axios"
 import ObjectToArray from "../components/functions/ObjectToArray"
 
 
-const responseApi = async (url: string, method: string, data?: {}, header = true) => {
-    if (!navigator.onLine) return { error: true, data: ["Oops! You're offline. Please check your network connection..."] }
+const responseApi = async (url: string, method: Method, data?: {}, header = true) => {
+    if (!navigator.onLine)
+        return {
+            error: true,
+            data: ["Oops! You're offline. Please check your network connection..."]
+        }
+
     let token: any = localStorage.getItem('token')
     if (token)
         token = JSON.parse(token)
+
     let config = {
-        headers: {
-            authorization: token && `Token ${token.token}`,
-        }
+        authorization: token && `Token ${token.token}`,
     }
-    let res
+
     try {
-        if (method === 'post') {
-            res = await axios.post(url, data, header ? config : {})
-        } else if (method === 'get') {
-            res = await axios.get(url, header ? config : {})
-        }
+        const res = await axios({
+            method,
+            url,
+            data,
+            headers: header ? config : {}
+        })
+
         if (res?.data)
             return { error: false, data: res.data }
     } catch (err: any) {
+        let data
         if (err.response?.data) {
-            return { error: true, status: err.response?.status, data: ObjectToArray(err.response?.data) }
+            data = { status: err.response?.status, data: ObjectToArray(err.response?.data) }
         } else if (err.message === "Network Error") {
-            return { error: true, data: ['Server is not responding.'] }
+            data = { status: 408, data: ['Server is not responding.'] }
         } else
-            return { error: true, data: ['There is something went wrong.'] }
+            data = {
+                data: { status: 500, data: ['Something went wrong.'] }
+            }
+
+        return { error: true, ...data }
     }
 
 }
