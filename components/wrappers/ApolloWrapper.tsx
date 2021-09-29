@@ -15,7 +15,7 @@ const ApolloWrapper = ({ children }: Props) => {
     const dispatch = useAppDispatch()
     const router = useRouter()
     const httpLink = createHttpLink({
-        uri: 'http://10.104.45.78:8000/graphql',
+        uri: 'http://10.104.45.78:8000/graphql/',
     });
 
 
