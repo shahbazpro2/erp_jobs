@@ -50,6 +50,12 @@ body {
     padding: 10px 20px;
   }
 }
+#category-arrow {
+  display: none;
+}
+.category-card-hover:hover #category-arrow {
+  display: flex !important;
+}
 
 .dotted-spaced {
   background-image: linear-gradient(
