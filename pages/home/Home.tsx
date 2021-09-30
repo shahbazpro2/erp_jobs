@@ -3,6 +3,7 @@ import Category from './category/Category'
 import Featured from './featured/Featured'
 import JobSteps from './jobSteps/JobSteps'
 import News from './news/News'
+import Subscription from './subscription/Subscription'
 import TopSection from './topSection/TopSection'
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <Category />
             <JobSteps />
             <News />
+            <Subscription />
         </div>
     )
 }
