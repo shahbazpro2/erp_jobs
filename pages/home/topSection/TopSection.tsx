@@ -1,14 +1,16 @@
 import JobSearch from '@components/common/searches/JobSearch'
 import UserNavbar from '@components/common/userNavbar/UserNavbar'
+import { Button } from '@mui/material'
 import React from 'react'
+import PopularSearches from './PopularSearches'
 
 const TopSection = () => {
     return (
         <div className="bg-[#473BF017] h-screen">
             <UserNavbar />
-            <div className="mt-36">
-                <div className="grid grid-cols-7 gap-4">
-                    <div className="col-start-2 col-span-5">
+            <div className="flex h-[80vh] items-center justify-center">
+                <div className="grid grid-cols-8 gap-4">
+                    <div className="col-start-2 col-span-6">
                         <div className="text-center">
                             <div className="text-6xl font-bold">
                                 Find a dream job that changes life.
@@ -18,6 +20,9 @@ const TopSection = () => {
                             </div>
 
                             <JobSearch />
+                            <div className="mt-7">
+                                <PopularSearches />
+                            </div>
                         </div>
                     </div>
                 </div>
