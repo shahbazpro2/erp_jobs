@@ -18,8 +18,10 @@ const JobSteps = () => {
                         </div>
                         <div className="grid grid-cols-2 pt-32">
                             <div></div>
-                            <div className="steps">
-                                <JobStepper />
+                            <div className="steps space-y-10">
+                                <JobStepper step={1} title="Search for a job" content="With lots of unique blocks, you can easily build a page without coding." />
+                                <JobStepper step={2} title="Apply within our website" content="With lots of unique blocks, you can easily build a page without coding." />
+                                <JobStepper step={3} title="Get interview call" content="With lots of unique blocks, you can easily build a page without coding." />
                             </div>
                         </div>
 
