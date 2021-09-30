@@ -1,7 +1,14 @@
 import { Card, CardMedia } from '@mui/material'
 import React from 'react'
 
-const NewsCard = () => {
+
+interface Props {
+    category: string,
+    title: string,
+    image: string
+}
+
+const NewsCard = ({ category, title, image }: Props) => {
     return (
         <Card variant="outlined" sx={{
             borderColor: '#f3f3f3',
@@ -13,17 +20,17 @@ const NewsCard = () => {
             <CardMedia
                 component="img"
                 height="140"
-                image="/assets/images/news1.png"
+                image={`${image}`}
                 alt="green iguana"
             />
             <div className="flex items-center px-3 pt-4 pb-7">
                 {/* <Image src={icon} alt="icon" width="70%" height="70%" /> */}
                 <div className="ml-3">
                     <div className="text-base text-[#161C2D]">
-                        Career
+                        {category}
                     </div>
                     <div className="text-2xl font-bold">
-                        How to win any job you want. Get started with 5 steps.
+                        {title}
                     </div>
                 </div>
             </div>
