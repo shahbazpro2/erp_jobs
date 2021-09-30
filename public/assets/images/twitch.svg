@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 65 65">
+  <g id="Logo" transform="translate(0.5 0.5)">
+    <rect id="Shape" width="64" height="64" rx="10" fill="#5a3e85" stroke="#fafafb" stroke-width="1"/>
+    <path id="Fill_3" data-name="Fill 3" d="M8.5,35V30.433H0V6.087L2.318,0H34V21.306l-9.275,9.127H17.772L13.137,35Zm-3.09-9.892h6.958v4.561L17,25.108h8.5l5.411-5.327V3.042H5.408Zm17-6.846V9.132H25.5v9.13Zm-8.5,0V9.132H17v9.13Z" transform="translate(15 15)" fill="#fffffe"/>
+  </g>
+</svg>
