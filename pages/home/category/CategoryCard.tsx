@@ -10,13 +10,13 @@ interface Props {
 
 const CategoryCard = ({ title, count }: Props) => {
     return (
-        <div className="category-card-hover">
-            <Card variant="outlined" sx={{
-                background: 'white',
+        <div className="category-card-hover transition duration-500 ease-in-out hover:-translate-y-2">
+            <Card variant="outlined" className="" sx={{
                 borderRadius: '10px', "&:hover": {
                     cursor: 'pointer',
                     backgroundColor: '#473BF0',
-                    color: 'white'
+                    transition: 'background-color ease-in-out 250ms ',
+                    color: 'white',
                 },
             }}>
                 <div className="flex items-center h-[7rem]">
