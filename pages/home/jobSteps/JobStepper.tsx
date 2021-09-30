@@ -16,7 +16,7 @@ const JobStepper = ({ step, title, content }: Props) => {
                 </div>
 
             </div>
-            <div className="content col-span-3">
+            <div className="content col-span-4">
                 <div className="text-2xl">
                     {title}
                 </div>
