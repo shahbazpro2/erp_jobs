@@ -1,9 +1,16 @@
 import { Button } from "@mui/material";
+import classNames from "classnames";
 import React from "react";
 
-const UserNavbar = () => {
+
+interface Props {
+  bg?: string,
+  boxShadow?: string
+}
+
+const UserNavbar = ({ bg, boxShadow }: Props) => {
   return (
-    <div className="user-navbar">
+    <div className={`${bg} ${boxShadow}`}>
       <div className="container mx-auto">
         <div className="grid grid-flow-col justify-between h-[80px]">
           <div className="logo flex items-center">
