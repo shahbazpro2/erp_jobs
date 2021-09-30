@@ -56,7 +56,7 @@ const UserLogin = () => {
 
     return (
         <div className="bg-[#F2F2F2] ">
-            <UserNavbar />
+            <UserNavbar bg="bg-white" boxShadow="boxShadow" />
             <div className="flex justiy-center items-center h-[91vh]">
                 <div className="grid grid-cols-6 justify-center">
                     <div className="col-start-3 col-span-2">
