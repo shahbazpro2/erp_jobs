@@ -15,15 +15,15 @@ const Featured = () => {
                                 Check out our featured clients and browse their latest jobs.
                             </div>
                             <div className="mt-14">
-                                <div className="grid grid-rows-2 grid-cols-4 gap-10">
-                                    <ClientCard />
-                                    <ClientCard />
-                                    <ClientCard />
-                                    <ClientCard />
-                                    <ClientCard />
-                                    <ClientCard />
-                                    <ClientCard />
-                                    <ClientCard />
+                                <div className="grid grid-rows-2 grid-cols-4 gap-10 px-3">
+                                    <ClientCard title="Tokopedia" icon="" />
+                                    <ClientCard title="Dropbox" icon="" />
+                                    <ClientCard title="Evernote" icon="" />
+                                    <ClientCard title="Mailchimp" icon="" />
+                                    <ClientCard title="Airbnb" icon="" />
+                                    <ClientCard title="Airbnb" icon="" />
+                                    <ClientCard title="Twitch" icon="" />
+                                    <ClientCard title="Amazon" icon="" />
                                 </div>
                             </div>
                         </div>
