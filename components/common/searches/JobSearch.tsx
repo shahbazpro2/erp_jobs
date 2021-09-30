@@ -3,7 +3,7 @@ import React from 'react'
 
 const JobSearch = () => {
     return (
-        <div className="rounded-lg primary-bg text-white py-1">
+        <div className="rounded-lg primary-bg text-white py-1 boxShadow1">
             <div className="flex items-center h-[70px] w-full">
                 <form className="w-full px-5">
                     <div className="grid grid-flow-col gap-3">
