@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Rubik:wght@300;500;600;700&display=swap");
 @import "./_colors";
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: "DM Sans", sans-serif !important;
   color: $text-clr;
 }
 .light-clr {
@@ -24,7 +24,7 @@ body {
 .logo {
   font-weight: bold;
   text-transform: uppercase;
-  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif !important;
   font-size: 28px;
 }
 
@@ -101,6 +101,14 @@ body {
 .secondary-clr {
   color: $secondary-clr;
 }
+
+.primary-bg {
+  background-color: $primary-clr;
+}
+.secondary-bg {
+  background-color: $secondary-clr;
+}
+
 .divider {
   display: block;
   text-align: center;
