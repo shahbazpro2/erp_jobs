@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
-import classNames from "classnames";
 import React from "react";
+import Link from 'next/link'
+import { useAppSelector } from "@redux/Store";
 
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const UserNavbar = ({ bg, boxShadow }: Props) => {
+
   return (
     <div className={`${bg} ${boxShadow}`}>
       <div className="container mx-auto">
@@ -18,15 +20,16 @@ const UserNavbar = ({ bg, boxShadow }: Props) => {
           </div>
           <div className="links flex items-center">
             <div className="grid grid-flow-col gap-12">
-              <div className="user-links">Home</div>
+              <Link href="/"><a className="user-links">Home</a></Link>
               <div className="user-links">Find Jobs</div>
               <div className="user-links">Career Advice</div>
               <div className="user-links">Upload CV</div>
             </div>
           </div>
-          <div className="auth-links flex items-center">
-            <div className="user-links">Login/Sign up</div>
-            <div className="ml-5">
+          <div className="auth-links flex items-center space-x-5">
+            <Link href="/login/user"><a className="user-links">Login</a></Link>
+            <Link href="/register/user"><a className="user-links">Sign up</a></Link>
+            <div>
               <Button variant="contained" color="secondary" disableElevation>
                 Post a Job
               </Button>
