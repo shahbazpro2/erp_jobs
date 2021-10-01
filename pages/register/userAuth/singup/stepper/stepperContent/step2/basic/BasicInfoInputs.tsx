@@ -32,7 +32,6 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
                     inputError={inputError}
                     value={state.jobTitle}
                     name="jobTitle"
-
                     label="Job Title"
                     onChange={onChangeInput}
 
@@ -44,7 +43,7 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
                 </SelectField>
 
 
-                <TextFieldSimple inputError={inputError} type="date" name="dateOfBirth" label="Date Of Birth" value={state.dateOfBirth} onChange={onChangeInput} />
+                <TextFieldSimple required={false} inputError={false} type="date" name="dateOfBirth" label="Date Of Birth" value={state.dateOfBirth} onChange={onChangeInput} />
 
 
                 <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
@@ -53,30 +52,30 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
                 </SelectField>
 
 
-                <SelectField inputError={inputError} name="nationality" label="Nationality" value={state.nationality} onChange={onChangeInput} >
+                <SelectField required={false} inputError={false} name="nationality" label="Nationality" value={state.nationality} onChange={onChangeInput} >
                     <MenuItem value={'UK'}>United Kingdom</MenuItem>
                     <MenuItem value={'PK'}>Pakistan</MenuItem>
                     <MenuItem value={"US"}>United States</MenuItem>
                 </SelectField>
 
 
-                <SelectField inputError={inputError} name="residenceCountry" label="Residence Country" value={state.residenceCountry} onChange={onChangeInput} >
+                <SelectField required={false} inputError={false} name="residenceCountry" label="Residence Country" value={state.residenceCountry} onChange={onChangeInput} >
                     <MenuItem value={'UK'}>United Kingdom</MenuItem>
                     <MenuItem value={'PK'}>Pakistan</MenuItem>
                     <MenuItem value={"US"}>United States</MenuItem>
                 </SelectField>
 
 
-                <TextFieldSimple inputError={inputError} name="city" label="City" value={state.city} onChange={onChangeInput} />
+                <TextFieldSimple required={false} inputError={false} name="city" label="City" value={state.city} onChange={onChangeInput} />
 
 
                 <TextFieldSimple inputError={inputError} name="phone" label="Phone" value={state.phone} onChange={onChangeInput} />
 
 
-                <TextFieldSimple inputError={inputError} name="address" label="Address" value={state.address} onChange={onChangeInput} />
+                <TextFieldSimple required={false} inputError={false} name="address" label="Address" value={state.address} onChange={onChangeInput} />
 
 
-                <SelectField inputError={inputError} name="jobStatus" label="Job Status" value={state.jobStatus} onChange={onChangeInput} >
+                <SelectField required={false} inputError={false} name="jobStatus" label="Job Status" value={state.jobStatus} onChange={onChangeInput} >
                     <MenuItem disabled value={" "}>
                         Select job status
                     </MenuItem>
@@ -86,7 +85,7 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
                 </SelectField>
 
 
-                <SelectField inputError={inputError} name="profileVisibility" label="Profile Visibility" value={state.profileVisibility} onChange={onChangeInput} >
+                <SelectField required={false} inputError={false} name="profileVisibility" label="Profile Visibility" value={state.profileVisibility} onChange={onChangeInput} >
                     <MenuItem disabled value={" "}>
                         Select profile visibility
                     </MenuItem>
@@ -97,16 +96,16 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
 
 
 
-                <TextFieldSimple inputError={inputError} name="yearOfExperience" label="Years Of Experience" value={state.yearOfExperience} onChange={onChangeInput} />
+                <TextFieldSimple required={false} inputError={false} name="yearOfExperience" label="Years Of Experience" value={state.yearOfExperience} onChange={onChangeInput} />
 
 
 
                 <div className="grid grid-cols-12 gap-3">
                     <div className="col-span-7">
-                        <TextFieldSimple inputError={inputError} name="minSalary" label="Minimum Salary" value={state.yearOfExperience} onChange={onChangeInput} />
+                        <TextFieldSimple required={false} inputError={false} name="minSalary" label="Minimum Salary" value={state.yearOfExperience} onChange={onChangeInput} />
                     </div>
                     <div className="col-span-2">
-                        <SelectField required={false} inputError={inputError} name="currency" value={state.currency} onChange={onChangeInput} >
+                        <SelectField required={false} inputError={false} name="currency" value={state.currency} onChange={onChangeInput} >
                             <MenuItem value={'EURO'}>Euro</MenuItem>
                             <MenuItem value={'DOLLAR'}>Dollar</MenuItem>
                         </SelectField>
