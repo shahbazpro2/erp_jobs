@@ -1,4 +1,5 @@
 import React from 'react'
+import SubscriptionForm from './SubscriptionForm'
 
 const Subscription = () => {
     return (
@@ -10,7 +11,7 @@ const Subscription = () => {
                             Subscribe to our newsletter to get latest jobs on your inbox.
                         </div>
                         <div className="subscribe">
-
+                            <SubscriptionForm />
                         </div>
                     </div>
                 </div>
