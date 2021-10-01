@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import BasicInformation from './basic/BasicInfo'
 import CareerWrapper from './CareerWrapper'
-import Certificates from './Certificates'
+import CertificateWrapper from './CertificateWrapper'
 import EducationWrapper from './EducationWrapper'
 import Skills from './Skills'
 
@@ -20,7 +20,7 @@ const Step2 = () => {
             case 'skills':
                 return <Skills setActive={setActive} />
             case 'certificates':
-                return <Certificates setActive={setActive} />
+                return <CertificateWrapper setActive={setActive} />
         }
     }
     return (
