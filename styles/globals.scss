@@ -67,6 +67,12 @@ body {
   }
 }
 
+.MuiAutocomplete-root {
+  .css-fkw6qn-MuiInputBase-root-MuiOutlinedInput-root {
+    height: 100%;
+  }
+}
+
 .dotted-spaced {
   background-image: linear-gradient(
     to right,
