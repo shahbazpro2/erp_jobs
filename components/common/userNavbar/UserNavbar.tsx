@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
 import React from "react";
 import Link from 'next/link'
-import { useAppSelector } from "@redux/Store";
+import { useAppDispatch, useAppSelector } from "@redux/Store";
 import objectIsEmpty from "@components/functions/objectIsEmpty";
+import { setLogoutState } from "@redux/auth";
 
 
 interface Props {
@@ -11,9 +12,8 @@ interface Props {
 }
 
 const UserNavbar = ({ bg, boxShadow }: Props) => {
+  const dispatch = useAppDispatch()
   const { user } = useAppSelector(state => state.authReducer)
-
-
 
 
   return (
@@ -36,7 +36,7 @@ const UserNavbar = ({ bg, boxShadow }: Props) => {
               <Link href="/login/user"><a className="user-links">Login</a></Link>
               <Link href="/register/user"><a className="user-links">Sign up</a></Link>
             </> :
-              <div className="user-links danger-clr">Logout</div>
+              <div className="user-links danger-clr" onClick={() => dispatch(setLogoutState())}>Logout</div>
             }
             <div>
               <Button variant="contained" color="secondary" disableElevation>
