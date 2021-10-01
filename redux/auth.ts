@@ -18,6 +18,7 @@ export const authSlice = createSlice({
             state.user = action.payload
         },
         setLogoutState: (state) => {
+            window.location.replace('/login/user')
             state.user = {}
             localStorage.removeItem('token')
         },
