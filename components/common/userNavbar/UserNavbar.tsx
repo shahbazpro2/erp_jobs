@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import Link from 'next/link'
 import { useAppSelector } from "@redux/Store";
+import objectIsEmpty from "@components/functions/objectIsEmpty";
 
 
 interface Props {
@@ -10,6 +11,10 @@ interface Props {
 }
 
 const UserNavbar = ({ bg, boxShadow }: Props) => {
+  const { user } = useAppSelector(state => state.authReducer)
+
+
+
 
   return (
     <div className={`${bg} ${boxShadow}`}>
@@ -27,8 +32,12 @@ const UserNavbar = ({ bg, boxShadow }: Props) => {
             </div>
           </div>
           <div className="auth-links flex items-center space-x-5">
-            <Link href="/login/user"><a className="user-links">Login</a></Link>
-            <Link href="/register/user"><a className="user-links">Sign up</a></Link>
+            {objectIsEmpty(user) ? <>
+              <Link href="/login/user"><a className="user-links">Login</a></Link>
+              <Link href="/register/user"><a className="user-links">Sign up</a></Link>
+            </> :
+              <div className="user-links danger-clr">Logout</div>
+            }
             <div>
               <Button variant="contained" color="secondary" disableElevation>
                 Post a Job
