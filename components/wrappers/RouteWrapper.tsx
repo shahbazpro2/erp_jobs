@@ -10,18 +10,21 @@ interface Props {
 const RouteWrapper = ({ children, error }: Props) => {
   const router = useRouter();
 
-  (() => {
+  const checkRoute = () => {
     if (isProtectedRoute(router) && error) {
       router.push('/login/user/')
     } else if (isGuestRoute(router) && !error) {
       router.push('/')
+    } else {
+      return children
     }
-  })()
+  }
+
 
 
   return (
     <>
-      {children}
+      {checkRoute()}
     </>
   )
 }
