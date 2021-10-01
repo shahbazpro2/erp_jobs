@@ -1,6 +1,7 @@
 import React from 'react'
 import Category from './category/Category'
 import Featured from './featured/Featured'
+import Footer from './footer/Footer'
 import JobSteps from './jobSteps/JobSteps'
 import News from './news/News'
 import Subscription from './subscription/Subscription'
@@ -15,6 +16,7 @@ const Home = () => {
             <JobSteps />
             <News />
             <Subscription />
+            <Footer />
         </div>
     )
 }
