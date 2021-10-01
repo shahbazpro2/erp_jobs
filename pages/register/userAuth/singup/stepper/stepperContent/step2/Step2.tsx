@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BasicInformation from './basic/BasicInfo'
 import CareerWrapper from './CareerWrapper'
 import EducationWrapper from './EducationWrapper'
-import Skills from './skills/Skills'
+import Skills from './Skills'
 
 const Step2 = () => {
     const [active, setActive] = useState('basic')
