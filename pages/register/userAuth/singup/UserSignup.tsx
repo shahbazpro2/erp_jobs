@@ -1,5 +1,5 @@
 import React from "react";
-import UserNavbar from "../../common/userNavbar/UserNavbar";
+import UserNavbar from "@components/common/userNavbar/UserNavbar";
 import Stepper from "./stepper/Stepper";
 
 const UserSignup = () => {
