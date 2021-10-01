@@ -14,7 +14,7 @@ interface Props {
 }
 
 
-const Certificates = ({ setActive }: Props) => {
+const CertificateWrapper = ({ setActive }: Props) => {
     const context = useContext(StepperContext)
     const [apiError, setApiError] = useState<string[]>([])
     const [allCareers, { data }] = useLazyQuery(AllCareers, { fetchPolicy: 'cache-first' })
@@ -42,7 +42,7 @@ const Certificates = ({ setActive }: Props) => {
             <div className="col-start-3 col-span-3">
                 <AddItemsWrapper title="Certificates" subtitle="Add your certificates, you can add multiple certificates" onBack={onBack} onContinue={onContinue} disabled={objectIsEmpty(data?.allCareers)} skip={true} onSkip={onSkip}>
 
-                    <Career data={data?.allCareers} />
+                    {/*  <CertificateWrapper data={data?.allCareers} /> */}
 
                     <div className="my-7">
                         <Divider />
@@ -53,4 +53,4 @@ const Certificates = ({ setActive }: Props) => {
     )
 }
 
-export default Certificates
+export default CertificateWrapper
