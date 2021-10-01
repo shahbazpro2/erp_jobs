@@ -28,7 +28,6 @@ const Skills = ({ setActive }: Props) => {
 
 
     useEffect(() => {
-        console.log(data)
         if (data?.allSkills)
             setAllSkills(data?.allSkills)
     }, [data])
@@ -52,16 +51,20 @@ const Skills = ({ setActive }: Props) => {
         setActive('certificates')
     }
 
+    const onSkip = () => {
+        setActive('certificates')
+    }
+
+
     useEffect(() => {
         allEducations()
     }, [])
 
-    console.log(value.length)
 
     return (
         <div className="grid grid-cols-7 justify-center">
             <div className="col-start-3 col-span-3">
-                <AddItemsWrapper title="Skills" subtitle="Add your skills, you can add multiple skills" disabled={!value.length} onBack={onBack} onContinue={onContinue} skip={true}>
+                <AddItemsWrapper title="Skills" subtitle="Add your skills, you can add multiple skills" disabled={!value.length} onBack={onBack} onContinue={onContinue} skip={true} onSkip={onSkip}>
                     <div className="mt-7 grid gap-2">
                         <Autocomplete
                             disableClearable
