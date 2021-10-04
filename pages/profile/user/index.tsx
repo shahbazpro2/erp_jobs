@@ -1,5 +1,5 @@
 import React from 'react'
-import TitleInfo from './titleInfo/TitleInfo'
+import TitleInfo from '@components/pages/profile/user/titleInfo/TitleInfo'
 
 const ProfileUser = () => {
     return (

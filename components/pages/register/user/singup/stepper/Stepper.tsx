@@ -49,8 +49,6 @@ const Stepper = () => {
                         <Step2 />
                     </StepperContext.Provider>
                 </DropdownContext.Provider>
-            case 2:
-                return 'This is the bit I really care about!';
             default:
                 return 'Unknown stepIndex';
         }

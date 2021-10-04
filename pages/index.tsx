@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Home from './home/Home'
+import Home from './Home'
 
 const index: NextPage = () => {
   return (
