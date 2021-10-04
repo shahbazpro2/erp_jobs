@@ -1,12 +1,10 @@
+import ProfileUser from '@components/pages/profile/user/ProfileUser'
 import React from 'react'
-import TitleInfo from '@components/pages/profile/user/titleInfo/TitleInfo'
 
-const ProfileUser = () => {
+const Index = () => {
     return (
-        <div>
-            <TitleInfo />
-        </div>
+        <ProfileUser />
     )
 }
 
-export default ProfileUser
+export default Index
