@@ -11,7 +11,6 @@ const theme = createTheme({
           letterSpacing: "-0.5px",
           padding: "7px 35px",
           textTransform: "unset",
-
         },
         disableElevation: {
           borderRadius: "7px",
@@ -58,8 +57,8 @@ const theme = createTheme({
         }
       }
     }
-
   },
+
   palette: {
     primary: {
       main: "#473BF0",
@@ -67,6 +66,9 @@ const theme = createTheme({
     secondary: {
       main: "#161C2D",
     },
+    success: {
+      main: "#3DD598"
+    }
   },
   typography: {
     fontFamily: '"DM Sans", sans-serif'
