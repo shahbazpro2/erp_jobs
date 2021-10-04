@@ -1,23 +1,17 @@
-import { useMutation } from '@apollo/client'
 import React, { SyntheticEvent, useContext, useEffect, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import ModalHeading from '@components/common/modals/ModalHeading'
 import ModalWrapper from '@components/common/modals/ModalWrapper'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
-import { CertificateModalContext, EducationModalContext } from '@context/ModalContext'
+import { CertificateModalContext } from '@context/ModalContext'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import CareerInputs from './CertificateInputs'
 import { initialCertificateState } from './initialStates'
 import { CertificateProps } from './types'
-import { UpdateEducation } from '@graphql/mutations/user/education/UpdateEducation'
-import { CreateEducation } from '@graphql/mutations/user/education/CreateEducation'
-import { AllEducations } from '@graphql/queries/user/education/AllEducations'
-import graphqlRes from '@components/functions/graphqlRes'
+import { addUserCertificate, updateUserCertificate } from '@api/Certificates'
 
 
 const CertificateContent = () => {
-    const [createEducation] = useMutation(CreateEducation, { refetchQueries: [{ query: AllEducations }], onError: () => null })
-    const [updateEducation] = useMutation(UpdateEducation, { refetchQueries: [{ query: AllEducations }], onError: () => null })
     const context = useContext(CertificateModalContext);
 
 
@@ -54,22 +48,35 @@ const CertificateContent = () => {
             return
         }
 
-        editId ? submitData(state, updateEducation, 'Certificate updated successfully') : submitData(state, createEducation, 'Education added successfully')
+        editId ? updateData() : submitData()
 
     }
 
-    const submitData = async (state: CertificateProps, api: any, message: string) => {
-        const { error, data } = await graphqlRes(api({ variables: { ...state, id: Number(editId) } }))
-        if (error) {
-            setApiError(data)
+    const submitData = async () => {
+        const { certificateTitle, certificateProvider, date } = state
+        const res = await addUserCertificate({ certificate_title: certificateTitle, company: certificateProvider, date })
+        if (res?.error) {
+            setApiError(res?.data)
             return
         }
         setState(initialCertificateState)
         context.handleClose()
-        setApiSuccess([`${message}`])
+        setApiSuccess([`Certificate added successfully`])
 
     }
 
+    const updateData = async () => {
+        const { certificateTitle, certificateProvider, date } = state
+        const res = await updateUserCertificate({ certificate_title: certificateTitle, company: certificateProvider, date }, editId)
+        if (res?.error) {
+            setApiError(res?.data)
+            return
+        }
+        setState(initialCertificateState)
+        context.handleClose()
+        setApiSuccess([`Certificate updated successfully`])
+
+    }
 
 
     return (
