@@ -13,7 +13,7 @@ const WithEditWrapper = ({ children, title, onEditHandle }: Props) => {
     return (
         <BoxWrapper>
             <div className="flex justify-between">
-                <div className="text-lg">
+                <div className="text-lg font-medium">
                     {title}
                 </div>
                 <div className="flex cursor-pointer primary-clr-hover" onClick={onEditHandle}>
