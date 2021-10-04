@@ -3,6 +3,7 @@ import { useLazyQuery } from '@apollo/client'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import { AllCareers } from '@graphql/queries/user/career/AllCareers'
 import React, { useEffect } from 'react'
+import SimpleWrapper from '../common/SimpleWrapper'
 import Career from './Career'
 
 const CareerWrapper = () => {
@@ -16,12 +17,9 @@ const CareerWrapper = () => {
     }, [])
 
     return (
-        <BoxWrapper>
-            <div className="text-base">
-                Career Journey
-            </div>
+        <SimpleWrapper title="Career Journey">
             <Career data={data?.allCareers} />
-        </BoxWrapper>
+        </SimpleWrapper>
     )
 }
 

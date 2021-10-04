@@ -3,6 +3,7 @@ import { useLazyQuery } from '@apollo/client'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import { AllEducations } from '@graphql/queries/user/education/AllEducations'
 import React, { useEffect } from 'react'
+import SimpleWrapper from '../common/SimpleWrapper'
 import Education from './Education'
 
 const EducationWrapper = () => {
@@ -16,12 +17,10 @@ const EducationWrapper = () => {
     }, [])
 
     return (
-        <BoxWrapper>
-            <div className="text-base">
-                Education
-            </div>
+        <SimpleWrapper title="Education">
             <Education data={data?.allEducations} />
-        </BoxWrapper>
+        </SimpleWrapper>
+
     )
 }
 
