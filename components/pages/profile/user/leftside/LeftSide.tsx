@@ -3,6 +3,8 @@ import React from 'react'
 import PersonalInfo from './personalInfo/PersonalInfo'
 import Summary from './Summary'
 import TitleInfo from './TitleInfo'
+import EducationWrapper from './education/EducationWrapper'
+
 
 const LeftSide = () => {
     let user = {
@@ -16,6 +18,7 @@ const LeftSide = () => {
             <Summary />
             <PersonalInfo />
             <CareerWrapper />
+            <EducationWrapper />
         </div>
     )
 }
