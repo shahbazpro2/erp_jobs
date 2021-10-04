@@ -1,3 +1,4 @@
+import CareerWrapper from './career/CareerWrapper'
 import React from 'react'
 import PersonalInfo from './personalInfo/PersonalInfo'
 import Summary from './Summary'
@@ -14,6 +15,7 @@ const LeftSide = () => {
             <TitleInfo user={user} />
             <Summary />
             <PersonalInfo />
+            <CareerWrapper />
         </div>
     )
 }
