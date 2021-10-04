@@ -17,8 +17,7 @@ const GetUserWrapper = ({ children }: Props) => {
         (async () => {
 
             const { payload }: any = await dispatch(getUserApi())
-
-            payload.error && setError(true)
+            setError(payload.error)
             setLoading(false)
         })()
     }, [dispatch])
