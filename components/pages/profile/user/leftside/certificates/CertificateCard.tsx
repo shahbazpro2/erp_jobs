@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { CertificateModalContext } from '@context/ModalContext';
-import { CertificateQueryProps } from '../../../../../common/certificates/types';
+import { CertificateQueryProps } from './types';
 
 interface Props {
     data: CertificateQueryProps,
