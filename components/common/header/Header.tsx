@@ -17,7 +17,7 @@ const Header = ({ bg, boxShadow }: Props) => {
 
 
   return (
-    <div className={`${bg} ${boxShadow}`}>
+    <div className={`${bg} ${boxShadow} absolute w-full`}>
       <div className="container mx-auto">
         <div className="grid grid-flow-col justify-between h-[80px]">
           <div className="logo flex items-center">
