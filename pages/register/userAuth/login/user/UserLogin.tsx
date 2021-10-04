@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { getUserApi, loginUser } from '@api/auth'
 import AuthWrapper from '@components/common/authWrapper/AuthWrapper'
 import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
-import UserNavbar from '@components/common/userNavbar/UserNavbar'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { useAppDispatch } from '@redux/Store'
 
@@ -56,7 +55,7 @@ const UserLogin = () => {
 
     return (
         <div className="bg-[#F2F2F2] ">
-            <UserNavbar bg="bg-white" boxShadow="boxShadow" />
+            {/*  <UserNavbar bg="bg-white" boxShadow="boxShadow" /> */}
             <div className="flex justiy-center items-center h-[91vh]">
                 <div className="grid grid-cols-6 justify-center">
                     <div className="col-start-3 col-span-2">
