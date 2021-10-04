@@ -7,11 +7,11 @@ import { setLogoutState } from "@redux/auth";
 
 
 interface Props {
-  bg?: string,
-  boxShadow?: string
+  bg: string,
+  boxShadow: string
 }
 
-const UserNavbar = ({ bg, boxShadow }: Props) => {
+const Header = ({ bg, boxShadow }: Props) => {
   const dispatch = useAppDispatch()
   const { user } = useAppSelector(state => state.authReducer)
 
@@ -50,4 +50,4 @@ const UserNavbar = ({ bg, boxShadow }: Props) => {
   );
 };
 
-export default UserNavbar;
+export default Header;
