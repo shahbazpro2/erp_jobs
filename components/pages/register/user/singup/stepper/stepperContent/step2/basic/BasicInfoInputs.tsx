@@ -23,6 +23,9 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
             setState({ ...state, [name]: value })
     }
 
+    let job_status = {
+        "Other walue": "A_B_C_D_E_F"
+    }
 
 
     return (
@@ -79,9 +82,9 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
                     <MenuItem disabled value={" "}>
                         Select job status
                     </MenuItem>
-                    <MenuItem value={'FRESH_AND_LOOKING'}>Looking_for_job</MenuItem>
-                    <MenuItem value={"WORKING_BUT_LOOKING_FOR_NEW_OPPORTUNITIES"}>Working_but_looking_for_new_opportunities</MenuItem>
-                    <MenuItem value={"NOT_LOOKING_FOR_JOB"}>Not_looking_for_job</MenuItem>
+                    <MenuItem value={'FRESH_AND_LOOKING'}>Looking for a job</MenuItem>
+                    <MenuItem value={"WORKING_BUT_LOOKING_FOR_NEW_OPPORTUNITIES"}>Working but looking for new opportunities</MenuItem>
+                    <MenuItem value={"NOT_LOOKING_FOR_JOB"}>Not looking for job</MenuItem>
                 </SelectField>
 
 
