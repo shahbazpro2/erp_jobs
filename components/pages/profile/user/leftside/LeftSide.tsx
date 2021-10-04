@@ -1,4 +1,5 @@
 import React from 'react'
+import PersonalInfo from './personalInfo/PersonalInfo'
 import Summary from './Summary'
 import TitleInfo from './TitleInfo'
 
@@ -12,6 +13,7 @@ const LeftSide = () => {
         <div className="space-y-5">
             <TitleInfo user={user} />
             <Summary />
+            <PersonalInfo />
         </div>
     )
 }
