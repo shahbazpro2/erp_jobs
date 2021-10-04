@@ -27,7 +27,9 @@ const HeaderFooterWrapper = ({ children }: Props) => {
     return (
         <HeaderContext.Provider value={ContextValue}>
             <Header bg={state.bg} boxShadow={state.boxShadow} />
-            {children}
+            <div className="pt-[80px]">
+                {children}
+            </div>
             <Footer />
         </HeaderContext.Provider>
     )
