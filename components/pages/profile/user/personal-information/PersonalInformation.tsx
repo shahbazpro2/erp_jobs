@@ -26,8 +26,8 @@ const PersonalInformation = () => {
 
     useEffect(() => {
         if (data?.loginCandidate) {
-            const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential } = data?.loginCandidate
-            setState({ ...state, city, address, yearOfExperience, minSalary, currency: currency.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender.toUpperCase() })
+            const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential, residenceCountry } = data?.loginCandidate
+            setState({ ...state, city, address, yearOfExperience, minSalary, residenceCountry, currency: currency.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender.toUpperCase() })
         }
     }, [data])
 
@@ -53,11 +53,18 @@ const PersonalInformation = () => {
             minSalary,
             confidential,
             currency } = state
-        if (EmptyFieldCheck({ jobTitle, dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, residenceCountry })) {
+        if (EmptyFieldCheck({
+            jobTitle, dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, residenceCountry,
+        })) {
             setInputError(true)
             return
         }
-        const { error, data } = await graphqlRes(createCandidate({ variables: { jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential } }))
+        console.log('res', residenceCountry)
+        const { error, data } = await graphqlRes(createCandidate({
+            variables: {
+                jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential, residenceCountry
+            }
+        }))
         if (error) {
             setApiError(data)
             return
