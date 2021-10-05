@@ -3,7 +3,7 @@ interface Props {
 }
 
 export const isProtectedRoute = ({ pathname }: Props) => {
-    return ["/test", "",].includes(pathname)
+    return ["/test", "/profile/user", "/profile/user/personal-information"].includes(pathname)
 }
 
 // Determines whether the route is a login route
