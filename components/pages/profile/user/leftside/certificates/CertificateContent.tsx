@@ -53,8 +53,7 @@ const CertificateContent = () => {
     }
 
     const submitData = async () => {
-        const { certificateTitle, certificateProvider, date } = state
-        const res = await addUserCertificate({ certificate_title: certificateTitle, company: certificateProvider, date })
+        const res = await addUserCertificate(state)
         if (res?.error) {
             setApiError(res?.data)
             return
@@ -66,8 +65,7 @@ const CertificateContent = () => {
     }
 
     const updateData = async () => {
-        const { certificateTitle, certificateProvider, date } = state
-        const res = await updateUserCertificate({ certificate_title: certificateTitle, company: certificateProvider, date }, editId)
+        const res = await updateUserCertificate(state, editId)
         if (res?.error) {
             setApiError(res?.data)
             return
