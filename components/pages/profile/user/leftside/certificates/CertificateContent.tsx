@@ -9,11 +9,12 @@ import CareerInputs from './CertificateInputs'
 import { initialCertificateState } from './initialStates'
 import { CertificateProps } from './types'
 import { addUserCertificate, updateUserCertificate } from '@api/Certificates'
+import { RefetchApiContext } from '@context/RefetchApiContext'
 
 
 const CertificateContent = () => {
     const context = useContext(CertificateModalContext);
-
+    const refetchApiContext = useContext(RefetchApiContext)
 
     const [state, setState] = useState<CertificateProps>(initialCertificateState)
     const [editId, setEditId] = useState('')
@@ -59,6 +60,7 @@ const CertificateContent = () => {
             return
         }
         setState(initialCertificateState)
+        refetchApiContext.setRefetch()
         context.handleClose()
         setApiSuccess([`Certificate added successfully`])
 
@@ -71,6 +73,7 @@ const CertificateContent = () => {
             return
         }
         setState(initialCertificateState)
+        refetchApiContext.setRefetch()
         context.handleClose()
         setApiSuccess([`Certificate updated successfully`])
 
