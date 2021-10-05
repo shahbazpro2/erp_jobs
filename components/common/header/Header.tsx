@@ -4,6 +4,11 @@ import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from "@redux/Store";
 import objectIsEmpty from "@components/functions/objectIsEmpty";
 import { setLogoutState } from "@redux/auth";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useRouter } from "next/router";
 
 
 interface Props {
@@ -13,6 +18,7 @@ interface Props {
 
 const Header = ({ bg, boxShadow }: Props) => {
   const dispatch = useAppDispatch()
+  const router = useRouter()
   const { user } = useAppSelector(state => state.authReducer)
 
 
@@ -35,14 +41,28 @@ const Header = ({ bg, boxShadow }: Props) => {
             {objectIsEmpty(user) ? <>
               <Link href="/login/user"><a className="user-links">Login</a></Link>
               <Link href="/register/user"><a className="user-links">Sign up</a></Link>
+              <div>
+                <Button variant="contained" color="secondary" disableElevation>
+                  Post a Job
+                </Button>
+              </div>
             </> :
-              <div className="user-links danger-clr" onClick={() => dispatch(setLogoutState())}>Logout</div>
+              <PopupState variant="popover" popupId="demo-popup-menu">
+                {(popupState) => (
+                  <React.Fragment>
+                    <Button size="small" color="secondary" {...bindTrigger(popupState)} endIcon={<KeyboardArrowDownIcon />}>
+                      My Account
+                    </Button>
+                    <Menu {...bindMenu(popupState)}>
+                      <MenuItem onClick={() => { popupState.close(); router.push('/profile/user') }}>Profile</MenuItem>
+                      <MenuItem onClick={() => { popupState.close(); dispatch(setLogoutState()) }}>Logout</MenuItem>
+                    </Menu>
+                  </React.Fragment>
+                )}
+              </PopupState>
+              /*  <div className="user-links danger-clr" onClick={() => dispatch(setLogoutState())}>Logout</div> */
             }
-            <div>
-              <Button variant="contained" color="secondary" disableElevation>
-                Post a Job
-              </Button>
-            </div>
+
           </div>
         </div>
       </div>
