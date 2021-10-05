@@ -5,6 +5,7 @@ import { initialCertificateEditState } from "@components/pages/profile/user/prof
 import { CertificateQueryProps } from "@components/pages/profile/user/profile/leftside/certificates/types";
 import { initialEducationEditState } from "@components/pages/profile/user/profile/leftside/education/initialStates";
 import { EducationQueryProps } from "@components/pages/profile/user/profile/leftside/education/types";
+import { initialSummaryState } from "@components/pages/profile/user/profile/leftside/summary/initialStates";
 import { createContext } from "react";
 
 export const CareerModalContext = createContext({
@@ -27,4 +28,10 @@ export const CertificateModalContext = createContext({
     open: false,
     handleClose: () => { },
     handleEdit: (data: CertificateQueryProps) => { }
+})
+
+export const SummaryModalContext = createContext({
+    editData: initialSummaryState,
+    open: false,
+    handleClose: () => { },
 })
