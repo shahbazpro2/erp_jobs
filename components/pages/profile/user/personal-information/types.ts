@@ -3,7 +3,6 @@ export interface BasicInfoProps {
     jobTitle: string,
     dateOfBirth: string,
     gender: string,
-    nationality: string,
     residenceCountry: string,
     city: string,
     phone: string,
