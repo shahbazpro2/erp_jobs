@@ -19,9 +19,9 @@ const CertificateCard = ({ data, onDelete }: Props) => {
                     <div className="col-span-9">
 
                         <div className="text-sm">
-                            {data.certificateTitle}
+                            {data.certificate_title}
                             <div className="subtitle-clr">
-                                {data.certificateProvider}
+                                {data.company}
                             </div>
                         </div>
 
