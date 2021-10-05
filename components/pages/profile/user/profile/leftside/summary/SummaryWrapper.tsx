@@ -34,7 +34,7 @@ const SummaryWrapper = () => {
         <SummaryModalContext.Provider value={ContextValue}>
             <WithEditWrapper title="Summary" onEditHandle={onEditHandle} >
                 <div className="text-base subtitle-clr">
-                    {data?.currentCandidateSummary[0].text}
+                    {data?.currentCandidateSummary[0]?.text}
                 </div>
             </WithEditWrapper>
             <SummaryModal />
