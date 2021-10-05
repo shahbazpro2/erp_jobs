@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react'
 import WithEditWrapper from '../common/WithEditWrapper';
 import GridFlow from './GridFlow';
@@ -5,8 +6,9 @@ import GridFlow from './GridFlow';
 
 
 const PersonalInfo = () => {
+    const router = useRouter()
     return (
-        <WithEditWrapper title="Personal Information" onEditHandle={() => console.log('edit')}>
+        <WithEditWrapper title="Personal Information" onEditHandle={() => router.push('/profile/user/personal-information')}>
             <div className="grid grid-cols-2 gap-4">
                 <GridFlow title="Birth Date" value="10 May 1997" />
                 <GridFlow title="Gender" value="Male" />
