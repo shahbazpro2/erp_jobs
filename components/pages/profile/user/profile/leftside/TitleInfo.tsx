@@ -13,7 +13,7 @@ const TitleInfo = ({ user }: any) => {
                         {user.name}
                     </div>
                     <div className="text-base subtitle-clr">
-                        UI/UX Designer
+                        {user.subtitle}
                     </div>
                     <div className="flex mt-4">
                         <LocationOnIcon sx={{ width: 15 }} />
