@@ -13,7 +13,7 @@ interface Props {
     inputError: boolean,
 }
 
-const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
+const PersonalInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
     const context = useContext(DropdownContext)
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -130,4 +130,4 @@ const BasicInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
     )
 }
 
-export default BasicInfoInputs
+export default PersonalInfoInputs

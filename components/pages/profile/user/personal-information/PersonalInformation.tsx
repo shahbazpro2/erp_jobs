@@ -7,14 +7,14 @@ import HeadingStyle1 from '@components/common/headerStyles/HeadingStyle1'
 import { LoginCandidate } from '@graphql/queries/LoginCandidate'
 import { CreateProfile } from '@graphql/mutations/user/CreateProfile'
 import { initialBasicState } from './initialStates'
-import BasicInfoInputs from './BasicInfoInputs'
+import BasicInfoInputs from './PersonalInfoInputs'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import graphqlRes from '@components/functions/graphqlRes'
 
 interface Props {
     setActive: Dispatch<SetStateAction<string>>
 }
-const BasicInformation = ({ setActive }: Props) => {
+const PersonalInformation = ({ setActive }: Props) => {
     const [getLoginCandidate, { data }] = useLazyQuery(LoginCandidate)
     const [createCandidate] = useMutation(CreateProfile, { refetchQueries: [LoginCandidate], onError: () => null })
 
@@ -90,4 +90,4 @@ const BasicInformation = ({ setActive }: Props) => {
     )
 }
 
-export default BasicInformation
+export default PersonalInformation

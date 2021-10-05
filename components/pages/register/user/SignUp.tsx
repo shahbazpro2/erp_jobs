@@ -11,7 +11,7 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck';
 
 
 
-const Step1 = () => {
+const SignUp = () => {
     const router = useRouter()
     const [state, setState] = useState({
         username: '',
@@ -182,4 +182,4 @@ const Step1 = () => {
     )
 }
 
-export default Step1
+export default SignUp
