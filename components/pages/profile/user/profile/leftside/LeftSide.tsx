@@ -16,7 +16,6 @@ const LeftSide = () => {
     useEffect(() => {
         loginCandidate()
     }, [])
-    console.log('data', data)
 
     return (
         <div className="space-y-5">

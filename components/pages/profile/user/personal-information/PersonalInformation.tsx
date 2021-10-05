@@ -59,7 +59,6 @@ const PersonalInformation = () => {
             setInputError(true)
             return
         }
-        console.log('res', residenceCountry)
         const { error, data } = await graphqlRes(createCandidate({
             variables: {
                 jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential, residenceCountry

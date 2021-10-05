@@ -8,7 +8,6 @@ const TitleInfo = ({ data }: any) => {
     return (
 
         <BoxWrapper>
-            {console.log('data', data)}
             <div className="grid grid-flow-col">
                 <div className="col-span-10">
                     <div className="text-3xl font-bold">

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useLazyQuery } from '@apollo/client'
-import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import { AllEducations } from '@graphql/queries/user/education/AllEducations'
 import React, { useEffect } from 'react'
 import SimpleWrapper from '../common/SimpleWrapper'
@@ -12,7 +11,6 @@ const EducationWrapper = () => {
 
 
     useEffect(() => {
-        console.log('call')
         allEducations()
     }, [])
 

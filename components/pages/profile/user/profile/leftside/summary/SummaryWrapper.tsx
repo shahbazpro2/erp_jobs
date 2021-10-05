@@ -25,7 +25,6 @@ const SummaryWrapper = () => {
     }, [])
 
     const onEditHandle = () => {
-        console.log('edittext', data?.currentCandidateSummary[0])
         setEditData(data?.currentCandidateSummary[0])
         setOpen(true)
 
