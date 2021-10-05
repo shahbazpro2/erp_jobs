@@ -17,16 +17,12 @@ const LeftSide = () => {
         loginCandidate()
     }, [])
     console.log('data', data)
-    let user = {
-        name: `${data?.loginCandidate.user.firstName} ${data?.loginCandidate.user.lastName}`,
-        subtitle: `${data?.loginCandidate.jobTitle.name}`
-    }
 
     return (
         <div className="space-y-5">
-            <TitleInfo user={user} />
+            <TitleInfo data={data?.loginCandidate} />
             <Summary />
-            <PersonalInfo />
+            <PersonalInfo data={data?.loginCandidate} />
             <CareerWrapper />
             <EducationWrapper />
             <Skills />
