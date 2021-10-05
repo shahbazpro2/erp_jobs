@@ -14,7 +14,7 @@ const responseApi = async (url: string, method: Method, data?: {}, header = true
         token = JSON.parse(token)
 
     let config = {
-        authorization: token && `Token ${token.token}`,
+        authorization: token && `Token ${token}`,
     }
 
     try {
