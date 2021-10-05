@@ -2,7 +2,7 @@ export interface CertificateQueryProps extends CertificateProps {
     id: string
 }
 export interface CertificateProps {
-    certificateTitle: string,
-    certificateProvider: string,
+    certificate_title: string,
+    company: string,
     date: string,
 }
