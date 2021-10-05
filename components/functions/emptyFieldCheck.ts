@@ -1,7 +1,7 @@
 const EmptyFieldCheck = (data: any) => {
     let empty = false
     for (const key in data) {
-        if (data[key].replace(/ /g, '') === '') {
+        if (data[key] && data[key].toString().replace(/ /g, '') === '') {
             empty = true;
             break
         }
