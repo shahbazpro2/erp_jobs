@@ -4,20 +4,20 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import capitalizeFirstLetter from '@components/functions/capitalizeFirstLetter';
 
 
-const TitleInfo = ({ data }: any) => {
-    return (
+const TitleInfo = ({ data, user }: any) => {
 
+    return (
         <BoxWrapper>
             <div className="grid grid-flow-col">
                 <div className="col-span-10">
                     <div className="text-3xl font-bold">
-                        {`${capitalizeFirstLetter(data?.user.firstName)} ${capitalizeFirstLetter(data?.user.lastName)}`}
+                        {`${capitalizeFirstLetter(user?.first_name)} ${capitalizeFirstLetter(user?.last_name)}`}
                     </div>
                     <div className="text-base subtitle-clr">
                         {capitalizeFirstLetter(data?.jobTitle.name)}
                     </div>
                     <div className="flex mt-4">
-                        <LocationOnIcon sx={{ width: 15 }} />
+                        {data?.residenceCountry && <LocationOnIcon sx={{ width: 15 }} />}
                         <div className="ml-1">{capitalizeFirstLetter(data?.residenceCountry)}</div>
                         <div className="subtitle-clr ml-5 space-y-2">
                             <div className="flex items-center space-x-2">

@@ -7,7 +7,7 @@ import GridFlow from './GridFlow';
 
 
 
-const PersonalInfo = ({ data }: any) => {
+const PersonalInfo = ({ data, user }: any) => {
     const router = useRouter()
     return (
         <WithEditWrapper title="Personal Information" onEditHandle={() => router.push('/profile/user/personal-information')}>
@@ -17,10 +17,10 @@ const PersonalInfo = ({ data }: any) => {
                 <GridFlow title="Experience" value={data ? `${data.yearOfExperience} Years` : ''} />
                 <GridFlow title="Country" value={capitalizeFirstLetter(data?.residenceCountry)} />
                 <GridFlow title="Minimum Salary" value={`${data ? data.minSalary : ''} ${data ? data.currency : ''}`} />
-                <GridFlow title="Profile Visibility" value="Registered only" />
+                {/*     <GridFlow title="Profile Visibility" value="Registered only" /> */}
                 <GridFlow title="City" value={capitalizeFirstLetter(data?.city)} />
                 <GridFlow title="Mobile" value={data?.phone} />
-                <GridFlow title="Email" value={data?.email} />
+                <GridFlow title="Email" value={user?.email} />
                 <GridFlow title="Address" value={data?.address} />
             </div>
         </WithEditWrapper>
