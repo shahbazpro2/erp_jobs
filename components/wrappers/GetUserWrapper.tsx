@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { getUserApi } from '@api/auth'
 import Spinner from '@components/common/spinner/Spinner'
 import { useAppDispatch } from '@redux/Store'
+import router from 'next/router'
 import React, { ReactNode, useEffect, useState } from 'react'
 import RouteWrapper from './RouteWrapper'
 
@@ -15,12 +17,11 @@ const GetUserWrapper = ({ children }: Props) => {
 
     useEffect(() => {
         (async () => {
-
             const { payload }: any = await dispatch(getUserApi())
             setError(payload.error)
             setLoading(false)
         })()
-    }, [dispatch])
+    }, [router.asPath])
 
 
 
