@@ -14,7 +14,7 @@ const RouteWrapper = ({ children, error }: Props) => {
     if (isProtectedRoute(router) && error) {
       router.push('/login/user/')
     } else if (isGuestRoute(router) && !error) {
-      router.push('/')
+      router.push('/profile/user')
     } else {
       return children
     }
