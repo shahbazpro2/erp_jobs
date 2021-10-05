@@ -27,7 +27,7 @@ const Header = ({ bg, boxShadow }: Props) => {
       <div className="container mx-auto">
         <div className="grid grid-flow-col justify-between h-[80px]">
           <div className="logo flex items-center">
-            <h2>Erp jobs</h2>
+            <h2><Link href="/"><a href="#">Erp jobs</a></Link></h2>
           </div>
           <div className="links flex items-center">
             <div className="grid grid-flow-col gap-12">
