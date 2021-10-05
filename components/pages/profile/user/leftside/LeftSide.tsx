@@ -5,6 +5,7 @@ import Summary from './Summary'
 import TitleInfo from './TitleInfo'
 import EducationWrapper from './education/EducationWrapper'
 import CertificatesWrapper from './certificates/CertificatesWrapper'
+import Skills from './Skills'
 
 
 const LeftSide = () => {
@@ -20,6 +21,7 @@ const LeftSide = () => {
             <PersonalInfo />
             <CareerWrapper />
             <EducationWrapper />
+            <Skills />
             <CertificatesWrapper />
         </div>
     )
