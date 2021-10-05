@@ -42,7 +42,8 @@ const UserLogin = () => {
             setApiError(res.data)
             setLoading(false)
         } else {
-            localStorage.setItem('token', JSON.stringify(res?.data.token))
+            console.log('res', res?.data)
+            localStorage.setItem('token', res?.data.token)
             dispatch(getUserApi())
             setTimeout(() => {
                 router.push('/profile/user')
