@@ -27,8 +27,8 @@ const CertificateInputs = ({ onSubmit, setState, inputError, state, editId }: Pr
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
-                <TextFieldSimple inputError={inputError} value={state.certificateTitle} name="certificateTitle" label="Certificate Title" onChange={onChangeInput} />
-                <TextFieldSimple inputError={inputError} value={state.certificateProvider} name="certificateProvider" label="Certificate Provider" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.certificate_title} name="certificate_title" label="Certificate Title" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.company} name="company" label="Certificate Provider" onChange={onChangeInput} />
                 <TextFieldSimple type="date" inputError={inputError} value={state.date} name="date" label="Date" onChange={onChangeInput} />
                 <Button type="submit" variant="contained" color="primary" disableElevation >
                     {editId ? 'Update' : 'Save'}
