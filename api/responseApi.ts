@@ -10,8 +10,6 @@ const responseApi = async (url: string, method: Method, data?: {}, header = true
         }
 
     let token: any = localStorage.getItem('token')
-    if (token)
-        token = JSON.parse(token)
 
     let config = {
         authorization: token && `Token ${token}`,
