@@ -34,7 +34,6 @@ const ApolloWrapper = ({ children }: Props) => {
             );
 
         }
-        console.log('main', err)
 
         if (networkError) err.push(`Response not successful`)
         dispatch(setGraphqlError(err))
@@ -52,7 +51,7 @@ const ApolloWrapper = ({ children }: Props) => {
         return {
             headers: {
                 ...headers,
-                authorization: token ? `Token ${token.token}` : "",
+                authorization: token ? `Token ${token}` : "",
             }
         }
     });
