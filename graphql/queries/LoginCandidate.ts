@@ -6,6 +6,7 @@ export const LoginCandidate = gql`
             jobTitle{id,name},
             gender,
             phone,
+            city,address,yearOfExperience,minSalary,currency,dateOfBirth,confidential
         }
     }
 `
