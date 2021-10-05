@@ -43,8 +43,8 @@ const CertificateContent = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-
-        if (EmptyFieldCheck({ ...state })) {
+        const { certificate_title, company, date } = state
+        if (EmptyFieldCheck({ certificate_title, company, date })) {
             setInputError(true)
             return
         }
