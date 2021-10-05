@@ -8,6 +8,6 @@ export const isProtectedRoute = ({ pathname }: Props) => {
 
 // Determines whether the route is a login route
 export const isGuestRoute = ({ pathname }: Props) => {
-    return ["/login/user",].includes(pathname)
+    return ["/login/user", "/register/user"].includes(pathname)
 };
 
