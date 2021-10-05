@@ -10,14 +10,13 @@ import { initialBasicState } from './initialStates'
 import BasicInfoInputs from './PersonalInfoInputs'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import graphqlRes from '@components/functions/graphqlRes'
+import { useRouter } from 'next/router'
 
-interface Props {
-    setActive: Dispatch<SetStateAction<string>>
-}
-const PersonalInformation = ({ setActive }: Props) => {
+
+const PersonalInformation = () => {
     const [getLoginCandidate, { data }] = useLazyQuery(LoginCandidate)
     const [createCandidate] = useMutation(CreateProfile, { refetchQueries: [LoginCandidate], onError: () => null })
-
+    const router = useRouter()
     const [state, setState] = useState(initialBasicState)
 
     const [inputError, setInputError] = useState(false)
@@ -27,14 +26,13 @@ const PersonalInformation = ({ setActive }: Props) => {
 
     useEffect(() => {
         if (data?.loginCandidate) {
-            const { jobTitle, gender, phone } = data?.loginCandidate
-            setState({ ...state, jobTitle: jobTitle.id, phone, gender: gender.toUpperCase() })
+            const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential } = data?.loginCandidate
+            setState({ ...state, city, address, yearOfExperience, minSalary, currency: currency.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender.toUpperCase() })
         }
     }, [data])
 
     useEffect(() => {
         getLoginCandidate()
-        console.log('data', data)
     }, [])
 
 
@@ -45,7 +43,6 @@ const PersonalInformation = ({ setActive }: Props) => {
         const { jobTitle,
             dateOfBirth,
             gender,
-            nationality,
             residenceCountry,
             city,
             phone,
@@ -54,27 +51,26 @@ const PersonalInformation = ({ setActive }: Props) => {
             profileVisibility,
             yearOfExperience,
             minSalary,
-            currency,
-            confidential } = state
-        if (EmptyFieldCheck({ jobTitle, phone, gender })) {
+            confidential,
+            currency } = state
+        if (EmptyFieldCheck({ jobTitle, dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, residenceCountry })) {
             setInputError(true)
             return
         }
-        console.log('state', state)
-        const { error, data } = await graphqlRes(createCandidate({ variables: { jobTitle: Number(state.jobTitle), phone, gender } }))
+        const { error, data } = await graphqlRes(createCandidate({ variables: { jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential } }))
         if (error) {
             setApiError(data)
             return
         }
         setApiSuccess(['Profile updated successfully'])
         setTimeout(() => {
-            setActive('career')
-        }, 500);
+            router.push('/profile/user')
+        }, 200);
 
     }
 
     return (
-        <div className="grid grid-cols-7 justify-center">
+        <div className="grid grid-cols-7 justify-center my-16">
             <div className="col-start-3 col-span-3">
 
                 <BoxWrapper >
