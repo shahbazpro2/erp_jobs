@@ -29,14 +29,16 @@ const responseApi = async (url: string, method: Method, data?: {}, header = true
             return { error: false, data: res.data }
     } catch (err: any) {
         let data
-        if (err.response?.status !== 400 || err.response?.status !== 500) {
-            data = { status: err.response?.status, data: ObjectToArray(err.response?.data) }
+        if (err.response?.status === 404 || err.response?.status === 500) {
+            data = { status: err.response?.status, data: ['Something went wrong.'] }
+        }
+        else if (err.response?.status !== 404 && err.response?.status !== 500) {
+
         } else if (err.message === "Network Error") {
             data = { status: 408, data: ['Server is not responding.'] }
         } else
-            data = {
-                data: { status: 500, data: ['Something went wrong.'] }
-            }
+            data = { status: err.response?.status, data: ObjectToArray(err.response?.data) }
+
 
         return { error: true, ...data }
     }
