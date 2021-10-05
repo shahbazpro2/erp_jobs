@@ -16,6 +16,10 @@ export const updateUserCertificate = async (data: AddCertificate, id: string) =>
     return responseApi(`${userCertificates}${id}/`, 'put', data)
 }
 
+export const deleteCertificate = async (id: number) => {
+    return responseApi(`${userCertificates}${id}/`, 'delete')
+}
+
 export const getUserCertificates = () => {
     return responseApi(userCertificates, 'get')
 }
