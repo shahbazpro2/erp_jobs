@@ -45,7 +45,7 @@ const UserLogin = () => {
             localStorage.setItem('token', JSON.stringify(res?.data))
             dispatch(getUserApi())
             setTimeout(() => {
-                router.push('/register/user/')
+                router.push('/profile/user')
             }, 1000);
             setApiSuccess(['User logged in successfully'])
             setLoading(false)
@@ -68,7 +68,7 @@ const UserLogin = () => {
                                         required
                                         id="outlined-username"
                                         name="username"
-                                        label="Your Username"
+                                        label="Username"
                                         variant="outlined"
                                         className="w-full"
                                         onChange={onChangeInput}
@@ -83,7 +83,7 @@ const UserLogin = () => {
                                         id="outlined-password"
                                         name="password"
                                         type="password"
-                                        label="Enter Password"
+                                        label="Password"
                                         variant="outlined"
                                         className="w-full"
                                         onChange={onChangeInput}
