@@ -12,11 +12,11 @@ const PersonalInfo = ({ data }: any) => {
     return (
         <WithEditWrapper title="Personal Information" onEditHandle={() => router.push('/profile/user/personal-information')}>
             <div className="grid grid-cols-2 gap-4">
-                <GridFlow title="Birth Date" value={moment(new Date(data?.dateOfBirth)).format('DD MMM YYYY')} />
+                <GridFlow title="Birth Date" value={data?.dateOfBirth && moment(new Date(data?.dateOfBirth)).format('DD MMM YYYY')} />
                 <GridFlow title="Gender" value={data?.gender} />
-                <GridFlow title="Experience" value={`${data?.yearOfExperience} Years`} />
+                <GridFlow title="Experience" value={data ? `${data.yearOfExperience} Years` : ''} />
                 <GridFlow title="Country" value={capitalizeFirstLetter(data?.residenceCountry)} />
-                <GridFlow title="Minimum Salary" value={`${data?.minSalary} ${data?.currency}`} />
+                <GridFlow title="Minimum Salary" value={`${data ? data.minSalary : ''} ${data ? data.currency : ''}`} />
                 <GridFlow title="Profile Visibility" value="Registered only" />
                 <GridFlow title="City" value={capitalizeFirstLetter(data?.city)} />
                 <GridFlow title="Mobile" value={data?.phone} />
