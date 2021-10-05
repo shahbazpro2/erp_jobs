@@ -54,7 +54,7 @@ const SignUp = () => {
             setLoading(false)
         } else {
             console.log(res?.data)
-            localStorage.setItem('token', JSON.stringify(res?.data.token))
+            localStorage.setItem('token', res?.data.token)
             dispatch(getUserApi())
             setTimeout(() => {
                 router.push('/profile/user')

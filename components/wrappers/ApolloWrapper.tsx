@@ -45,8 +45,6 @@ const ApolloWrapper = ({ children }: Props) => {
 
     const authLink = setContext(async (_, { headers }) => {
         let token: any = await Promise.resolve(localStorage.getItem('token'))
-        if (token)
-            token = JSON.parse(token)
 
         return {
             headers: {
