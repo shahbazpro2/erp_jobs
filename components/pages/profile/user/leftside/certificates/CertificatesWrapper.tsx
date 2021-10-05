@@ -1,5 +1,4 @@
 import { getUserCertificates } from '@api/Certificates'
-import { useLazyQuery } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
 import SimpleWrapper from '../common/SimpleWrapper'
 import Certificates from './Certificates'
