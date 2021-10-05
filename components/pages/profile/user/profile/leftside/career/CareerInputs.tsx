@@ -1,8 +1,10 @@
+import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { DropdownContext } from '@context/DropdownContext'
+import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useContext } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useContext, useEffect } from 'react'
 import { CareerProps } from './types'
 
 
@@ -15,7 +17,7 @@ interface Props {
 }
 
 const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) => {
-    const jobContext = useContext(DropdownContext)
+    const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -25,6 +27,9 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
             setState({ ...state, [name]: value })
     }
 
+    useEffect(() => {
+        allJobtitles()
+    }, [])
 
 
     return (
@@ -40,7 +45,7 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                     <MenuItem disabled value={" "}>
                         Select job title
                     </MenuItem>
-                    {jobContext?.jobTitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
+                    {data?.allJobtitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
                 </SelectField>
                 <TextFieldSimple inputError={inputError} value={state.companyName} name="companyName" label="Company Name" onChange={onChangeInput} />
                 <TextFieldSimple inputError={inputError} value={state.companyLocation} name="companyLocation" label="Company Location" onChange={onChangeInput} />
