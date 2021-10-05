@@ -29,12 +29,11 @@ const responseApi = async (url: string, method: Method, data?: {}, header = true
             return { error: false, data: res.data }
     } catch (err: any) {
         let data
+        console.log(err.response)
         if (err.response?.status === 404 || err.response?.status === 500) {
             data = { status: err.response?.status, data: ['Something went wrong.'] }
         }
-        else if (err.response?.status !== 404 && err.response?.status !== 500) {
-
-        } else if (err.message === "Network Error") {
+        else if (err.message === "Network Error") {
             data = { status: 408, data: ['Server is not responding.'] }
         } else
             data = { status: err.response?.status, data: ObjectToArray(err.response?.data) }
