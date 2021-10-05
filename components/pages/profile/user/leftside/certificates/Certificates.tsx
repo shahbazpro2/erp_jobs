@@ -11,8 +11,9 @@ import FeedbackApi from '@components/common/feedback/FeedbackAPi';
 import { initialCertificateEditState } from './initialStates';
 import { AllEducations } from '@graphql/queries/user/education/AllEducations';
 import { DeleteEducation } from '@graphql/mutations/user/education/DeleteEducation';
-import EducationCard from './CertificateCard';
-import EducationContent from './CertificateContent';
+import CertificateCard from './CertificateCard';
+import CertificateContent from './CertificateContent';
+import { deleteCertificate } from '@api/Certificates';
 
 interface Props {
     data: CertificateQueryProps[]
@@ -20,7 +21,6 @@ interface Props {
 
 
 const Certificates = ({ data }: Props) => {
-    const [deleteEducation] = useMutation(DeleteEducation, { refetchQueries: [{ query: AllEducations }] })
     const [open, setOpen] = useState(false)
     /*  const [data, setData] = useState<CareerQueryProps[]>([]) */
     const [editData, setEditData] = useState<CertificateQueryProps>(initialCertificateEditState)
@@ -44,21 +44,20 @@ const Certificates = ({ data }: Props) => {
     const onDelete = async () => {
         const id = delId
         setDelId(-1)
-        try {
-            const res = await deleteEducation({ variables: { id } })
-            if (!objectIsEmpty(res)) {
-                setApiSuccess([`Education deleted successfully`])
-            }
-        } catch (err: any) {
-            setApiError(err.message)
+        const res = await deleteCertificate(id)
+        if (res?.error) {
+            setApiError(res?.data)
+            return
         }
+
+        setApiSuccess(['Certificate deleted successfully'])
     }
 
     return (
         <div>
             <CertificateModalContext.Provider value={ContextValue}>
                 <div className="mt-7 grid gap-2">
-                    {data?.map((education, index) => <Fragment key={index}><EducationCard data={education} onDelete={setDelId} /></Fragment>)}
+                    {data?.map((certificate, index) => <Fragment key={index}><CertificateCard data={certificate} onDelete={setDelId} /></Fragment>)}
 
                 </div>
                 <div className="mt-7">
@@ -67,9 +66,9 @@ const Certificates = ({ data }: Props) => {
                     </Button>
                 </div>
 
-                <EducationContent />
+                <CertificateContent />
             </CertificateModalContext.Provider>
-            <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete certificates?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
+            <DialogAlert open={delId < 0 ? false : true} title="Are to sure to delete certificate?" handleClose={() => setDelId(-1)} handleAccept={onDelete} />
             <FeedbackApi apiError={apiError} apiSuccess={apiSuccess} setApiError={setApiError} setApiSuccess={setApiSuccess} />
         </div>
     )
