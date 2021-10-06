@@ -2,6 +2,7 @@ import React from 'react'
 import Completion from './completion/Completion'
 import FavoriteJobs from './FavoriteJobs'
 import JobApplications from './JobApplications'
+import UploadCv from './UploadCv'
 
 const RightSide = () => {
     return (
@@ -9,6 +10,7 @@ const RightSide = () => {
             <Completion />
             <JobApplications />
             <FavoriteJobs />
+            <UploadCv />
         </div>
     )
 }
