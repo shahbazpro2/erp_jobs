@@ -12,7 +12,7 @@ interface Props {
 const JobsHeader = ({ title, onBack }: Props) => {
     return (
         <div className="flex justify-between">
-            <div className="flex items-center back space-x-2 cursor-pointer subtitle-clr font-medium" onClick={onBack}>
+            <div className="flex items-center back space-x-2 cursor-pointer subtitle-clr font-medium primary-clr-hover" onClick={onBack}>
                 <ArrowBackIcon />
                 <div className="text-xl">
                     Back
