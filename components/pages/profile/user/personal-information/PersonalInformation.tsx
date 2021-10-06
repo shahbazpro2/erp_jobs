@@ -76,7 +76,7 @@ const PersonalInformation = () => {
     }
 
     return (
-        <div className="grid grid-cols-7 justify-center my-16">
+        <div className="grid grid-cols-7 justify-center py-16 gray-bg">
             <div className="col-start-3 col-span-3">
 
                 <BoxWrapper >
