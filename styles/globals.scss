@@ -118,12 +118,20 @@ body {
 .primary-clr-hover:hover {
   color: $primary-clr;
 }
-
+.danger-clr-hover:hover {
+  color: $danger-clr;
+}
+.success-clr-hover:hover {
+  color: $success-clr;
+}
 .primary-clr {
   color: $primary-clr;
 }
 .secondary-clr {
   color: $secondary-clr;
+}
+.success-clr {
+  color: $success-clr;
 }
 .danger-clr {
   color: $danger-clr;
