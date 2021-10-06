@@ -53,7 +53,7 @@ const Header = ({ bg, boxShadow }: Props) => {
                     <Button size="small" color="secondary" {...bindTrigger(popupState)} endIcon={<KeyboardArrowDownIcon />}>
                       My Account
                     </Button>
-                    <Menu sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)}>
+                    <Menu disableScrollLock sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)}>
                       <MenuItem onClick={() => { popupState.close(); router.push('/profile/user') }}>Profile</MenuItem>
                       <MenuItem onClick={() => { popupState.close(); dispatch(setLogoutState()) }}>Logout</MenuItem>
                     </Menu>
