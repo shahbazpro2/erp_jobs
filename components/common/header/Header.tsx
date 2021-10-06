@@ -49,11 +49,11 @@ const Header = ({ bg, boxShadow }: Props) => {
             </> :
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
-                  <React.Fragment>
+                  <React.Fragment >
                     <Button size="small" color="secondary" {...bindTrigger(popupState)} endIcon={<KeyboardArrowDownIcon />}>
                       My Account
                     </Button>
-                    <Menu {...bindMenu(popupState)}>
+                    <Menu sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)}>
                       <MenuItem onClick={() => { popupState.close(); router.push('/profile/user') }}>Profile</MenuItem>
                       <MenuItem onClick={() => { popupState.close(); dispatch(setLogoutState()) }}>Logout</MenuItem>
                     </Menu>
