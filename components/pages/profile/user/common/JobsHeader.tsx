@@ -1,7 +1,7 @@
 import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 interface Props {
@@ -26,14 +26,14 @@ const JobsHeader = ({ title, onBack }: Props) => {
                     Sort by:
 
                 </div>
-                <PopupState variant="popover" popupId="demo-popup-menu">
+                <PopupState variant="popover" popupId="demo-popup-menu" >
                     {(popupState) => (
                         <React.Fragment >
                             <span className="flex items-center cursor-pointer px-3"   {...bindTrigger(popupState)}>
                                 Newest
                                 <KeyboardArrowDownIcon sx={{ width: '20px' }} />
                             </span>
-                            <Menu sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)}>
+                            <Menu disableScrollLock sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)} >
                                 <MenuItem onClick={() => { popupState.close(); }}>Profile</MenuItem>
                                 <MenuItem onClick={() => { popupState.close(); }}>Logout</MenuItem>
                             </Menu>
