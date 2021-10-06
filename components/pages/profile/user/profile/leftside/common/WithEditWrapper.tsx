@@ -21,7 +21,7 @@ const WithEditWrapper = ({ children, title, onEditHandle }: Props) => {
                     <div className="ml-1">Edit</div>
                 </div>
             </div>
-            <div className="mt-10">
+            <div className="mt-7">
                 {children}
             </div>
         </BoxWrapper>
