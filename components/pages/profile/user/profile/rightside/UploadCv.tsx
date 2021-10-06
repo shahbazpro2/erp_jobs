@@ -1,11 +1,47 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button } from '@mui/material'
+import { Button, Input } from '@mui/material'
 import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import ClearIcon from '@mui/icons-material/Clear';
+import { getCv, uploadCv } from '@api/CVUpload';
+import FeedbackApi from '@components/common/feedback/FeedbackAPi';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const UploadCv = () => {
+    const [loading, setLoading] = useState(false)
+    const [apiSuccess, setApiSuccess] = useState<string[]>([])
+    const [apiError, setApiError] = useState<string[]>([])
+
+
+    useEffect(() => {
+        (async () => {
+            const res = await getCv();
+            console.log('res', res)
+        })()
+    }, [])
+
+    const onUploadCv = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        setLoading(true)
+        const formData = new FormData()
+
+        if (e.target.files) {
+            formData.append('file', e.target.files[0])
+        }
+
+        const res = await uploadCv(formData)
+
+        if (res?.error) {
+            setApiError(res?.data)
+            return
+        }
+        setLoading(false)
+        setApiSuccess(['File uploaded successfully'])
+
+    }
+
+
+
     return (
         <div>
             <BoxWrapper className="px-4 py-5 space-y-7" >
@@ -26,9 +62,15 @@ const UploadCv = () => {
                         </div>
                     </div>
                 </div>
-                <Button variant="outlined" fullWidth>Add New</Button>
+                <div>
+                    <label htmlFor="contained-button-file">
+                        <Input onChange={onUploadCv} id="contained-button-file" sx={{ display: 'none' }} type="file" />
+                        <LoadingButton variant="outlined" loading={loading} component="span" fullWidth>Add New</LoadingButton>
+                    </label>
+                </div>
 
             </BoxWrapper>
+            <FeedbackApi setApiError={setApiError} setApiSuccess={setApiSuccess} apiError={apiError} apiSuccess={apiSuccess} />
         </div>
     )
 }
