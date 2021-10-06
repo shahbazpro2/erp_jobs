@@ -13,9 +13,12 @@ const TitleInfo = ({ data, user }: any) => {
                     <div className="text-3xl font-bold">
                         {`${capitalizeFirstLetter(user?.first_name)} ${capitalizeFirstLetter(user?.last_name)}`}
                     </div>
-                    <div className="text-base subtitle-clr">
-                        {capitalizeFirstLetter(data?.jobTitle.name)}
+                    <div className="flex mt-2 space-x-2">
+                        <div className="text-base subtitle-clr">
+                            {data?.jobTitle.name ? capitalizeFirstLetter(data?.jobTitle.name) : 'Guest'}
+                        </div> <div>|</div> <div className="subtitle-clr">{user.email}</div>
                     </div>
+
                     <div className="flex mt-4">
                         {data?.residenceCountry && <LocationOnIcon sx={{ width: 15 }} />}
                         <div className="ml-1">{capitalizeFirstLetter(data?.residenceCountry)}</div>
