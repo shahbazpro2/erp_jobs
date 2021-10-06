@@ -1,6 +1,7 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import React from 'react'
 import Image from 'next/image'
+import { Button } from '@mui/material'
 
 const UploadCv = () => {
     return (
@@ -11,6 +12,10 @@ const UploadCv = () => {
                     <div className="text-base font-bold">
                         Upload CV Files
                     </div>
+                </div>
+
+                <div className="mt-7">
+                    <Button variant="outlined" fullWidth>Add New</Button>
                 </div>
 
             </BoxWrapper>
