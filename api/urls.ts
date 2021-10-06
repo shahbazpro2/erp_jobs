@@ -4,3 +4,4 @@ export const loginUserUrl = `${hostUrl}/login/candidate/`
 export const getUserUrl = `${hostUrl}/users/me/`
 export const userCertificates = `${hostUrl}/candidate/certificates/`
 export const userSkills = `${hostUrl}/candidate/skills/`
+export const userCv = `${hostUrl}/candidate/resume/`
