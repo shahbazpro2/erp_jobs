@@ -1,3 +1,4 @@
+import ObjectToArray from '@components/functions/ObjectToArray'
 import { Alert, AlertColor, Snackbar } from '@mui/material'
 import React from 'react'
 
@@ -15,7 +16,10 @@ const SnakbarAlert = ({ open, handleClose, message, type }: Props) => {
                 {
                     Array.isArray(message) ?
                         message.map((m, index) => <div key={index} className="text-base">{m}</div>) :
-                        <div className="text-base">{message}</div>
+                        typeof message === 'object' ?
+                            ObjectToArray(message).map((m, index) => <div key={index} className="text-base"> {m}</div>)
+                            :
+                            <div className="text-base">{message}</div>
                 }
             </Alert>
         </Snackbar>
