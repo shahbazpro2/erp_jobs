@@ -49,7 +49,7 @@ const EducationContent = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        setLoading(true)
+
         if (EmptyFieldCheck({ ...state })) {
             setInputError(true)
             return
@@ -60,6 +60,7 @@ const EducationContent = () => {
     }
 
     const submitData = async (state: EducationProps, api: any, message: string) => {
+        setLoading(true)
         const { error, data } = await graphqlRes(api({ variables: { ...state, id: Number(editId) } }))
         if (error) {
             setApiError(data)
