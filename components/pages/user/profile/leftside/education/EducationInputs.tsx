@@ -1,5 +1,5 @@
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
-import { Button } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import React, { ChangeEvent, SyntheticEvent } from 'react'
 import { EducationProps } from './types'
 
@@ -7,12 +7,13 @@ import { EducationProps } from './types'
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
     setState: (data: EducationProps) => void,
+    loading: boolean,
     state: EducationProps,
     inputError: boolean,
     editId: string
 }
 
-const EducationInputs = ({ onSubmit, setState, inputError, state, editId }: Props) => {
+const EducationInputs = ({ onSubmit, setState, inputError, loading, state, editId }: Props) => {
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -35,9 +36,9 @@ const EducationInputs = ({ onSubmit, setState, inputError, state, editId }: Prop
                     <TextFieldSimple inputError={inputError} type={'number'} value={state.grade} name="grade" label="Grade" onChange={onChangeInput} />
                 </div>
 
-                <Button type="submit" variant="contained" color="primary" disableElevation >
+                <LoadingButton type="submit" loading={loading} variant="contained" color="primary" disableElevation >
                     {editId ? 'Update' : 'Save'}
-                </Button>
+                </LoadingButton>
             </div>
 
         </form>

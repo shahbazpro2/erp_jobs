@@ -26,6 +26,7 @@ const EducationContent = () => {
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
     const [apiError, setApiError] = useState<string[]>([])
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -48,7 +49,7 @@ const EducationContent = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-
+        setLoading(true)
         if (EmptyFieldCheck({ ...state })) {
             setInputError(true)
             return
@@ -62,10 +63,12 @@ const EducationContent = () => {
         const { error, data } = await graphqlRes(api({ variables: { ...state, id: Number(editId) } }))
         if (error) {
             setApiError(data)
+            setLoading(false)
             return
         }
         setState(initialEducationState)
         context.handleClose()
+        setLoading(false)
         setApiSuccess([`${message}`])
 
     }
@@ -79,7 +82,7 @@ const EducationContent = () => {
                     <BoxWrapper>
                         <ModalHeading title={editId ? "Update Education" : "Add Education"} handleClose={context.handleClose} />
                         <div className="mt-5">
-                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
+                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} loading={loading} />
                         </div>
                     </BoxWrapper>
                 </div>
