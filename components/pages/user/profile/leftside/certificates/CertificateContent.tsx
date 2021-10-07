@@ -21,6 +21,7 @@ const CertificateContent = () => {
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
     const [apiError, setApiError] = useState<string[]>([])
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -43,40 +44,34 @@ const CertificateContent = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
+
         const { certificate_title, company, date } = state
         if (EmptyFieldCheck({ certificate_title, company, date })) {
             setInputError(true)
             return
         }
-
-        editId ? updateData() : submitData()
-
+        setLoading(true)
+        const res = editId ? await updateData() : await submitData()
+        if (res?.res?.error) {
+            setApiError(res?.res?.data)
+            setLoading(false)
+            return
+        }
+        setState(initialCertificateState)
+        refetchApiContext.setRefetch()
+        context.handleClose()
+        setLoading(false)
+        setApiSuccess(res?.message)
     }
 
     const submitData = async () => {
         const res = await addUserCertificate(state)
-        if (res?.error) {
-            setApiError(res?.data)
-            return
-        }
-        setState(initialCertificateState)
-        refetchApiContext.setRefetch()
-        context.handleClose()
-        setApiSuccess([`Certificate added successfully`])
-
+        return { res, message: [`Certificate added successfully`] }
     }
 
     const updateData = async () => {
         const res = await updateUserCertificate(state, editId)
-        if (res?.error) {
-            setApiError(res?.data)
-            return
-        }
-        setState(initialCertificateState)
-        refetchApiContext.setRefetch()
-        context.handleClose()
-        setApiSuccess([`Certificate updated successfully`])
-
+        return { res, message: [`Certificate updated successfully`] }
     }
 
 
@@ -87,7 +82,7 @@ const CertificateContent = () => {
                     <BoxWrapper>
                         <ModalHeading title={editId ? "Update Certificates" : "Add Certificates"} handleClose={context.handleClose} />
                         <div className="mt-5">
-                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
+                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} loading={loading} />
                         </div>
                     </BoxWrapper>
                 </div>
