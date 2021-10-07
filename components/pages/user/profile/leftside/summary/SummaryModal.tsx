@@ -21,6 +21,7 @@ const SummaryModal = () => {
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
     const [apiError, setApiError] = useState<string[]>([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (context.editData) {
@@ -44,15 +45,18 @@ const SummaryModal = () => {
             setInputError(true)
             return
         }
+        setLoading(true)
 
         const { error, data } = await graphqlRes(createSummary({ variables: { text: state.text } }))
 
         if (error) {
             setApiError(data)
+            setLoading(false)
             return
         }
         setState(initialSummaryState)
         context.handleClose()
+        setLoading(false)
         setApiSuccess([`Summary updated successfully`])
 
     }
@@ -65,7 +69,7 @@ const SummaryModal = () => {
                     <BoxWrapper>
                         <ModalHeading title={"Update Summary"} handleClose={context.handleClose} />
                         <div className="mt-5">
-                            <SummaryInputs onSubmit={onSubmit} state={state} setState={setState} inputError={inputError} />
+                            <SummaryInputs onSubmit={onSubmit} state={state} setState={setState} inputError={inputError} loading={loading} />
                         </div>
                     </BoxWrapper>
                 </div>

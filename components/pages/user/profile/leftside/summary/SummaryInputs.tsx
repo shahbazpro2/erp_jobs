@@ -1,4 +1,5 @@
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
+import { LoadingButton } from '@mui/lab'
 import { Button } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent } from 'react'
 import { SummaryProps } from './types'
@@ -7,11 +8,12 @@ import { SummaryProps } from './types'
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
     setState: (data: SummaryProps) => void,
+    loading: boolean,
     state: SummaryProps,
     inputError: boolean
 }
 
-const SummaryInputs = ({ onSubmit, setState, inputError, state }: Props) => {
+const SummaryInputs = ({ onSubmit, setState, loading, inputError, state }: Props) => {
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -27,9 +29,9 @@ const SummaryInputs = ({ onSubmit, setState, inputError, state }: Props) => {
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
                 <TextFieldSimple multiline inputError={inputError} value={state.text} name="text" label="Summary" onChange={onChangeInput} />
-                <Button type="submit" variant="contained" color="primary" disableElevation >
+                <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
                     Update
-                </Button>
+                </LoadingButton>
             </div>
 
         </form>
