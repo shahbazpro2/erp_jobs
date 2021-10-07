@@ -27,6 +27,7 @@ const CareerContent = () => {
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
     const [apiError, setApiError] = useState<string[]>([])
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -69,13 +70,16 @@ const CareerContent = () => {
     }
 
     const submitData = async (state: CareerProps, api: any, message: string) => {
+        setLoading(true)
         const stateData = { ...state, jobTitle: Number(state.jobTitle) }
 
         const { error, data } = await graphqlRes(api({ variables: { ...stateData, id: Number(editId) } }))
         if (error) {
             setApiError(data)
+            setLoading(false)
             return
         }
+        setLoading(false)
         setState(initialCareerState)
         context.handleClose()
         setApiSuccess([`${message}`])
@@ -91,7 +95,7 @@ const CareerContent = () => {
                     <BoxWrapper>
                         <ModalHeading title={editId ? "Update Career" : "Add Career"} handleClose={context.handleClose} />
                         <div className="mt-5">
-                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} />
+                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} loading={loading} />
                         </div>
                     </BoxWrapper>
                 </div>
