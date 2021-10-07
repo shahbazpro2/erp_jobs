@@ -1,9 +1,15 @@
 import React from 'react'
 import UserLogin from '@components/pages/login/user/UserLogin'
+import Head from 'next/head'
 
 const user = () => {
     return (
-        <UserLogin />
+        <>
+            <Head>
+                <title>Login</title>
+            </Head>
+            <UserLogin />
+        </>
     )
 }
 
