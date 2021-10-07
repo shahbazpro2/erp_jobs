@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router";
+import { url_userProfile } from "@components/functions/pageUrls";
 
 
 interface Props {
@@ -54,7 +55,7 @@ const Header = ({ bg, boxShadow }: Props) => {
                       My Account
                     </Button>
                     <Menu disableScrollLock sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)}>
-                      <MenuItem onClick={() => { popupState.close(); router.push('/profile/user') }}>Profile</MenuItem>
+                      <MenuItem onClick={() => { popupState.close(); router.push(url_userProfile) }}>Profile</MenuItem>
                       <MenuItem onClick={() => { popupState.close(); dispatch(setLogoutState()) }}>Logout</MenuItem>
                     </Menu>
                   </React.Fragment>
