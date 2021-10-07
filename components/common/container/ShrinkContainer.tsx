@@ -9,8 +9,8 @@ const ShrinkContainer = ({ children }: Props) => {
     return (
         <Container>
             <div className="py-10">
-                <div className="grid grid-cols-5">
-                    <div className="col-start-2 col-span-3">
+                <div className="grid grid-cols-6">
+                    <div className="col-start-2 col-span-4">
                         {children}
                     </div>
                 </div>
