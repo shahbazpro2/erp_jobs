@@ -15,7 +15,7 @@ const FavoriteJobs = () => {
                         <div className="col-start-2 col-span-3">
                             <JobsHeader title="Saved Jobs" onBack={() => router.push(url_userProfile)} />
                             <div className="mt-7">
-                                <JobCard />
+                                <JobCard saved={true} />
                             </div>
                         </div>
                     </div>
