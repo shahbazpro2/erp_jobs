@@ -16,6 +16,7 @@ const GetUserWrapper = ({ children }: Props) => {
     const [error, setError] = useState(false)
 
     useEffect(() => {
+        setLoading(true);
         (async () => {
             const { payload }: any = await dispatch(getUserApi())
             setError(payload.error)
