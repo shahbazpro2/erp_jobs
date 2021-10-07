@@ -27,7 +27,6 @@ const responseApi = async (url: string, method: Method, data?: {}, header = true
             return { error: false, data: res.data }
     } catch (err: any) {
         let data
-        console.log(err.response)
         if (err.response?.status === 404 || err.response?.status === 500) {
             data = { status: err.response?.status, data: ['Something went wrong.'] }
         }
