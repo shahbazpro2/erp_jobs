@@ -11,6 +11,7 @@ import BasicInfoInputs from './PersonalInfoInputs'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import graphqlRes from '@components/functions/graphqlRes'
 import { useRouter } from 'next/router'
+import { url_userProfile } from '@components/functions/pageUrls'
 
 
 const PersonalInformation = () => {
@@ -27,7 +28,7 @@ const PersonalInformation = () => {
     useEffect(() => {
         if (data?.loginCandidate) {
             const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential, residenceCountry } = data?.loginCandidate
-            setState({ ...state, city, address, yearOfExperience, minSalary, residenceCountry, currency: currency.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender.toUpperCase() })
+            setState({ ...state, city, address, yearOfExperience, minSalary, residenceCountry, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender?.toUpperCase() })
         }
     }, [data])
 
@@ -70,7 +71,7 @@ const PersonalInformation = () => {
         }
         setApiSuccess(['Profile updated successfully'])
         setTimeout(() => {
-            router.push('/profile/user')
+            router.push(url_userProfile)
         }, 200);
 
     }
