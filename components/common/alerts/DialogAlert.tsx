@@ -1,3 +1,4 @@
+import { LoadingButton } from '@mui/lab'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import React from 'react'
 
@@ -29,9 +30,9 @@ const DialogAlert = ({ open, message, title, handleClose, handleAccept }: Props)
                 </DialogContent>
                 <DialogActions sx={{ marginRight: '10px', marginBottom: '5px' }}>
                     <Button variant="outlined" color="warning" onClick={handleClose}>Cancel</Button>
-                    <Button variant="outlined" color="success" onClick={handleAccept} autoFocus>
+                    <LoadingButton loading={!open} variant="outlined" color="success" onClick={handleAccept} autoFocus>
                         Accept
-                    </Button>
+                    </LoadingButton>
                 </DialogActions>
             </Dialog>
         </div>
