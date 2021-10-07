@@ -2,20 +2,18 @@ import { TextField } from '@mui/material'
 import Link from 'next/link'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { getUserApi, registerUser } from '@api/auth'
+import { registerUser } from '@api/auth'
 import AuthWrapper from '@components/common/authWrapper/AuthWrapper'
 import validateEmail from '@components/functions/emailValidation'
 import { useRouter } from 'next/router'
 import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck';
-import { useAppDispatch } from '@redux/Store';
 import { url_userProfile } from '@components/functions/pageUrls';
 
 
 
 const SignUp = () => {
     const router = useRouter()
-    const dispatch = useAppDispatch()
     const [state, setState] = useState({
         username: '',
         firstname: '',
@@ -56,7 +54,6 @@ const SignUp = () => {
         } else {
             console.log(res?.data)
             localStorage.setItem('token', res?.data.token)
-            dispatch(getUserApi())
             setTimeout(() => {
                 router.push(url_userProfile)
             }, 1000);
