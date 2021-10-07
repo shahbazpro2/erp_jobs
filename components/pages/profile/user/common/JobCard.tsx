@@ -1,10 +1,16 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '@mui/material'
 
-const JobCard = () => {
+
+interface Props {
+    saved?: boolean
+}
+
+const JobCard = ({ saved = false }: Props) => {
     return (
         <BoxWrapper className="py-3 px-4">
             <div className="flex justify-between items-center">
@@ -21,12 +27,17 @@ const JobCard = () => {
                             <LocationOnIcon sx={{ width: '18px' }} />
                         </div>
                         <div className="subtitle-clr">
-                            Applied : 20 Aug
+                            {saved ? 'Saved' : 'Applied'} : 20 Aug
                         </div>
                     </div>
 
                 </div>
-                <Button variant="outlined" disabled>Applied</Button>
+                {!saved ? <Button variant="outlined" disabled>Applied</Button> :
+                    <div className="space-x-5">
+                        <Button variant="outlined">Apply Now</Button>
+                        <DeleteOutlineIcon className="cursor-pointer danger-clr-hover" sx={{ width: '27px', height: '27px' }} />
+                    </div>
+                }
             </div>
         </BoxWrapper>
     )
