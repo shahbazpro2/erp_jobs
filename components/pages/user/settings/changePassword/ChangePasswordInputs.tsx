@@ -1,5 +1,6 @@
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
-import { Button } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
+import { Button, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent } from 'react'
 import { ChangePasswordProps } from './ChangePassword'
 
@@ -7,11 +8,12 @@ import { ChangePasswordProps } from './ChangePassword'
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
     setState: (data: ChangePasswordProps) => void,
+    loading: boolean,
     state: ChangePasswordProps,
     inputError: boolean,
 }
 
-const changePasswordInputs = ({ onSubmit, setState, inputError, state }: Props) => {
+const changePasswordInputs = ({ onSubmit, setState, loading, inputError, state }: Props) => {
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -26,12 +28,38 @@ const changePasswordInputs = ({ onSubmit, setState, inputError, state }: Props) 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
-                <TextFieldSimple inputError={inputError} value={state.oldPassword} type="password" name="oldPassword" label="Old Password" onChange={onChangeInput} />
-                <TextFieldSimple inputError={inputError} value={state.newPassword} type="password" name="newPassword" label="New Password" onChange={onChangeInput} />
-
-                <Button type="submit" variant="contained" color="primary" disableElevation >
+                <TextFieldSimple inputError={inputError} value={state.old_password} type="password" name="old_password" label="Old Password" onChange={onChangeInput} />
+                <TextField
+                    required
+                    error={inputError && !state.new_password1 ? true : inputError && state.new_password1.length < 8 ? true : inputError && state.new_password1 !== state.new_password2 ? true : false}
+                    helperText={inputError && !state.new_password1 ? 'Please provide a new password' : inputError && state.new_password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.new_password1 !== state.new_password2 ? 'Password and confirm new password not match' : ''}
+                    name="new_password1"
+                    type="password"
+                    label="New Password"
+                    variant="outlined"
+                    className="w-full"
+                    onChange={onChangeInput}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    error={inputError && !state.new_password2 ? true : inputError && state.new_password1.length < 8 ? true : inputError && state.new_password1 !== state.new_password2 ? true : false}
+                    helperText={inputError && !state.new_password2 ? 'Please provide a confirm new password' : inputError && state.new_password1 !== state.new_password2 ? 'Password and confirm new password not match' : ''}
+                    required
+                    name="new_password2"
+                    type="password"
+                    label="Confirm New Password"
+                    variant="outlined"
+                    className="w-full"
+                    onChange={onChangeInput}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
                     Update
-                </Button>
+                </LoadingButton>
             </div>
 
         </form>
