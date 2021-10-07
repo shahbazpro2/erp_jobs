@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import ChangeEmail from './changeEmail/ChangeEmail'
 import classNames from 'classnames'
 import ChangePassword from './changePassword/ChangePassword'
+import Notification from './notification/Notification'
 
 
 const menuItems = [['Change Email', 'changeEmail'], ['Change Password', 'changePassword'], ['Notification', 'notification'], ['Other Setting', 'otherSetting']]
@@ -17,6 +18,8 @@ const UserSettings = () => {
                 return <ChangeEmail />
             case menuItems[1][1]:
                 return <ChangePassword />
+            case menuItems[2][1]:
+                return <Notification />
             default:
                 break;
         }
