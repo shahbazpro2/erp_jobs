@@ -1,22 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
-import { DropdownContext } from '@context/DropdownContext'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
-import { Button, Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useContext, useEffect } from 'react'
+import { LoadingButton } from '@mui/lab'
+import { Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
+import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
 import { CareerProps } from './types'
 
 
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
     setState: (data: CareerProps) => void,
+    loading: boolean,
     state: CareerProps,
     inputError: boolean,
     editId: string
 }
 
-const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) => {
+const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }: Props) => {
     const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +32,22 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
     useEffect(() => {
         allJobtitles()
     }, [])
+
+
+
+    const fromDateCheck = () => {
+        if (!inputError) return { error: false, message: '' }
+        const fromDate = new Date(state.fromDate)
+        const toDate = new Date(state.toDate)
+        if (!state.fromDate) {
+            return { error: true, message: 'Please select from date' }
+        } else if ((fromDate >= toDate) && !state.currentWorkHere) {
+            return { error: true, message: 'From Date must be less then to date' }
+        } else if (fromDate > toDate) {
+            return { error: true, message: 'From Date is greater then today date' }
+        } else return { error: false, message: '' }
+    }
+
 
 
     return (
@@ -53,8 +71,8 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                 <div className="grid grid-cols-2 gap-3">
                     <TextField
                         required
-                        error={inputError && !state.fromDate ? true : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
-                        helperText={inputError && !state.fromDate ? 'Please select from date' : inputError && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
+                        error={fromDateCheck().error}
+                        helperText={fromDateCheck().message}
                         type="date"
                         name="fromDate"
                         label="From Date"
@@ -69,7 +87,6 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                     <TextField
                         required
                         error={(inputError && !state.toDate && !state.currentWorkHere) ? true : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? true : false}
-                        helperText={(inputError && !state.toDate && !state.currentWorkHere) ? 'Please select to date' : (inputError && !state.currentWorkHere) && new Date(state.fromDate) >= new Date(state.toDate) ? 'From date must be less then to date' : ''}
                         disabled={state.currentWorkHere}
                         type="date"
                         name="toDate"
@@ -95,9 +112,9 @@ const CareerInputs = ({ onSubmit, setState, inputError, state, editId }: Props) 
                 </div>
                 <TextFieldSimple multiline={true} inputError={inputError} value={state.description} name="description" label="Description" onChange={onChangeInput} />
 
-                <Button type="submit" variant="contained" color="primary" disableElevation >
+                <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
                     {editId ? 'Update' : 'Save'}
-                </Button>
+                </LoadingButton>
             </div>
 
         </form>
