@@ -5,6 +5,7 @@ import ChangeEmail from './changeEmail/ChangeEmail'
 import classNames from 'classnames'
 import ChangePassword from './changePassword/ChangePassword'
 import Notification from './notification/Notification'
+import OtherSettings from './otherSettings/OtherSettings'
 
 
 const menuItems = [['Change Email', 'changeEmail'], ['Change Password', 'changePassword'], ['Notification', 'notification'], ['Other Setting', 'otherSetting']]
@@ -20,6 +21,8 @@ const UserSettings = () => {
                 return <ChangePassword />
             case menuItems[2][1]:
                 return <Notification />
+            case menuItems[3][1]:
+                return <OtherSettings />
             default:
                 break;
         }
