@@ -1,3 +1,4 @@
-export const url_userJobApplications = '/profile/user/applied-jobs'
-export const url_userProfile = '/profile/user'
-export const url_favoriteJobs = '/profile/user/favorite-jobs'
+export const url_userJobApplications = '/user/applied-jobs'
+export const url_userProfile = '/user/profile'
+export const url_userFavoriteJobs = '/user/favorite-jobs'
+export const url_userPersonalInformation = "/user/personal-information"

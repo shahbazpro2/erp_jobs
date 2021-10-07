@@ -1,11 +1,11 @@
 
-import { initialCareerEditState } from "@components/pages/profile/user/profile/leftside/career/initialStates";
-import { CareerQueryProps } from "@components/pages/profile/user/profile/leftside/career/types";
-import { initialCertificateEditState } from "@components/pages/profile/user/profile/leftside/certificates/initialStates";
-import { CertificateQueryProps } from "@components/pages/profile/user/profile/leftside/certificates/types";
-import { initialEducationEditState } from "@components/pages/profile/user/profile/leftside/education/initialStates";
-import { EducationQueryProps } from "@components/pages/profile/user/profile/leftside/education/types";
-import { initialSummaryState } from "@components/pages/profile/user/profile/leftside/summary/initialStates";
+import { initialCareerEditState } from "@components/pages/user/profile/leftside/career/initialStates";
+import { CareerQueryProps } from "@components/pages/user/profile/leftside/career/types";
+import { initialCertificateEditState } from "@components/pages/user/profile/leftside/certificates/initialStates";
+import { CertificateQueryProps } from "@components/pages/user/profile/leftside/certificates/types";
+import { initialEducationEditState } from "@components/pages/user/profile/leftside/education/initialStates";
+import { EducationQueryProps } from "@components/pages/user/profile/leftside/education/types";
+import { initialSummaryState } from "@components/pages/user/profile/leftside/summary/initialStates";
 import { createContext } from "react";
 
 export const CareerModalContext = createContext({

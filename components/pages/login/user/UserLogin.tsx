@@ -8,6 +8,7 @@ import AuthWrapper from '@components/common/authWrapper/AuthWrapper'
 import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { useAppDispatch } from '@redux/Store'
+import { url_userProfile } from '@components/functions/pageUrls'
 
 const UserLogin = () => {
     const dispatch = useAppDispatch()
@@ -46,7 +47,7 @@ const UserLogin = () => {
             localStorage.setItem('token', res?.data.token)
             dispatch(getUserApi())
             setTimeout(() => {
-                router.push('/profile/user')
+                router.push(url_userProfile)
             }, 1000);
             setApiSuccess(['User logged in successfully'])
             setLoading(false)

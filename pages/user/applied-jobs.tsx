@@ -1,10 +1,10 @@
-import FavoriteJobs from '@components/pages/profile/user/favoriteJobs/FavoriteJobs'
+import AppliedJobs from '@components/pages/user/appliedJobs/AppliedJobs'
 import React from 'react'
 
 const Index = () => {
     return (
         <div>
-            <FavoriteJobs />
+            <AppliedJobs />
         </div>
     )
 }

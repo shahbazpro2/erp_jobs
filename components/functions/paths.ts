@@ -1,9 +1,11 @@
+import { url_userPersonalInformation, url_userProfile } from "./pageUrls";
+
 interface Props {
     pathname: string
 }
 
 export const isProtectedRoute = ({ pathname }: Props) => {
-    return ["/test", "/profile/user", "/profile/user/personal-information"].includes(pathname)
+    return ["/test", url_userProfile, url_userPersonalInformation].includes(pathname)
 }
 
 // Determines whether the route is a login route

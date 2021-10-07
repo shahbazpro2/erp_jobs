@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck';
 import { useAppDispatch } from '@redux/Store';
+import { url_userProfile } from '@components/functions/pageUrls';
 
 
 
@@ -57,7 +58,7 @@ const SignUp = () => {
             localStorage.setItem('token', res?.data.token)
             dispatch(getUserApi())
             setTimeout(() => {
-                router.push('/profile/user')
+                router.push(url_userProfile)
             }, 1000);
             setApiSuccess(['User registered successfully'])
             setLoading(false)
