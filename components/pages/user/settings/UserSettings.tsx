@@ -3,6 +3,7 @@ import ShrinkContainer from '@components/common/container/ShrinkContainer'
 import React, { useState } from 'react'
 import ChangeEmail from './changeEmail/ChangeEmail'
 import classNames from 'classnames'
+import ChangePassword from './changePassword/ChangePassword'
 
 
 const menuItems = [['Change Email', 'changeEmail'], ['Change Password', 'changePassword'], ['Notification', 'notification'], ['Other Setting', 'otherSetting']]
@@ -10,7 +11,16 @@ const menuItems = [['Change Email', 'changeEmail'], ['Change Password', 'changeP
 const UserSettings = () => {
     const [currentSetting, setCurrentSetting] = useState('changeEmail')
 
-
+    const getContent = () => {
+        switch (currentSetting) {
+            case menuItems[0][1]:
+                return <ChangeEmail />
+            case menuItems[1][1]:
+                return <ChangePassword />
+            default:
+                break;
+        }
+    }
 
     return (
         <div className="gray-bg min-h-[100vh]">
@@ -21,7 +31,7 @@ const UserSettings = () => {
                 <div className="grid grid-cols-12 gap-3 py-7">
                     <div className="col-span-9">
                         <BoxWrapper>
-                            <ChangeEmail />
+                            {getContent()}
                         </BoxWrapper>
                     </div>
                     <div className="col-span-3">
