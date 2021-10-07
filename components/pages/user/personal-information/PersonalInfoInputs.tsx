@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
+import { LoadingButton } from '@mui/lab'
 import { Button, Checkbox, FormControlLabel, MenuItem } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
 import { BasicInfoProps } from './types'
@@ -10,11 +12,12 @@ import { BasicInfoProps } from './types'
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
     setState: (data: BasicInfoProps) => void,
+    loading: boolean,
     state: BasicInfoProps,
     inputError: boolean,
 }
 
-const PersonalInfoInputs = ({ setState, state, inputError, onSubmit }: Props) => {
+const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: Props) => {
     const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -106,9 +109,9 @@ const PersonalInfoInputs = ({ setState, state, inputError, onSubmit }: Props) =>
                     />
                 </div>
 
-                <Button type="submit" variant="contained" color="primary" disableElevation >
+                <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
                     Update
-                </Button>
+                </LoadingButton>
 
             </div>
         </form>

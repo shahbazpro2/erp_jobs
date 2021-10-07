@@ -23,6 +23,7 @@ const PersonalInformation = () => {
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
     const [apiError, setApiError] = useState<string[]>([])
+    const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
@@ -60,6 +61,7 @@ const PersonalInformation = () => {
             setInputError(true)
             return
         }
+        setLoading(true)
         const { error, data } = await graphqlRes(createCandidate({
             variables: {
                 jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential, residenceCountry
@@ -67,8 +69,10 @@ const PersonalInformation = () => {
         }))
         if (error) {
             setApiError(data)
+            setLoading(false)
             return
         }
+        setLoading(false)
         setApiSuccess(['Profile updated successfully'])
         setTimeout(() => {
             router.push(url_userProfile)
@@ -83,7 +87,7 @@ const PersonalInformation = () => {
                 <BoxWrapper >
                     <HeadingStyle1 title="Basic Information" subtitle="Please Complete Your Basic Information in the Form Below" />
                     <div className="mt-8">
-                        <BasicInfoInputs state={state} setState={setState} inputError={inputError} onSubmit={onSubmit} />
+                        <BasicInfoInputs state={state} setState={setState} inputError={inputError} onSubmit={onSubmit} loading={loading} />
                     </div>
                 </BoxWrapper>
             </div>
