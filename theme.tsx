@@ -25,6 +25,17 @@ const theme = createTheme({
           letterSpacing: "-0.5px",
           padding: "5px 35px",
           textTransform: "unset",
+        },
+        contained: {
+          borderRadius: "7px",
+          fontSize: "17px",
+          letterSpacing: "-0.5px",
+          padding: "7px 35px",
+          textTransform: "unset",
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
         }
       }
     },
@@ -68,6 +79,9 @@ const theme = createTheme({
     },
     success: {
       main: "#3DD598"
+    },
+    error: {
+      main: "#FC5A5A"
     }
   },
   typography: {
