@@ -1,7 +1,7 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button, Input } from '@mui/material'
+import { Input } from '@mui/material'
 import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 import ClearIcon from '@mui/icons-material/Clear';
 import { deleteCv, getCv, uploadCv } from '@api/CVUpload';
