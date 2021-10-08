@@ -41,10 +41,9 @@ const ChangePassword = () => {
         setLoading(true)
 
         const res = await apiPasswordChange(state)
-        console.log('res', res?.data)
         if (!res?.error) {
-            setApiSuccess(res?.data)
             setLoading(false)
+            setApiSuccess(['New password changed successfully'])
             return
         }
 
