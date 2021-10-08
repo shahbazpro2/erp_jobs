@@ -7,6 +7,7 @@ import Featured from '@components/pages/home/featured/Featured'
 import JobSteps from '@components/pages/home/jobSteps/JobSteps'
 import News from '@components/pages/home/news/News'
 import Subscription from '@components/pages/home/subscription/Subscription'
+import Head from 'next/head'
 
 const Home = () => {
     const context = useContext(HeaderContext)
@@ -19,6 +20,9 @@ const Home = () => {
     }, [])
     return (
         <div>
+            <Head>
+                <title>Home</title>
+            </Head>
             <TopSection />
             <Featured />
             <Category />
