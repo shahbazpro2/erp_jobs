@@ -76,7 +76,7 @@ const SignUp = () => {
                                     helperText={inputError && !state.firstname ? 'Please provide a firstname' : ''}
                                     required
                                     name="firstname"
-                                    label="Your Firstname"
+                                    label="Firstname"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -89,7 +89,7 @@ const SignUp = () => {
                                     helperText={inputError && !state.lastname ? 'Please provide a lastname' : ''}
                                     required
                                     name="lastname"
-                                    label="Your Lastname"
+                                    label="Lastname"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -102,7 +102,7 @@ const SignUp = () => {
                                     helperText={inputError && !state.username ? 'Please provide a username' : ''}
                                     required
                                     name="username"
-                                    label="Your Username"
+                                    label="Username"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -115,7 +115,7 @@ const SignUp = () => {
                                     helperText={inputError && !validateEmail(state.email) ? 'Email is invalid or empty' : ''}
                                     required
                                     name="email"
-                                    label="Your Email"
+                                    label="Email"
                                     type="email"
                                     variant="outlined"
                                     className="w-full"
@@ -130,7 +130,7 @@ const SignUp = () => {
                                     helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
                                     name="password1"
                                     type="password"
-                                    label="Enter Password"
+                                    label="Password"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
