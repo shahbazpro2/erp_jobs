@@ -9,6 +9,7 @@ import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { useAppDispatch } from '@redux/Store'
 import { url_userProfile } from '@components/functions/pageUrls'
+import Image from 'next/image'
 
 const UserLogin = () => {
     const dispatch = useAppDispatch()
@@ -105,13 +106,13 @@ const UserLogin = () => {
                             </div>
                             <div className="grid grid-cols-3 gap-3 social-links">
                                 <div className="social-box">
-                                    google
+                                    <Image src="/assets/images/google.svg" width="18%" height="18%" alt="google" />
                                 </div>
                                 <div className="social-box">
-                                    google
+                                    <Image src="/assets/images/fb_blue.svg" width="18%" height="18%" alt="facebook" />
                                 </div>
                                 <div className="social-box">
-                                    google
+                                    <Image src="/assets/images/twitter_blue.svg" width="18%" height="18%" alt="twitter" />
                                 </div>
                             </div>
                         </AuthWrapper>

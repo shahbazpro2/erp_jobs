@@ -1,0 +1,33 @@
+<svg id="Continue_with_google" data-name="Continue with google" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="a" d="M15.814,6.545H8.186V9.636h4.391c-.409,1.964-2.121,3.091-4.391,3.091A4.774,4.774,0,0,1,3.349,8,4.837,4.837,0,0,1,11.2,4.327L13.581,2a8.258,8.258,0,0,0-5.4-2A8.071,8.071,0,0,0,0,8a8.071,8.071,0,0,0,8.186,8A7.632,7.632,0,0,0,16,8,6.494,6.494,0,0,0,15.814,6.545Z" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Logo_Google" data-name="Logo Google">
+    <g id="Clipped">
+      <path id="a-5" data-name="a" d="M15.814,6.545H8.186V9.636h4.391c-.409,1.964-2.121,3.091-4.391,3.091A4.774,4.774,0,0,1,3.349,8,4.837,4.837,0,0,1,11.2,4.327L13.581,2a8.258,8.258,0,0,0-5.4-2A8.071,8.071,0,0,0,0,8a8.071,8.071,0,0,0,8.186,8A7.632,7.632,0,0,0,16,8,6.494,6.494,0,0,0,15.814,6.545Z" fill="none"/>
+      <g id="Clipped-2" data-name="Clipped" clip-path="url(#clip-path)">
+        <path id="Path" d="M0,9.455V0L6.326,4.727Z" transform="translate(-0.744 3.273)" fill="#fbbc05"/>
+      </g>
+    </g>
+    <g id="Clipped-3" data-name="Clipped">
+      <path id="a-6" data-name="a" d="M15.814,6.545H8.186V9.636h4.391c-.409,1.964-2.121,3.091-4.391,3.091A4.774,4.774,0,0,1,3.349,8,4.837,4.837,0,0,1,11.2,4.327L13.581,2a8.258,8.258,0,0,0-5.4-2A8.071,8.071,0,0,0,0,8a8.071,8.071,0,0,0,8.186,8A7.632,7.632,0,0,0,16,8,6.494,6.494,0,0,0,15.814,6.545Z" fill="none"/>
+      <g id="Clipped-4" data-name="Clipped" clip-path="url(#clip-path)">
+        <path id="Path-2" data-name="Path" d="M0,4,6.326,8.727l2.6-2.218,8.93-1.418V0H0Z" transform="translate(-0.744 -0.727)" fill="#ea4335"/>
+      </g>
+    </g>
+    <g id="Clipped-5" data-name="Clipped">
+      <path id="a-7" data-name="a" d="M15.814,6.545H8.186V9.636h4.391c-.409,1.964-2.121,3.091-4.391,3.091A4.774,4.774,0,0,1,3.349,8,4.837,4.837,0,0,1,11.2,4.327L13.581,2a8.258,8.258,0,0,0-5.4-2A8.071,8.071,0,0,0,0,8a8.071,8.071,0,0,0,8.186,8A7.632,7.632,0,0,0,16,8,6.494,6.494,0,0,0,15.814,6.545Z" fill="none"/>
+      <g id="Clipped-6" data-name="Clipped" clip-path="url(#clip-path)">
+        <path id="Path-3" data-name="Path" d="M0,13.455,11.163,5.091l2.94.364L17.86,0V17.455H0Z" transform="translate(-0.744 -0.727)" fill="#34a853"/>
+      </g>
+    </g>
+    <g id="Clipped-7" data-name="Clipped">
+      <path id="a-8" data-name="a" d="M15.814,6.545H8.186V9.636h4.391c-.409,1.964-2.121,3.091-4.391,3.091A4.774,4.774,0,0,1,3.349,8,4.837,4.837,0,0,1,11.2,4.327L13.581,2a8.258,8.258,0,0,0-5.4-2A8.071,8.071,0,0,0,0,8a8.071,8.071,0,0,0,8.186,8A7.632,7.632,0,0,0,16,8,6.494,6.494,0,0,0,15.814,6.545Z" fill="none"/>
+      <g id="Clipped-8" data-name="Clipped" clip-path="url(#clip-path)">
+        <path id="Path-4" data-name="Path" d="M13.023,13.455,1.488,4.727,0,3.636,13.023,0Z" transform="translate(4.093 3.273)" fill="#4285f4"/>
+      </g>
+    </g>
+  </g>
+</svg>
