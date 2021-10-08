@@ -1,16 +1,17 @@
 import responseApi from "./responseApi"
 import { userSkills } from "./urls"
 
-
-
-interface AddSkills {
-    skills: string[],
+type AllSkill = {
+    user: string,
+    skills: number[]
 }
-export const addUserSkills = async (data: AddSkills) => {
+
+
+export const addUserSkills = async (data: AllSkill) => {
     return responseApi(userSkills, 'post', data)
 }
 
-export const updateUserSkills = async (data: AddSkills, id: string) => {
+export const updateUserSkills = async (data: AllSkill, id: string) => {
     return responseApi(`${userSkills}${id}`, 'put', data)
 }
 
