@@ -45,9 +45,13 @@ body {
 
 .social-links {
   & .social-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid $medium-clr;
     border-radius: 10px;
     padding: 10px 20px;
+    cursor: pointer;
   }
 }
 #category-arrow {
