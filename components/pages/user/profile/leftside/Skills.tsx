@@ -31,24 +31,28 @@ const Skills = () => {
 
 
     useEffect(() => {
-        if (data?.allSkills) {
+        getData()
+    }, [data])
+
+    const getData = async () => {
+        if (data?.allSkills?.length) {
             setAllSkills(data?.allSkills);
+            const res = await getUserSkills()
 
-            (async () => {
-                const res = await getUserSkills()
-
-                const filterSkills = []
-                for (const all of data?.allSkills) {
+            const filterSkills = []
+            let { allSkills } = data
+            console.log('in if', res?.data)
+            for (const all of allSkills) {
+                if (res?.data.length) {
                     for (const resSkill of res?.data[0]?.skills) {
                         if (Number(all.id) === Number(resSkill))
                             filterSkills.push(all)
                     }
                 }
-                setValue(filterSkills)
-            })()
+            }
+            setValue(filterSkills)
         }
-    }, [data])
-
+    }
 
     useEffect(() => {
         allSkillsFetch()
