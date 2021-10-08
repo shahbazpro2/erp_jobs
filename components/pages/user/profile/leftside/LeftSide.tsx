@@ -26,7 +26,7 @@ const LeftSide = () => {
             <PersonalInfo data={data?.loginCandidate} user={user?.user} />
             <CareerWrapper />
             <EducationWrapper />
-            {/*   <Skills /> */}
+            <Skills />
             <CertificatesWrapper />
         </div>
     )
