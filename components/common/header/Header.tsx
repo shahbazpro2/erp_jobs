@@ -10,6 +10,9 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router";
 import { url_userProfile, url_userSettings } from "@components/functions/pageUrls";
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 interface Props {
@@ -51,13 +54,14 @@ const Header = ({ bg, boxShadow }: Props) => {
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
                   <React.Fragment >
-                    <Button size="small" color="secondary" {...bindTrigger(popupState)} endIcon={<KeyboardArrowDownIcon />}>
-                      My Account
-                    </Button>
-                    <Menu disableScrollLock sx={{ '& .MuiPaper-root': { width: '150px' } }} {...bindMenu(popupState)}>
-                      <MenuItem onClick={() => { popupState.close(); router.push(url_userProfile) }}>Profile</MenuItem>
-                      <MenuItem onClick={() => { popupState.close(); router.push(url_userSettings) }}>Setting</MenuItem>
-                      <MenuItem onClick={() => { popupState.close(); dispatch(setLogoutState()) }}>Logout</MenuItem>
+                    <div className="flex font-semibold cursor-pointer" {...bindTrigger(popupState)}>
+                      <div className="mr-1">My Account</div>
+                      <KeyboardArrowDownIcon />
+                    </div>
+                    <Menu disableScrollLock sx={{ '& .MuiPaper-root': { width: '150px' }, marginTop: '10px' }} {...bindMenu(popupState)}>
+                      <MenuItem onClick={() => { popupState.close(); router.push(url_userProfile) }}><PersonIcon sx={{ width: '18px' }} /><div className="ml-2">Profile</div></MenuItem>
+                      <MenuItem onClick={() => { popupState.close(); router.push(url_userSettings) }}><SettingsIcon sx={{ width: '18px' }} /><div className="ml-2">Setting</div></MenuItem>
+                      <MenuItem onClick={() => { popupState.close(); dispatch(setLogoutState()) }}><ExitToAppIcon sx={{ width: '18px' }} /><div className="ml-2">Logout</div></MenuItem>
                     </Menu>
                   </React.Fragment>
                 )}
