@@ -1,11 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from 'react'
-import { Autocomplete, Chip, TextField } from '@mui/material';
-import { useLazyQuery, useMutation } from '@apollo/client';
+import React, { useEffect, useState } from 'react'
+import { Autocomplete, TextField } from '@mui/material';
+import { useLazyQuery } from '@apollo/client';
 import FeedbackApi from '@components/common/feedback/FeedbackAPi';
 import { AllSkills } from '@graphql/queries/common/AllSkills';
-import { CreateSkills } from '@graphql/mutations/user/skills/CreateSkills';
-import { CandidateSkills } from '@graphql/queries/user/skills/CandidateSkills';
 import SimpleWrapper from './common/SimpleWrapper';
 import { addUserSkills, getUserSkills } from '@api/skills';
 import { useAppSelector } from '@redux/Store';
@@ -41,14 +39,13 @@ const Skills = () => {
 
             const filterSkills = []
             let { allSkills } = data
-            console.log('in if', res?.data)
             for (const all of allSkills) {
                 if (res?.data.length) {
                     for (const resSkill of res?.data[0]?.skills) {
                         if (Number(all.id) === Number(resSkill))
                             filterSkills.push(all)
                     }
-                }
+                } else break
             }
             setValue(filterSkills)
         }
@@ -80,7 +77,6 @@ const Skills = () => {
         setLoading(false)
         setApiError(res?.data)
 
-        console.log('res', res)
     }
 
 
