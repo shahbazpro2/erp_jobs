@@ -8,20 +8,20 @@ import Notification from './notification/Notification'
 import OtherSettings from './otherSettings/OtherSettings'
 
 
-const menuItems = [['Change Email', 'changeEmail'], ['Change Password', 'changePassword'], ['Notification', 'notification'], ['Other Setting', 'otherSetting']]
+const menuItems = [['Change Password', 'changePassword'], ['Notification', 'notification'], ['Other Setting', 'otherSetting']]
 
 const UserSettings = () => {
-    const [currentSetting, setCurrentSetting] = useState('changeEmail')
+    const [currentSetting, setCurrentSetting] = useState('changePassword')
 
     const getContent = () => {
         switch (currentSetting) {
+            /*  case menuItems[0][1]:
+                 return <ChangeEmail /> */
             case menuItems[0][1]:
-                return <ChangeEmail />
-            case menuItems[1][1]:
                 return <ChangePassword />
-            case menuItems[2][1]:
+            case menuItems[1][1]:
                 return <Notification />
-            case menuItems[3][1]:
+            case menuItems[2][1]:
                 return <OtherSettings />
             default:
                 break;
