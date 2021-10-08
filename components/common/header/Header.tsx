@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router";
-import { url_userProfile, url_userSettings } from "@components/functions/pageUrls";
+import { url_careerAdvice, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -37,7 +37,7 @@ const Header = ({ bg, boxShadow }: Props) => {
             <div className="grid grid-flow-col gap-12">
               <Link href="/"><a className="user-links">Home</a></Link>
               <div className="user-links">Find Jobs</div>
-              <div className="user-links">Career Advice</div>
+              <Link href={url_careerAdvice}><a className="user-links">Career Advice</a></Link>
               <div className="user-links">Upload CV</div>
             </div>
           </div>
