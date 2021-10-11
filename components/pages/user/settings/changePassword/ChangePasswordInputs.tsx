@@ -38,6 +38,7 @@ const changePasswordInputs = ({ onSubmit, setState, loading, inputError, state }
                     label="New Password"
                     variant="outlined"
                     className="w-full"
+                    value={state.new_password1}
                     onChange={onChangeInput}
                     InputLabelProps={{
                         shrink: true,
@@ -52,6 +53,7 @@ const changePasswordInputs = ({ onSubmit, setState, loading, inputError, state }
                     label="Confirm New Password"
                     variant="outlined"
                     className="w-full"
+                    value={state.new_password2}
                     onChange={onChangeInput}
                     InputLabelProps={{
                         shrink: true,

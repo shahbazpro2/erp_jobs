@@ -44,6 +44,7 @@ const ChangePassword = () => {
         if (!res?.error) {
             setLoading(false)
             setApiSuccess(['New password changed successfully'])
+            setState(initialState)
             return
         }
 
