@@ -10,6 +10,7 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { useAppDispatch } from '@redux/Store'
 import { url_userProfile } from '@components/functions/pageUrls'
 import Image from 'next/image'
+import validateEmail from '@components/functions/emailValidation'
 
 const UserLogin = () => {
     const dispatch = useAppDispatch()
@@ -34,7 +35,7 @@ const UserLogin = () => {
         setInputError(false)
         const { username, password } = state
 
-        if (EmptyFieldCheck({ username, password })) {
+        if (EmptyFieldCheck({ password }) || !validateEmail(username)) {
             setInputError(true)
             return
         }
@@ -44,7 +45,6 @@ const UserLogin = () => {
             setApiError(res.data)
             setLoading(false)
         } else {
-            console.log('res', res?.data)
             localStorage.setItem('token', res?.data.token)
             dispatch(getUserApi())
             setTimeout(() => {
@@ -66,12 +66,12 @@ const UserLogin = () => {
                             <form noValidate autoComplete="off" onSubmit={onSubmit}>
                                 <div className="grid gap-5">
                                     <TextField
-                                        error={inputError && !state.username ? true : false}
-                                        helperText={inputError && !state.username ? 'Please provide a username' : ''}
+                                        error={inputError && !validateEmail(state.username) ? true : false}
+                                        helperText={inputError && !validateEmail(state.username) ? 'Email is invalid or empty' : ''}
                                         required
-                                        id="outlined-username"
                                         name="username"
-                                        label="Username"
+                                        label="Email"
+                                        type="email"
                                         variant="outlined"
                                         className="w-full"
                                         onChange={onChangeInput}

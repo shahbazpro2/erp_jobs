@@ -3,7 +3,6 @@ import responseApi from "./responseApi"
 import { getUserUrl, loginUserUrl, registerUserUrl } from "./urls"
 
 interface RegisterUser {
-    username: string,
     first_name: string,
     last_name: string,
     password: string,

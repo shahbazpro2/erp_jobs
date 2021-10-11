@@ -16,7 +16,6 @@ import Image from 'next/image'
 const SignUp = () => {
     const router = useRouter()
     const [state, setState] = useState({
-        username: '',
         firstname: '',
         lastname: '',
         email: '',
@@ -37,15 +36,15 @@ const SignUp = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        const { username, firstname, lastname, email, password1, password2 } = state
+        const { firstname, lastname, email, password1, password2 } = state
 
-        if (EmptyFieldCheck({ firstname, lastname, username, email, password1, password2 }) || !validateEmail(email) || password1 !== password2 || password1.length < 8) {
+        if (EmptyFieldCheck({ firstname, lastname, email, password1, password2 }) || !validateEmail(email) || password1 !== password2 || password1.length < 8) {
             setInputError(true)
             return
         }
         setLoading(true)
         const data = {
-            username, first_name: firstname, last_name: lastname, email, password: password1, password2
+            first_name: firstname, last_name: lastname, email, password: password1, password2
         }
 
         const res = await registerUser(data)
@@ -91,19 +90,6 @@ const SignUp = () => {
                                     required
                                     name="lastname"
                                     label="Lastname"
-                                    variant="outlined"
-                                    className="w-full"
-                                    onChange={onChangeInput}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                />
-                                <TextField
-                                    error={inputError && !state.username ? true : false}
-                                    helperText={inputError && !state.username ? 'Please provide a username' : ''}
-                                    required
-                                    name="username"
-                                    label="Username"
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
