@@ -64,6 +64,7 @@ body {
 
 .latestTool:hover #latestTool-arrow {
   color: $primary-clr;
+  transition: color ease-in-out 500ms;
 }
 
 @keyframes fade-in {
