@@ -13,6 +13,7 @@ import { url_careerAdvice, url_userProfile, url_userSettings } from "@components
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import classNames from 'classnames'
 
 
 interface Props {
@@ -23,8 +24,8 @@ interface Props {
 const Header = ({ bg, boxShadow }: Props) => {
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const path = router.asPath
   const { user } = useAppSelector(state => state.authReducer)
-
 
   return (
     <div className={`${bg} ${boxShadow} absolute w-full`}>
@@ -35,16 +36,16 @@ const Header = ({ bg, boxShadow }: Props) => {
           </div>
           <div className="links flex items-center">
             <div className="grid grid-flow-col gap-12">
-              <Link href="/"><a className="user-links">Home</a></Link>
+              <Link href="/"><a className={classNames("user-links", { "active-links": path === '/' })}>Home</a></Link>
               <div className="user-links">Find Jobs</div>
-              <Link href={url_careerAdvice}><a className="user-links">Career Advice</a></Link>
+              <Link href={url_careerAdvice}><a className={classNames("user-links", { "active-links": path === url_careerAdvice })}>Career Advice</a></Link>
               <div className="user-links">Upload CV</div>
             </div>
           </div>
           <div className="auth-links flex items-center space-x-5">
             {objectIsEmpty(user) ? <>
-              <Link href="/login/user"><a className="user-links">Login</a></Link>
-              <Link href="/register/user"><a className="user-links">Sign up</a></Link>
+              <Link href="/login/user"><a className={classNames("user-links", { "active-links": path === "/login/user" })}>Login</a></Link>
+              <Link href="/register/user"><a className={classNames("user-links", { "active-links": path === '/register/user' })}>Sign up</a></Link>
               <div>
                 <Button variant="contained" color="secondary" disableElevation>
                   Post a Job
