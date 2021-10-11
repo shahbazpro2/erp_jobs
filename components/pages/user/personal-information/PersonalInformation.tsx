@@ -12,6 +12,8 @@ import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import graphqlRes from '@components/functions/graphqlRes'
 import { useRouter } from 'next/router'
 import { url_userProfile } from '@components/functions/pageUrls'
+import { jobStatusOptions } from '@components/functions/dropDowns'
+import getDropdownKey from '@components/functions/getDropdownKey'
 
 
 const PersonalInformation = () => {
@@ -27,9 +29,14 @@ const PersonalInformation = () => {
 
 
     useEffect(() => {
+        console.log('data', data)
         if (data?.loginCandidate) {
-            const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential, residenceCountry } = data?.loginCandidate
-            setState({ ...state, city, address, yearOfExperience, minSalary, residenceCountry, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender?.toUpperCase() })
+            const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential, residenceCountry, jobStatus } = data?.loginCandidate
+
+            const jobStatusKey: string = getDropdownKey(jobStatus, jobStatusOptions)
+
+
+            setState({ ...state, city, address, yearOfExperience, minSalary, residenceCountry, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender?.toUpperCase(), jobStatus: jobStatusKey })
         }
     }, [data])
 
@@ -56,7 +63,7 @@ const PersonalInformation = () => {
             confidential,
             currency } = state
         if (EmptyFieldCheck({
-            jobTitle, dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, residenceCountry,
+            jobTitle, dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, residenceCountry, jobStatus
         })) {
             setInputError(true)
             return
@@ -64,7 +71,7 @@ const PersonalInformation = () => {
         setLoading(true)
         const { error, data } = await graphqlRes(createCandidate({
             variables: {
-                jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential, residenceCountry
+                jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential, residenceCountry, jobStatus
             }
         }))
         if (error) {
