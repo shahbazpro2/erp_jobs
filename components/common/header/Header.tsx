@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router";
-import { url_careerAdvice, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
+import { url_careerAdvice, url_loginUser, url_registerUser, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -44,8 +44,8 @@ const Header = ({ bg, boxShadow }: Props) => {
           </div>
           <div className="auth-links flex items-center space-x-5">
             {objectIsEmpty(user) ? <>
-              <Link href="/login/user"><a className={classNames("user-links", { "active-links": path === "/login/user" })}>Login</a></Link>
-              <Link href="/register/user"><a className={classNames("user-links", { "active-links": path === '/register/user' })}>Sign up</a></Link>
+              <Link href="/login/user"><a className={classNames("user-links", { "active-links": path === url_loginUser })}>Login</a></Link>
+              <Link href={url_registerUser}><a className={classNames("user-links", { "active-links": path === url_registerUser })}>Sign up</a></Link>
               <div>
                 <Button variant="contained" color="secondary" disableElevation>
                   Post a Job
