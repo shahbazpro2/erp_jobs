@@ -2,7 +2,7 @@
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
-import { getDropdown, jobStatusOptions } from '@components/functions/dropDowns'
+import { getDropdown, jobStatusOptions, profileVisibilityOptions } from '@components/functions/dropDowns'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
 import { Button, Checkbox, FormControlLabel, MenuItem } from '@mui/material'
@@ -81,15 +81,15 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
 
                 </SelectField>
 
-                {/*
+
                 <SelectField inputError={inputError} name="profileVisibility" label="Profile Visibility" value={state.profileVisibility} onChange={onChangeInput} >
                     <MenuItem disabled value={" "}>
                         Select profile visibility
                     </MenuItem>
-                    <MenuItem value="PUBLIC">Public. Anyone can see my profile</MenuItem>
-                    <MenuItem value={'REGISTERED_ONLY'}>Registered only. Employers only can see my profile</MenuItem>
-                    <MenuItem value={"HIDDEN"}>Hidden. Only visible to employers I apply to</MenuItem>
-                </SelectField> */}
+                    {getDropdown(profileVisibilityOptions).map((drop, index) => (
+                        <MenuItem key={index} value={drop.key}>{drop.value}</MenuItem>
+                    ))}
+                </SelectField>
 
 
 
