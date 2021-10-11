@@ -2,6 +2,7 @@
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
+import { getDropdown, jobStatusOptions } from '@components/functions/dropDowns'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
 import { Button, Checkbox, FormControlLabel, MenuItem } from '@mui/material'
@@ -69,17 +70,18 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
 
                 <TextFieldSimple inputError={inputError} name="address" label="Address" value={state.address} onChange={onChangeInput} />
 
-                {/* 
+
                 <SelectField inputError={inputError} name="jobStatus" label="Job Status" value={state.jobStatus} onChange={onChangeInput} >
                     <MenuItem disabled value={" "}>
                         Select job status
                     </MenuItem>
-                    <MenuItem value={'FRESH_AND_LOOKING'}>Looking for a job</MenuItem>
-                    <MenuItem value={"WORKING_BUT_LOOKING_FOR_NEW_OPPORTUNITIES"}>Working but looking for new opportunities</MenuItem>
-                    <MenuItem value={"NOT_LOOKING_FOR_JOB"}>Not looking for job</MenuItem>
+                    {getDropdown(jobStatusOptions).map((drop, index) => (
+                        <MenuItem key={index} value={drop.key}>{drop.value}</MenuItem>
+                    ))}
+
                 </SelectField>
 
-
+                {/*
                 <SelectField inputError={inputError} name="profileVisibility" label="Profile Visibility" value={state.profileVisibility} onChange={onChangeInput} >
                     <MenuItem disabled value={" "}>
                         Select profile visibility
