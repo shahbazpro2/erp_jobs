@@ -1,4 +1,6 @@
+import { url_loginUser } from "@components/functions/pageUrls";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import router from "next/router";
 import { getUserApi } from "../api/auth";
 
 interface userTypes {
@@ -18,7 +20,7 @@ export const authSlice = createSlice({
             state.user = action.payload
         },
         setLogoutState: (state) => {
-            window.location.replace('/login/user')
+            router.push(url_loginUser)
             state.user = {}
             localStorage.removeItem('token')
         },
