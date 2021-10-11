@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Grid8span6 from '@components/common/grids/Grid8span6'
 import CareerAdviceCard from './CareerAdviceCard'
+import LatestToolCard from './LatestToolCard'
 
 const CareerAdvice = () => {
     return (
@@ -45,6 +46,16 @@ const CareerAdvice = () => {
                 </div>
 
             </Grid8span6>
+            <div className="bg-[#F4F7FA] py-28 text-center">
+                <Grid8span6>
+                    <div className="text-5xl font-bold">
+                        Latest Tool & Tips
+                    </div>
+                    <div className="mt-20 text-left">
+                        <LatestToolCard title="CV Templates" subtitle="Find CV templates according to your choice" />
+                    </div>
+                </Grid8span6>
+            </div>
         </div>
     )
 }
