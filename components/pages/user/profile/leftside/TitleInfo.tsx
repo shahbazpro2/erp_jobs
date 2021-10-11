@@ -27,14 +27,14 @@ const TitleInfo = ({ data, user }: any) => {
                                 <div className="rounded-lg w-2 h-2 bg-[#3DD598]">
                                 </div>
                                 <div>
-                                    Working but looking for new opportunities
+                                    {data?.jobStatus}
                                 </div>
                             </div>
                             <div className="flex items-center space-x-2">
                                 <div className="rounded-lg w-2 h-2 bg-[#3DD598]">
                                 </div>
                                 <div>
-                                    Last Active: Monday
+                                    {data?.profileVisibility}
                                 </div>
                             </div>
                         </div>
