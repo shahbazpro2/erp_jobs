@@ -2,9 +2,7 @@ import React, { SyntheticEvent, useState } from 'react'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import ChangePasswordInputs from './ChangePasswordInputs'
-import validateEmail from '@components/functions/emailValidation'
 import { apiPasswordChange } from '@api/userSettings'
-import ObjectToArray from '@components/functions/ObjectToArray'
 
 
 export interface ChangePasswordProps {
