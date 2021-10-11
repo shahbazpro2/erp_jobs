@@ -10,7 +10,7 @@ interface Props {
 const LatestToolCard = ({ title, subtitle }: Props) => {
     return (
         <div className="latestTool transition duration-500 ease-in-out hover:scale-100">
-            <Card variant="outlined" sx={{
+            <Card variant="outlined" className="py-3" sx={{
                 borderRadius: '10px', borderColor: 'white', zIndex: 1111, "&:hover": {
                     cursor: 'pointer',
                     boxShadow: '0px 30px 44px #0D152E17',
