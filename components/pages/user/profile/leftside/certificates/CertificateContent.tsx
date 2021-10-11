@@ -45,8 +45,7 @@ const CertificateContent = () => {
         e.preventDefault()
         setInputError(false)
 
-        const { certificate_title, company, date } = state
-        if (EmptyFieldCheck({ certificate_title, company, date })) {
+        if (EmptyFieldCheck({ ...state })) {
             setInputError(true)
             return
         }

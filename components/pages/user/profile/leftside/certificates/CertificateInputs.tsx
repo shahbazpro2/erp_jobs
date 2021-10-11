@@ -28,9 +28,9 @@ const CertificateInputs = ({ onSubmit, setState, inputError, loading, state, edi
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
-                <TextFieldSimple inputError={inputError} value={state.certificate_title} name="certificate_title" label="Certificate Title" onChange={onChangeInput} />
-                <TextFieldSimple inputError={inputError} value={state.company} name="company" label="Certificate Provider" onChange={onChangeInput} />
-                <TextFieldSimple type="date" inputError={inputError} value={state.date} name="date" label="Date" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.title} name="title" label="Title" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.institution} name="institution" label="Institution" onChange={onChangeInput} />
+                <TextFieldSimple type="date" inputError={inputError} value={state.end_date} name="end_date" label="End Date" onChange={onChangeInput} />
                 <LoadingButton type="submit" loading={loading} variant="contained" color="primary" disableElevation >
                     {editId ? 'Update' : 'Save'}
                 </LoadingButton>
