@@ -1,5 +1,8 @@
+import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
+import { degreeOptions, getDropdown } from '@components/functions/dropDowns'
 import { LoadingButton } from '@mui/lab'
+import { MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent } from 'react'
 import { EducationProps } from './types'
 
@@ -23,17 +26,59 @@ const EducationInputs = ({ onSubmit, setState, inputError, loading, state, editI
             setState({ ...state, [name]: value })
     }
 
-
+    const startDateCheck = () => {
+        if (!inputError) return { error: false, message: '' }
+        const startDate = new Date(state.startDate)
+        const endDate = new Date(state.endDate)
+        if (startDate >= endDate) {
+            return { error: true, message: 'Start Date must be less then End Date' }
+        } else return { error: false, message: '' }
+    }
 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
+                <SelectField inputError={inputError} name="degreeType" label="Degree Type" value={state.degreeType} onChange={onChangeInput} >
+                    <MenuItem disabled value={" "}>
+                        Select your education level
+                    </MenuItem>
+                    {getDropdown(degreeOptions).map((drop, index) => (
+                        <MenuItem key={index} value={drop.key}>{drop.value}</MenuItem>
+                    ))}
+
+                </SelectField>
                 <TextFieldSimple inputError={inputError} value={state.degreeTitle} name="degreeTitle" label="Degree" onChange={onChangeInput} />
-                <TextFieldSimple inputError={inputError} value={state.university} name="university" label="University" onChange={onChangeInput} />
-                <TextFieldSimple inputError={inputError} value={state.field} name="field" label="Field" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.institution} name="institution" label="Institution" onChange={onChangeInput} />
                 <div className="grid grid-cols-2 gap-3">
-                    <TextFieldSimple inputError={inputError} type={'number'} value={state.passYear} name="passYear" label="Passing Year" onChange={onChangeInput} />
-                    <TextFieldSimple inputError={inputError} type={'number'} value={state.grade} name="grade" label="Grade" onChange={onChangeInput} />
+                    <TextField
+                        required
+                        error={startDateCheck().error}
+                        helperText={startDateCheck().message}
+                        type="date"
+                        name="startDate"
+                        label="Start Date"
+                        variant="outlined"
+                        className="w-full"
+                        value={state.startDate}
+                        onChange={onChangeInput}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <TextField
+                        required
+                        error={inputError && new Date(state.startDate) >= new Date(state.endDate) ? true : false}
+                        type="date"
+                        name="endDate"
+                        label="End Date"
+                        variant="outlined"
+                        className="w-full"
+                        value={state.endDate}
+                        onChange={onChangeInput}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                 </div>
 
                 <LoadingButton type="submit" loading={loading} variant="contained" color="primary" disableElevation >

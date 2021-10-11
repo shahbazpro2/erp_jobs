@@ -13,7 +13,8 @@ import { UpdateEducation } from '@graphql/mutations/user/education/UpdateEducati
 import { CreateEducation } from '@graphql/mutations/user/education/CreateEducation'
 import { AllEducations } from '@graphql/queries/user/education/AllEducations'
 import graphqlRes from '@components/functions/graphqlRes'
-
+import getDropdownKey from '@components/functions/getDropdownKey'
+import { degreeOptions } from '@components/functions/dropDowns'
 
 const EducationContent = () => {
     const [createEducation] = useMutation(CreateEducation, { refetchQueries: [{ query: AllEducations }], onError: () => null })
@@ -31,8 +32,10 @@ const EducationContent = () => {
 
 
     useEffect(() => {
+
         if (context.editData?.id) {
-            setState({ ...context.editData })
+            const degreeTypeKey = getDropdownKey(context.editData?.degreeType, degreeOptions)
+            setState({ ...context.editData, degreeType: degreeTypeKey })
             setEditId(context.editData.id)
         }
 
@@ -49,8 +52,9 @@ const EducationContent = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-
-        if (EmptyFieldCheck({ ...state })) {
+        var d1 = new Date(state.startDate);
+        var d2 = new Date(state.endDate);
+        if (EmptyFieldCheck({ ...state }) || d1 >= d2) {
             setInputError(true)
             return
         }

@@ -3,21 +3,21 @@ import { gql } from '@apollo/client'
 export const UpdateEducation = gql`
     mutation updateEducation(
             $id:ID!,
-            $degreeTitle:String!,
-            $university: String!,
-            $field:String!,
-            $passYear:String!,
-            $grade:String!,
+            $degreeType: EducationEnum!,
+            $degreeTitle: String!,
+            $institution: String!,
+            $startDate: Date!,
+            $endDate:Date!,
         
     ){
         updateEducation(
         id:$id,
         input:{
-            degreeTitle:$degreeTitle,
-            university:$university,
-            field:$field,
-            passYear:$passYear,
-            grade:$grade,
+            degreeType: $degreeType,
+            degreeTitle: $degreeTitle,
+            institution: $institution,
+            startDate: $startDate,
+            endDate:$endDate,
         
     }){
         Education{

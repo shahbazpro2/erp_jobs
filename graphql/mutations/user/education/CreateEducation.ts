@@ -2,20 +2,20 @@ import { gql } from '@apollo/client'
 
 export const CreateEducation = gql`
     mutation createEducation(
-            $degreeTitle:String!,
-            $university: String!,
-            $field:String!,
-            $passYear:String!,
-            $grade:String!,
+        $degreeType: EducationEnum!,
+        $degreeTitle: String!,
+        $institution: String!,
+        $startDate: Date!,
+        $endDate:Date!,
         
     ){
         createEducation(
     input:{
-            degreeTitle:$degreeTitle,
-            university:$university,
-            field:$field,
-            passYear:$passYear,
-            grade:$grade,
+        degreeType: $degreeType,
+        degreeTitle: $degreeTitle,
+        institution: $institution,
+        startDate: $startDate,
+        endDate:$endDate,
         
     }){
         Education{

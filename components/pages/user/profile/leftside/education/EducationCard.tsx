@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { EducationModalContext } from '@context/ModalContext';
 import { EducationQueryProps } from './types';
+import moment from 'moment';
 
 interface Props {
     data: EducationQueryProps,
@@ -19,12 +20,9 @@ const EducationCard = ({ data, onDelete }: Props) => {
                     <div className="col-span-9">
 
                         <div className="text-sm">
-                            {data.degreeTitle} | {data.field}
+                            {data.degreeTitle} | {data.degreeType}
                             <div className="subtitle-clr">
-                                {data.university}
-                                <div>
-                                    Grade: {data.grade}
-                                </div>
+                                {data.institution}
                             </div>
                         </div>
 
@@ -32,7 +30,7 @@ const EducationCard = ({ data, onDelete }: Props) => {
                     <div className="col-span-3">
                         <div className="text-sm flex">
                             <div className="ml-auto text-right">
-                                {data.passYear}
+                                {moment(data.startDate).format('MMM YYYY')} -   {moment(data.endDate).format('MMM YYYY')}
                                 <div className="flex mt-3 justify-center text-xs subtitle-clr">
                                     <div className="cursor-pointer mr-3 flex items-center primary-clr-hover" onClick={() => context.handleEdit(data)}>
                                         <EditIcon style={{ width: 16, marginRight: '3px' }} /> Edit
