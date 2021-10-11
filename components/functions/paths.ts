@@ -1,4 +1,4 @@
-import { url_userPersonalInformation, url_userProfile, url_userSettings } from "./pageUrls";
+import { url_loginUser, url_registerUser, url_userPersonalInformation, url_userProfile, url_userSettings } from "./pageUrls";
 
 interface Props {
     pathname: string
@@ -10,6 +10,6 @@ export const isProtectedRoute = ({ pathname }: Props) => {
 
 // Determines whether the route is a login route
 export const isGuestRoute = ({ pathname }: Props) => {
-    return ["/login/user", "/register/user"].includes(pathname)
+    return [url_loginUser, url_registerUser].includes(pathname)
 };
 
