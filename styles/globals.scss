@@ -36,6 +36,14 @@ body {
   font-size: 15px;
 }
 
+.user-links:hover {
+  color: $primary-clr;
+}
+
+.active-links {
+  color: $primary-clr;
+}
+
 .space-text {
   font-size: 14px;
   color: $light-clr;
