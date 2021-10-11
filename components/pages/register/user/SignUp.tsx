@@ -79,6 +79,7 @@ const SignUp = () => {
                                     name="firstname"
                                     label="Firstname"
                                     variant="outlined"
+                                    value={state.firstname}
                                     className="w-full"
                                     onChange={onChangeInput}
                                     InputLabelProps={{
@@ -91,6 +92,7 @@ const SignUp = () => {
                                     required
                                     name="lastname"
                                     label="Lastname"
+                                    value={state.lastname}
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -105,6 +107,7 @@ const SignUp = () => {
                                     name="email"
                                     label="Email"
                                     type="email"
+                                    value={state.email}
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -115,10 +118,11 @@ const SignUp = () => {
                                 <TextField
                                     required
                                     error={inputError && !state.password1 ? true : inputError && state.password1.length < 8 ? true : inputError && state.password1 !== state.password2 ? true : false}
-                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
+                                    helperText={inputError && !state.password1 ? 'Please provide a password' : inputError && state.password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.password1 !== state.password2 ? 'Password and confirm password does not match' : ''}
                                     name="password1"
                                     type="password"
                                     label="Password"
+                                    value={state.password1}
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
@@ -128,11 +132,12 @@ const SignUp = () => {
                                 />
                                 <TextField
                                     error={inputError && !state.password2 ? true : inputError && state.password1.length < 8 ? true : inputError && state.password1 !== state.password2 ? true : false}
-                                    helperText={inputError && !state.password2 ? 'Please provide a confirm password' : inputError && state.password1 !== state.password2 ? 'Password and confirm password not match' : ''}
+                                    helperText={inputError && !state.password2 ? 'Please provide a confirm password' : ''}
                                     required
                                     name="password2"
                                     type="password"
                                     label="Confirm Password"
+                                    value={state.password2}
                                     variant="outlined"
                                     className="w-full"
                                     onChange={onChangeInput}
