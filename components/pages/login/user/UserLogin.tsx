@@ -11,6 +11,8 @@ import { useAppDispatch } from '@redux/Store'
 import { url_userProfile } from '@components/functions/pageUrls'
 import Image from 'next/image'
 import validateEmail from '@components/functions/emailValidation'
+import EmailField from '@components/common/textFields/EmailField'
+import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 
 const UserLogin = () => {
     const dispatch = useAppDispatch()
@@ -62,43 +64,26 @@ const UserLogin = () => {
 
     return (
         <div className="bg-[#F2F2F2] ">
-            {/*  <UserNavbar bg="bg-white" boxShadow="boxShadow" /> */}
             <div className="flex justiy-center items-center h-[91vh]">
                 <div className="grid grid-cols-6 justify-center">
                     <div className="col-start-3 col-span-2">
                         <AuthWrapper>
                             <form noValidate autoComplete="off" onSubmit={onSubmit}>
                                 <div className="grid gap-5">
-                                    <TextField
-                                        error={inputError && !validateEmail(state.username) ? true : false}
-                                        helperText={inputError && !validateEmail(state.username) ? 'Email is invalid or empty' : ''}
-                                        required
+                                    <EmailField
+                                        inputError={inputError}
                                         name="username"
                                         label="Email"
-                                        type="email"
+                                        onChange={onChangeInput}
                                         value={state.username}
-                                        variant="outlined"
-                                        className="w-full"
-                                        onChange={onChangeInput}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
                                     />
-                                    <TextField
-                                        required
-                                        error={inputError && !state.password ? true : false}
-                                        helperText={inputError && !state.password ? 'Please provide a password' : ''}
-                                        id="outlined-password"
-                                        name="password"
-                                        type="password"
-                                        value={state.password}
+                                    <TextFieldSimple
+                                        inputError={inputError}
                                         label="Password"
-                                        variant="outlined"
-                                        className="w-full"
+                                        name="password"
+                                        value={state.password}
+                                        type="password"
                                         onChange={onChangeInput}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
                                     />
                                     <LoadingButton type="submit" variant="contained" color="primary" loading={loading} disableElevation >
                                         Continue
