@@ -11,6 +11,7 @@ export const CreateProfile = gql`
             $residenceCountry:String,
             $yearOfExperience:String,
             $jobStatus:JobStatusEnum,
+            $profileVisibility:ProfileVisibiltyEnum,
             $currency:CurrencyEnum,
             $minSalary:String,
             $confidential:Boolean
@@ -26,6 +27,7 @@ export const CreateProfile = gql`
             address:$address,
             city:$city,
             jobStatus:$jobStatus,
+            profileVisibility:$profileVisibility,
             yearOfExperience:$yearOfExperience,
             currency:$currency,
             minSalary:$minSalary
