@@ -51,8 +51,12 @@ const CareerAdvice = () => {
                     <div className="text-5xl font-bold">
                         Latest Tool & Tips
                     </div>
-                    <div className="mt-20 text-left">
+                    <div className="mt-20 text-left space-y-4">
                         <LatestToolCard title="CV Templates" subtitle="Find CV templates according to your choice" />
+                        <LatestToolCard title="Personal Statements" subtitle="Personal statement examples and many writing techniques" />
+                        <LatestToolCard title="Interview Techniques" subtitle="Many interview questions" />
+                        <LatestToolCard title="Books for your career" subtitle="Best books to improve your carrer" />
+                        <LatestToolCard title="Useful Tools" subtitle="Salary checker and Tax calculator" />
                     </div>
                 </Grid8span6>
             </div>
