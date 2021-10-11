@@ -23,20 +23,21 @@ const TitleInfo = ({ data, user }: any) => {
                         {data?.residenceCountry && <LocationOnIcon sx={{ width: 15 }} />}
                         <div className="ml-1">{capitalizeFirstLetter(data?.residenceCountry)}</div>
                         <div className="subtitle-clr ml-5 space-y-2">
-                            <div className="flex items-center space-x-2">
+                            {data?.jobStatus && <div className="flex items-center space-x-2">
                                 <div className="rounded-lg w-2 h-2 bg-[#3DD598]">
                                 </div>
                                 <div>
                                     {data?.jobStatus}
                                 </div>
-                            </div>
-                            <div className="flex items-center space-x-2">
+                            </div>}
+                            {data?.profileVisibility && <div className="flex items-center space-x-2">
                                 <div className="rounded-lg w-2 h-2 bg-[#3DD598]">
                                 </div>
                                 <div>
                                     {data?.profileVisibility}
                                 </div>
                             </div>
+                            }
                         </div>
                     </div>
                 </div>
