@@ -5,6 +5,12 @@ export const jobStatusOptions = {
     "NOT_LOOKING": "Not looking for job"
 }
 
+export const profileVisibilityOptions = {
+    "PUBLIC": "Public. Anyone can see my profile",
+    "REGISTERED_ONLY": "Registered only. Employers only can see my profile",
+    "HIDDEN": "Hidden. Only visible to employers I apply to"
+}
+
 
 export const getDropdown = (options: any) => {
     const dropArr = []
