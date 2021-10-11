@@ -29,7 +29,7 @@ const ChangePassword = () => {
         e.preventDefault()
         setInputError(false)
 
-        if (EmptyFieldCheck({ ...state })) {
+        if (EmptyFieldCheck({ ...state }) || state.new_password1 !== state.new_password2 || state.new_password1.length < 8) {
             setInputError(true)
             return
         }

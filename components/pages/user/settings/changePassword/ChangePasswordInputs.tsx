@@ -32,7 +32,7 @@ const changePasswordInputs = ({ onSubmit, setState, loading, inputError, state }
                 <TextField
                     required
                     error={inputError && !state.new_password1 ? true : inputError && state.new_password1.length < 8 ? true : inputError && state.new_password1 !== state.new_password2 ? true : false}
-                    helperText={inputError && !state.new_password1 ? 'Please provide a new password' : inputError && state.new_password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.new_password1 !== state.new_password2 ? 'Password and confirm new password not match' : ''}
+                    helperText={inputError && !state.new_password1 ? 'Please provide a new password' : inputError && state.new_password1.length < 8 ? 'Password must have atleast 8 characters long' : inputError && state.new_password1 !== state.new_password2 ? 'Password and confirm new password does not match' : ''}
                     name="new_password1"
                     type="password"
                     label="New Password"
@@ -46,7 +46,7 @@ const changePasswordInputs = ({ onSubmit, setState, loading, inputError, state }
                 />
                 <TextField
                     error={inputError && !state.new_password2 ? true : inputError && state.new_password1.length < 8 ? true : inputError && state.new_password1 !== state.new_password2 ? true : false}
-                    helperText={inputError && !state.new_password2 ? 'Please provide a confirm new password' : inputError && state.new_password1 !== state.new_password2 ? 'Password and confirm new password not match' : ''}
+                    helperText={inputError && !state.new_password2 ? 'Please provide a confirm new password' : ''}
                     required
                     name="new_password2"
                     type="password"
