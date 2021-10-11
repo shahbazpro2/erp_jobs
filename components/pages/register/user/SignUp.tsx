@@ -11,17 +11,17 @@ import EmptyFieldCheck from '@components/functions/emptyFieldCheck';
 import { url_userProfile } from '@components/functions/pageUrls';
 import Image from 'next/image'
 
-
+const initialState = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    password1: '',
+    password2: ''
+}
 
 const SignUp = () => {
     const router = useRouter()
-    const [state, setState] = useState({
-        firstname: '',
-        lastname: '',
-        email: '',
-        password1: '',
-        password2: ''
-    })
+    const [state, setState] = useState(initialState)
     const [loading, setLoading] = useState(false)
     const [inputError, setInputError] = useState(false)
     const [apiError, setApiError] = useState<any[]>([])
@@ -57,6 +57,7 @@ const SignUp = () => {
             setTimeout(() => {
                 router.push(url_userProfile)
             }, 1000);
+            setState(initialState)
             setApiSuccess(['User registered successfully'])
             setLoading(false)
 

@@ -50,6 +50,10 @@ const UserLogin = () => {
             setTimeout(() => {
                 router.push(url_userProfile)
             }, 1000);
+            setState({
+                username: '',
+                password: '',
+            })
             setApiSuccess(['User logged in successfully'])
             setLoading(false)
         }
@@ -72,6 +76,7 @@ const UserLogin = () => {
                                         name="username"
                                         label="Email"
                                         type="email"
+                                        value={state.username}
                                         variant="outlined"
                                         className="w-full"
                                         onChange={onChangeInput}
@@ -86,6 +91,7 @@ const UserLogin = () => {
                                         id="outlined-password"
                                         name="password"
                                         type="password"
+                                        value={state.password}
                                         label="Password"
                                         variant="outlined"
                                         className="w-full"
