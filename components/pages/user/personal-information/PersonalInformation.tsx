@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Dispatch, SetStateAction, SyntheticEvent, useEffect, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
@@ -12,7 +12,7 @@ import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import graphqlRes from '@components/functions/graphqlRes'
 import { useRouter } from 'next/router'
 import { url_userProfile } from '@components/functions/pageUrls'
-import { jobStatusOptions } from '@components/functions/dropDowns'
+import { jobStatusOptions, profileVisibilityOptions } from '@components/functions/dropDowns'
 import getDropdownKey from '@components/functions/getDropdownKey'
 
 
@@ -29,14 +29,13 @@ const PersonalInformation = () => {
 
 
     useEffect(() => {
-        console.log('data', data)
         if (data?.loginCandidate) {
-            const { jobTitle, gender, phone, city, address, yearOfExperience, minSalary, currency, dateOfBirth, confidential, residenceCountry, jobStatus } = data?.loginCandidate
+            const { jobTitle, gender, currency, jobStatus, profileVisibility } = data?.loginCandidate
 
             const jobStatusKey: string = getDropdownKey(jobStatus, jobStatusOptions)
+            const profileVisibilityKey: string = getDropdownKey(profileVisibility, profileVisibilityOptions)
 
-
-            setState({ ...state, city, address, yearOfExperience, minSalary, residenceCountry, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, phone, confidential, dateOfBirth, gender: gender?.toUpperCase(), jobStatus: jobStatusKey })
+            setState({ ...data?.loginCandidate, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, gender: gender?.toUpperCase(), jobStatus: jobStatusKey, profileVisibility: profileVisibilityKey })
         }
     }, [data])
 
@@ -49,30 +48,16 @@ const PersonalInformation = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        const { jobTitle,
-            dateOfBirth,
-            gender,
-            residenceCountry,
-            city,
-            phone,
-            address,
-            jobStatus,
-            profileVisibility,
-            yearOfExperience,
-            minSalary,
-            confidential,
-            currency } = state
+
         if (EmptyFieldCheck({
-            jobTitle, dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, residenceCountry, jobStatus
+            ...state
         })) {
             setInputError(true)
             return
         }
         setLoading(true)
         const { error, data } = await graphqlRes(createCandidate({
-            variables: {
-                jobTitle: Number(state.jobTitle), dateOfBirth, city, address, yearOfExperience, minSalary, currency, phone, gender, confidential, residenceCountry, jobStatus
-            }
+            variables: { ...state }
         }))
         if (error) {
             setApiError(data)
