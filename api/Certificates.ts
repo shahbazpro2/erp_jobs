@@ -1,18 +1,15 @@
+import { CertificateProps } from "@components/pages/user/profile/leftside/certificates/types"
 import responseApi from "./responseApi"
 import { userCertificates } from "./urls"
 
 
 
-interface AddCertificate {
-    certificate_title: string,
-    company: string,
-    date: string,
-}
-export const addUserCertificate = async (data: AddCertificate) => {
+
+export const addUserCertificate = async (data: CertificateProps) => {
     return responseApi(userCertificates, 'post', data)
 }
 
-export const updateUserCertificate = async (data: AddCertificate, id: string) => {
+export const updateUserCertificate = async (data: CertificateProps, id: string) => {
     return responseApi(`${userCertificates}${id}/`, 'put', data)
 }
 
