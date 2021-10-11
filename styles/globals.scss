@@ -62,6 +62,10 @@ body {
   animation: fade-in 500ms;
 }
 
+.latestTool:hover #latestTool-arrow {
+  color: $primary-clr;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
