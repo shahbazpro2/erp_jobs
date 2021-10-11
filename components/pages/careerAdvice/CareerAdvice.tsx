@@ -18,12 +18,10 @@ const CareerAdvice = () => {
                     </div>
                 </div>
             </Grid8span6>
-            <div className="my-7">
-                <Image src="/assets/images/career.png" width={100}
-                    height={45}
-                    layout="responsive"
-                    alt="career" />
-            </div>
+            <Image src="/assets/images/career.png" width={100}
+                height={45}
+                layout="responsive"
+                alt="career" />
 
             <Grid8span6>
                 <div className="py-28 text-center">
