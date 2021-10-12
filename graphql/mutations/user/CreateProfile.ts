@@ -4,7 +4,6 @@ export const CreateProfile = gql`
     mutation createCandidate(
             $jobTitle:ID!,
             $phone: String!,
-            $gender:GenderEnum!,
             $dateOfBirth:Date,
             $address:String,
             $city:String,
@@ -21,7 +20,6 @@ export const CreateProfile = gql`
     input:{
             jobTitle:{  id:$jobTitle},
             phone:$phone,
-            gender:$gender,
             dateOfBirth:$dateOfBirth,
             residenceCountry:$residenceCountry,
             address:$address,

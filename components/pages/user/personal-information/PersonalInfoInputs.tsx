@@ -54,10 +54,10 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
                 <TextFieldSimple inputError={inputError} type="date" name="dateOfBirth" label="Date Of Birth" value={state.dateOfBirth} onChange={onChangeInput} />
 
 
-                <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
+                {/* <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
                     <MenuItem value={'MALE'}>Male</MenuItem>
                     <MenuItem value={"FEMALE"}>Female</MenuItem>
-                </SelectField>
+                </SelectField> */}
 
 
                 <TextFieldSimple inputError={inputError} name="residenceCountry" label="Country" value={state.residenceCountry} onChange={onChangeInput} />

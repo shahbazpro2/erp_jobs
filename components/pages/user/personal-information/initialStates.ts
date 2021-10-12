@@ -1,7 +1,7 @@
 export const initialBasicState = {
     jobTitle: ' ',
     dateOfBirth: '',
-    gender: 'MALE',
+    /* gender: 'MALE', */
     residenceCountry: '',
     city: '',
     phone: '',
