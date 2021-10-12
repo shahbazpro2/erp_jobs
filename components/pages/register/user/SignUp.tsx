@@ -1,4 +1,4 @@
-import { MenuItem, TextField } from '@mui/material'
+import { FormHelperText, MenuItem, TextField } from '@mui/material'
 import Link from 'next/link'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
@@ -103,11 +103,16 @@ const SignUp = () => {
                                             shrink: true,
                                         }}
                                     />
-                                    <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
-                                        <MenuItem value={'Male'}>Male</MenuItem>
-                                        <MenuItem value={"Female"}>Female</MenuItem>
-                                        <MenuItem value={"Other"}>Other</MenuItem>
-                                    </SelectField>
+                                    <div>
+                                        <div>
+                                            <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
+                                                <MenuItem value={'Male'}>Male</MenuItem>
+                                                <MenuItem value={"Female"}>Female</MenuItem>
+                                                <MenuItem value={"Other"}>Other</MenuItem>
+                                            </SelectField>
+                                        </div>
+                                        <div className="text-left mt-1 ml-2 opacity-60 text-[11px]">Once selected cannot be change after signup</div>
+                                    </div>
                                     <TextField
                                         error={inputError && !validateEmail(state.email) ? true : false}
                                         helperText={inputError && !validateEmail(state.email) ? 'Email is invalid or empty' : ''}
