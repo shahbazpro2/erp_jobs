@@ -1,7 +1,6 @@
 export const initialBasicState = {
     jobTitle: ' ',
     dateOfBirth: '',
-    /* gender: 'MALE', */
     residenceCountry: '',
     city: '',
     phone: '',
@@ -10,6 +9,6 @@ export const initialBasicState = {
     profileVisibility: ' ',
     yearOfExperience: '',
     minSalary: '',
-    currency: 'EURO',
+    currency: 'GBP',
     confidential: false
 }
