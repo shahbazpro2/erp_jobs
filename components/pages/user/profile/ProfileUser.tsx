@@ -7,11 +7,11 @@ const ProfileUser = () => {
     return (
         <div className="bg-[#F2F2F2]">
             <Container>
-                <div className="grid grid-cols-12 gap-6 py-16">
-                    <div className="col-span-9">
+                <div className="grid lg:grid-cols-12 grid-cols-1 gap-6 py-16">
+                    <div className="lg:col-span-9">
                         <LeftSide />
                     </div>
-                    <div className="col-span-3">
+                    <div className="lg:col-span-3">
                         <RightSide />
                     </div>
                 </div>
