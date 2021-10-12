@@ -100,7 +100,7 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
                     </div>
                     <div className="col-span-2">
                         <SelectField required={false} inputError={false} name="currency" value={state.currency} onChange={onChangeInput} >
-                            <MenuItem value={'EURO'}>Euro</MenuItem>
+                            <MenuItem value={'GBP'}>GBP</MenuItem>
                             <MenuItem value={'DOLLAR'}>Dollar</MenuItem>
                         </SelectField>
 
