@@ -30,12 +30,12 @@ const PersonalInformation = () => {
 
     useEffect(() => {
         if (data?.loginCandidate) {
-            const { jobTitle, gender, currency, jobStatus, profileVisibility } = data?.loginCandidate
+            const { jobTitle, currency, jobStatus, profileVisibility } = data?.loginCandidate
 
             const jobStatusKey: string = getDropdownKey(jobStatus, jobStatusOptions)
             const profileVisibilityKey: string = getDropdownKey(profileVisibility, profileVisibilityOptions)
 
-            setState({ ...data?.loginCandidate, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, gender: gender?.toUpperCase(), jobStatus: jobStatusKey, profileVisibility: profileVisibilityKey })
+            setState({ ...data?.loginCandidate, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, jobStatus: jobStatusKey, profileVisibility: profileVisibilityKey })
         }
     }, [data])
 
