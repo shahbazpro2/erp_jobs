@@ -46,7 +46,7 @@ const SignUp = () => {
         }
         setLoading(true)
         const data = {
-            first_name: firstname, last_name: lastname, email, password: password1, password2
+            first_name: firstname, last_name: lastname, email, password: password1, password2, gender
         }
 
         const res = await registerUser(data)
@@ -104,9 +104,9 @@ const SignUp = () => {
                                         }}
                                     />
                                     <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
-                                        <MenuItem value={'MALE'}>Male</MenuItem>
-                                        <MenuItem value={"FEMALE"}>Female</MenuItem>
-                                        <MenuItem value={"OTHER"}>Other</MenuItem>
+                                        <MenuItem value={'Male'}>Male</MenuItem>
+                                        <MenuItem value={"Female"}>Female</MenuItem>
+                                        <MenuItem value={"Other"}>Other</MenuItem>
                                     </SelectField>
                                     <TextField
                                         error={inputError && !validateEmail(state.email) ? true : false}
