@@ -45,7 +45,7 @@ const Header = ({ bg, boxShadow }: Props) => {
     <div className={`${bg} ${boxShadow} absolute w-full`}>
       <Container>
         <div className="flex md:justify-between h-[80px]">
-          <div className="rounded-lg gray-bg w-16 h-10 my-auto md:hidden flex justify-center cursor-pointer " onClick={() => setOpen(!open)}>
+          <div className="rounded-lg gray-bg w-12 h-8 my-auto md:hidden flex justify-center cursor-pointer " onClick={() => setOpen(!open)}>
             <Image src="/assets/images/2lines.svg" width="35%" height="35%" alt="lines" />
           </div>
           <Drawer
@@ -56,7 +56,7 @@ const Header = ({ bg, boxShadow }: Props) => {
             <SideDrawer />
           </Drawer>
           <div className="ml-5 md:ml-0">
-            <div className="logo flex items-center h-full">
+            <div className="logo text-base md:text-2xl flex items-center h-full">
               <h2><Link href="/"><a href="#">Erp jobs</a></Link></h2>
             </div>
           </div>
