@@ -64,51 +64,53 @@ const UserLogin = () => {
 
     return (
         <div className="bg-[#F2F2F2] ">
-            <div className="flex justiy-center items-center h-[91vh]">
-                <div className="grid grid-cols-6 justify-center">
-                    <div className="col-start-3 col-span-2">
-                        <AuthWrapper>
-                            <form noValidate autoComplete="off" onSubmit={onSubmit}>
-                                <div className="grid gap-5">
-                                    <EmailField
-                                        inputError={inputError}
-                                        name="username"
-                                        label="Email"
-                                        onChange={onChangeInput}
-                                        value={state.username}
-                                    />
-                                    <TextFieldSimple
-                                        inputError={inputError}
-                                        label="Password"
-                                        name="password"
-                                        value={state.password}
-                                        type="password"
-                                        onChange={onChangeInput}
-                                    />
-                                    <LoadingButton type="submit" variant="contained" color="primary" loading={loading} disableElevation >
-                                        Continue
-                                    </LoadingButton>
+            <div className="container mx-auto">
+                <div className="flex justiy-center items-center h-[91vh]">
+                    <div className="md:w-[600px] px-10 md:px-0 mx-auto justify-center w-full">
+                        <div className="">
+                            <AuthWrapper>
+                                <form noValidate autoComplete="off" onSubmit={onSubmit}>
+                                    <div className="grid gap-5">
+                                        <EmailField
+                                            inputError={inputError}
+                                            name="username"
+                                            label="Email"
+                                            onChange={onChangeInput}
+                                            value={state.username}
+                                        />
+                                        <TextFieldSimple
+                                            inputError={inputError}
+                                            label="Password"
+                                            name="password"
+                                            value={state.password}
+                                            type="password"
+                                            onChange={onChangeInput}
+                                        />
+                                        <LoadingButton type="submit" variant="contained" color="primary" loading={loading} disableElevation >
+                                            Continue
+                                        </LoadingButton>
+                                    </div>
+                                </form>
+                                <div className="my-6">
+                                    <div className="divider">
+                                        <span>or</span>
+                                    </div>
                                 </div>
-                            </form>
-                            <div className="my-6">
-                                <div className="divider">
-                                    <span>or</span>
+                                <div className="grid grid-cols-3 gap-3 social-links">
+                                    <div className="social-box">
+                                        <Image src="/assets/images/google.svg" width="18%" height="18%" alt="google" />
+                                    </div>
+                                    <div className="social-box">
+                                        <Image src="/assets/images/fb_blue.svg" width="18%" height="18%" alt="facebook" />
+                                    </div>
+                                    <div className="social-box">
+                                        <Image src="/assets/images/twitter_blue.svg" width="18%" height="18%" alt="twitter" />
+                                    </div>
                                 </div>
+                            </AuthWrapper>
+                            <div className="text-xl mt-6 text-center text-[#92929D] tracking-[0.11px]">
+                                Forgot Password?<Link href="/register/user"><a href="#" className="primary-clr"> . Sign up for new user?</a></Link>
                             </div>
-                            <div className="grid grid-cols-3 gap-3 social-links">
-                                <div className="social-box">
-                                    <Image src="/assets/images/google.svg" width="18%" height="18%" alt="google" />
-                                </div>
-                                <div className="social-box">
-                                    <Image src="/assets/images/fb_blue.svg" width="18%" height="18%" alt="facebook" />
-                                </div>
-                                <div className="social-box">
-                                    <Image src="/assets/images/twitter_blue.svg" width="18%" height="18%" alt="twitter" />
-                                </div>
-                            </div>
-                        </AuthWrapper>
-                        <div className="text-xl mt-6 text-center text-[#92929D] tracking-[0.11px]">
-                            Forgot Password?<Link href="/register/user"><a href="#" className="primary-clr"> . Sign up for new user?</a></Link>
                         </div>
                     </div>
                 </div>

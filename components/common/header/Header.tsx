@@ -1,5 +1,5 @@
-import { Button } from "@mui/material";
-import React from "react";
+import { Button, Drawer } from "@mui/material";
+import React, { useState } from "react";
 import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from "@redux/Store";
 import objectIsEmpty from "@components/functions/objectIsEmpty";
@@ -14,6 +14,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import classNames from 'classnames'
+import Image from 'next/image'
+import Container from '@components/common/container/Container'
+import SideDrawer from "./SideDrawer";
 
 
 interface Props {
@@ -21,37 +24,64 @@ interface Props {
   boxShadow: string
 }
 
+export const linkList = [
+  { link: '/', title: 'Home' },
+  { link: '/findjobs', title: 'Find Jobs' },
+  { link: url_careerAdvice, title: 'Career Advice' },
+  { link: '/uploadcv', title: 'Upload CV' }
+]
+
+
 const Header = ({ bg, boxShadow }: Props) => {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const path = router.asPath
   const { user } = useAppSelector(state => state.authReducer)
+  const [open, setOpen] = useState(false)
+
+
 
   return (
     <div className={`${bg} ${boxShadow} absolute w-full`}>
-      <div className="container mx-auto">
-        <div className="grid grid-flow-col justify-between h-[80px]">
-          <div className="logo flex items-center">
-            <h2><Link href="/"><a href="#">Erp jobs</a></Link></h2>
+      <Container>
+        <div className="flex md:justify-between h-[80px]">
+          <div className="rounded-lg gray-bg w-16 h-10 my-auto md:hidden flex justify-center cursor-pointer " onClick={() => setOpen(!open)}>
+            <Image src="/assets/images/2lines.svg" width="35%" height="35%" alt="lines" />
           </div>
-          <div className="links flex items-center">
-            <div className="grid grid-flow-col gap-12">
-              <Link href="/"><a className={classNames("user-links", { "active-links": path === '/' })}>Home</a></Link>
-              <div className="user-links">Find Jobs</div>
-              <Link href={url_careerAdvice}><a className={classNames("user-links", { "active-links": path === url_careerAdvice })}>Career Advice</a></Link>
-              <div className="user-links">Upload CV</div>
+          <Drawer
+            anchor={"left"}
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            <SideDrawer />
+          </Drawer>
+          <div className="ml-5 md:ml-0">
+            <div className="logo flex items-center h-full">
+              <h2><Link href="/"><a href="#">Erp jobs</a></Link></h2>
             </div>
           </div>
-          <div className="auth-links flex items-center space-x-5">
-            {objectIsEmpty(user) ? <>
-              <Link href="/login/user"><a className={classNames("user-links", { "active-links": path === url_loginUser })}>Login</a></Link>
-              <Link href={url_registerUser}><a className={classNames("user-links", { "active-links": path === url_registerUser })}>Sign up</a></Link>
-              <div>
-                <Button variant="contained" color="secondary" disableElevation>
-                  Post a Job
-                </Button>
+          <div className="hidden lg:block">
+            <div className="links flex items-center h-full w-full justify-center xl:space-x-10 md:space-x-5">
+              {linkList.map((link, index) => (
+                <Link key={index} href={link.link}><a className={classNames("user-links", { "active-links": path === link.link })}>{link.title}</a></Link>
+              ))}
+            </div>
+
+          </div>
+          {objectIsEmpty(user) ?
+            <div className="hidden sm:block ml-auto md:ml-0">
+              <div className="auth-links flex items-center justify-end h-full space-x-5">
+                <Link href="/login/user"><a className={classNames("user-links", { "active-links": path === url_loginUser })}>Login</a></Link>
+                <Link href={url_registerUser}><a className={classNames("user-links", { "active-links": path === url_registerUser })}>Sign up</a></Link>
+                <div>
+                  <Button variant="contained" color="secondary" disableElevation>
+                    Post a Job
+                  </Button>
+                </div>
               </div>
-            </> :
+            </div>
+            :
+            <div className="flex h-full items-center ml-auto md:ml-0">
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
                   <React.Fragment >
@@ -67,12 +97,10 @@ const Header = ({ bg, boxShadow }: Props) => {
                   </React.Fragment>
                 )}
               </PopupState>
-              /*  <div className="user-links danger-clr" onClick={() => dispatch(setLogoutState())}>Logout</div> */
-            }
-
-          </div>
+            </div>
+          }
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

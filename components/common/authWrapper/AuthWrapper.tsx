@@ -9,7 +9,7 @@ const AuthWrapper = ({ children }: Props) => {
             <div className="space-text">
                 Get started
             </div>
-            <div className="text-2xl font-bold px-20 my-4 tracking-[0.1px]">
+            <div className="md:text-2xl text-lg font-bold md:px-20 my-4 tracking-[0.1px]">
                 Apply for Million Chance to Get Dreams Job
             </div>
             {children}
