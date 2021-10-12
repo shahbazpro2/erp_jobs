@@ -5,6 +5,7 @@ import { getUserUrl, loginUserUrl, registerUserUrl } from "./urls"
 interface RegisterUser {
     first_name: string,
     last_name: string,
+    gender: string,
     password: string,
     password2: string,
     email: string
