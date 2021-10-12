@@ -25,6 +25,11 @@ const SelectField = ({ required = true, inputError = false, value, name, label, 
             className="w-full h-full text-left"
             value={value}
             onChange={onChange}
+            SelectProps={{
+                MenuProps: {
+                    disableScrollLock: true
+                }
+            }}
             InputLabelProps={{
                 shrink: true,
             }}
