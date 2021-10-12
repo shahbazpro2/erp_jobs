@@ -22,7 +22,7 @@ const SelectField = ({ required = true, inputError = false, value, name, label, 
             name={name}
             label={label ? label : ''}
             variant="outlined"
-            className="w-full h-full"
+            className="w-full h-full text-left"
             value={value}
             onChange={onChange}
             InputLabelProps={{
