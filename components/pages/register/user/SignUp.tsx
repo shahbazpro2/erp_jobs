@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { MenuItem, TextField } from '@mui/material'
 import Link from 'next/link'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
@@ -10,11 +10,13 @@ import SnakbarAlert from '@components/common/snakbarAlert/SnakbarAlert'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck';
 import { url_userProfile } from '@components/functions/pageUrls';
 import Image from 'next/image'
+import SelectField from '@components/common/textFields/SelectField';
 
 const initialState = {
     firstname: '',
     lastname: '',
     email: '',
+    gender: '',
     password1: '',
     password2: ''
 }
@@ -36,9 +38,9 @@ const SignUp = () => {
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        const { firstname, lastname, email, password1, password2 } = state
+        const { firstname, lastname, email, password1, password2, gender } = state
 
-        if (EmptyFieldCheck({ firstname, lastname, email, password1, password2 }) || !validateEmail(email) || password1 !== password2 || password1.length < 8) {
+        if (EmptyFieldCheck({ firstname, lastname, email, password1, password2, gender }) || !validateEmail(email) || password1 !== password2 || password1.length < 8) {
             setInputError(true)
             return
         }
@@ -101,6 +103,11 @@ const SignUp = () => {
                                             shrink: true,
                                         }}
                                     />
+                                    <SelectField inputError={inputError} name="gender" label="Gender" value={state.gender} onChange={onChangeInput} >
+                                        <MenuItem value={'MALE'}>Male</MenuItem>
+                                        <MenuItem value={"FEMALE"}>Female</MenuItem>
+                                        <MenuItem value={"OTHER"}>Other</MenuItem>
+                                    </SelectField>
                                     <TextField
                                         error={inputError && !validateEmail(state.email) ? true : false}
                                         helperText={inputError && !validateEmail(state.email) ? 'Email is invalid or empty' : ''}
