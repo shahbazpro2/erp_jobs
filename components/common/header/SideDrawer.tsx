@@ -18,7 +18,7 @@ import { useAppSelector } from '@redux/Store';
 const SideDrawer = () => {
     const router = useRouter()
     const path = router.asPath
-    const user: any = useAppSelector(state => state.authReducer)
+    const { user } = useAppSelector(state => state.authReducer)
     return (
         <Box
             sx={{ width: 250 }}
@@ -31,6 +31,7 @@ const SideDrawer = () => {
                     </ListItem>
                 ))}
             </List>
+            {console.log(objectIsEmpty(user))}
             {objectIsEmpty(user) && <>
                 <ListItem>
                     <ListItemText primary={<Link href={url_loginUser}><a className={classNames("user-links", { "active-links": path === url_loginUser })}>Login</a></Link>} />
