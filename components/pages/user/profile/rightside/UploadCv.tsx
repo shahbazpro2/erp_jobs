@@ -83,7 +83,7 @@ const UploadCv = () => {
             <BoxWrapper className="px-4 py-5 space-y-7" >
                 <div className="flex flex-grow-1 items-center space-x-3">
                     <Image src="/assets/images/file.svg" width="40%" height="40%" alt="file" />
-                    <div className="text-base font-bold">
+                    <div className="sm:text-base text-sm font-bold">
                         Upload CV Files
                     </div>
                 </div>
@@ -91,7 +91,7 @@ const UploadCv = () => {
                 <div className="space-y-4">
                     {allCv.map((cv, index) => (
                         <div key={index} className="flex items-center justify-between">
-                            <div className="text-base subtitle-clr">
+                            <div className="sm:text-base text-sm subtitle-clr">
                                 {stringShort(cv.name, 20)}
                             </div>
                             <div className="action subtitle-clr space-x-2">

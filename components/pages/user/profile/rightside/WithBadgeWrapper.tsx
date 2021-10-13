@@ -20,7 +20,7 @@ const WithBadgeWrapper = ({ content, badgeValue, onHandleClick }: Props) => {
                     <div className="flex flex-grow-1 items-center space-x-3">
 
                         <Image src="/assets/images/file.svg" width="40%" height="40%" alt="file" />
-                        <div className="text-base font-bold">
+                        <div className="sm:text-base text-sm font-bold">
                             {content}
                         </div>
                         <Badge value={badgeValue} color="text-white" background="primary-bg" />
