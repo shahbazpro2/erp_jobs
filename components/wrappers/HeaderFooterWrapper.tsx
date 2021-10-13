@@ -34,7 +34,7 @@ const HeaderFooterWrapper = ({ children }: Props) => {
                 <EmployerHeader bg={state.bg} boxShadow={state.boxShadow} /> :
                 <Header bg={state.bg} boxShadow={state.boxShadow} />
             }
-            <div className="pt-[80px]">
+            <div className={`${state.bg.search('transparent') !== -1 ? '' : 'pt-[80px]'}`}>
                 {children}
             </div>
             <Footer />
