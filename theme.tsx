@@ -39,6 +39,13 @@ const theme = createTheme({
         }
       }
     },
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          height: '100'
+        },
+      }
+    },
     MuiStepIcon: {
       styleOverrides: {
         root: {
@@ -65,7 +72,7 @@ const theme = createTheme({
         },
         multiline: {
           height: '100%',
-        }
+        },
       }
     }
   },
