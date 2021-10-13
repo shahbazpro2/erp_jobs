@@ -17,7 +17,7 @@ const TitleInfo = ({ data, user }: any) => {
                             </div>
                             <div className="flex mt-2 space-x-2 md:justify-start justify-center">
                                 <div className="text-base subtitle-clr">
-                                    {data?.jobTitle.name ? capitalizeFirstLetter(data?.jobTitle.name) : 'Guest'}
+                                    {data?.jobTitle?.name ? capitalizeFirstLetter(data?.jobTitle.name) : 'Guest'}
                                 </div> <div>|</div> <div className="subtitle-clr">{user.email}</div>
                             </div>
 
