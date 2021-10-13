@@ -41,7 +41,7 @@ const EmployerHeader = ({ bg, boxShadow }: Props) => {
 
 
     return (
-        <div className={`${bg} ${boxShadow} absolute w-full`}>
+        <div className={`${bg} ${boxShadow} absolute w-full ${bg.search('transparent') !== -1 ? 'text-white' : ''}`}>
             <Container>
                 <div className="flex h-[80px]">
                     <div className="rounded-lg gray-bg w-12 h-8 my-auto md:hidden flex justify-center cursor-pointer " onClick={() => setOpen(!open)}>
