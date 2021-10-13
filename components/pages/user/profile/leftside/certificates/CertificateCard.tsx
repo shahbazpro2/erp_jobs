@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { CertificateModalContext } from '@context/ModalContext';
 import { CertificateQueryProps } from './types';
+import CardContents from '../common/CardContents';
 
 interface Props {
     data: CertificateQueryProps,
@@ -15,33 +16,19 @@ const CertificateCard = ({ data, onDelete }: Props) => {
     return (
         <Card variant="outlined">
             <CardContent>
-                <div className="grid grid-cols-12">
-                    <div className="col-span-9">
-
-                        <div className="text-sm">
-                            {data.title}
-                            <div className="subtitle-clr">
-                                {data.institution}
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="col-span-3">
-                        <div className="text-sm flex">
-                            <div className="ml-auto text-right">
-                                {data.end_date}
-                                <div className="flex mt-3 justify-center text-xs subtitle-clr">
-                                    <div className="cursor-pointer mr-3 flex items-center primary-clr-hover" onClick={() => context.handleEdit(data)}>
-                                        <EditIcon style={{ width: 16, marginRight: '3px' }} /> Edit
-                                    </div>
-                                    <div className="cursor-pointer flex items-center hover:text-red-600" onClick={() => onDelete(Number(data.id))}>
-                                        <DeleteIcon style={{ width: 16, marginRight: '2px' }} /> Delete
-                                    </div>
-                                </div>
-                            </div>
+                <CardContents
+                    onEdit={() => context.handleEdit(data)}
+                    onDelete={() => onDelete(Number(data.id))}
+                    date1={data.end_date}
+                >
+                    <div className="text-sm">
+                        {data.title}
+                        <div className="subtitle-clr">
+                            {data.institution}
                         </div>
                     </div>
-                </div>
+                </CardContents>
+
             </CardContent>
         </Card>
     )
