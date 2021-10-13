@@ -1,14 +1,14 @@
 
 export const jobStatusOptions = {
-    "FRESH_AND_LOOKING": "Unemployed. Looking for job",
-    "WORKING_BUT_LOOKING": "Working but looking for new opportunities",
-    "NOT_LOOKING": "Not looking for job"
+    "UNEMPLOYED": "Unemployed",
+    "ACTIVELY_LOOKING": "Actively looking",
+    "PASSIVELY_LOOKING": "Passively looking"
 }
 
 export const profileVisibilityOptions = {
-    "PUBLIC": "Public. Anyone can see my profile",
-    "REGISTERED_ONLY": "Registered only. Employers only can see my profile",
-    "HIDDEN": "Hidden. Only visible to employers I apply to"
+    "PUBLIC": "Public",
+    "ANONYMOUS_CV": "Anonymous CV",
+    "HIDDEN": "Hidden"
 }
 
 export const degreeOptions = {
