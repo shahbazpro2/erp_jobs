@@ -13,7 +13,7 @@ const Home = () => {
     const context = useContext(HeaderContext)
 
     useEffect(() => {
-        context.handleHeader('bg-[#473BF017]', 'none')
+        context.handleHeader('bg-transparent', 'none')
         return (() => {
             context.handleHeader('bg-white', 'boxShadow')
         })
