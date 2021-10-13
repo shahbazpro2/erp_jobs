@@ -83,14 +83,12 @@ const EducationContent = () => {
     return (
         <>
             <ModalWrapper open={context.open}>
-                <div className="w-[40%] absolute-center">
-                    <BoxWrapper>
-                        <ModalHeading title={editId ? "Update Education" : "Add Education"} handleClose={context.handleClose} />
-                        <div className="mt-5">
-                            <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} loading={loading} />
-                        </div>
-                    </BoxWrapper>
-                </div>
+                <BoxWrapper>
+                    <ModalHeading title={editId ? "Update Education" : "Add Education"} handleClose={context.handleClose} />
+                    <div className="mt-5">
+                        <CareerInputs onSubmit={onSubmit} state={state} setState={setState} editId={editId} inputError={inputError} loading={loading} />
+                    </div>
+                </BoxWrapper>
             </ModalWrapper>
             <FeedbackApi setApiError={setApiError} setApiSuccess={setApiSuccess} apiError={apiError} apiSuccess={apiSuccess} />
         </>
