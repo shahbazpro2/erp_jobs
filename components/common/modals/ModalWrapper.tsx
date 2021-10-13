@@ -16,9 +16,9 @@ const ModalWrapper = ({ children, open }: Props) => {
             aria-labelledby="keep-mounted-modal-title"
             aria-describedby="keep-mounted-modal-description"
         >
-            <>
+            <div className="lg:w-[50%] xl:w-[40%] md:w-[70%] w-[98%] absolute-center">
                 {children}
-            </>
+            </div>
         </Modal>
     )
 }
