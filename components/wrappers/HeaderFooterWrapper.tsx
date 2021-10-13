@@ -1,4 +1,5 @@
 import Footer from '@components/common/footer/Footer'
+import EmployerHeader from '@components/common/header/EmployerHeader'
 import Header from '@components/common/header/Header'
 import { HeaderContext } from '@context/HeaderContext'
 import React, { ReactNode, useState } from 'react'
@@ -8,17 +9,20 @@ interface Props {
     children: ReactNode
 }
 
+
 const HeaderFooterWrapper = ({ children }: Props) => {
     const [state, setState] = useState({
         bg: 'bg-white',
-        boxShadow: 'boxShadow'
+        boxShadow: 'boxShadow',
+        employer: false
     })
 
     const ContextValue = {
         bg: state.bg,
         boxShadow: state.boxShadow,
-        handleHeader: (bg: string, boxShadow: string) => {
-            setState({ bg, boxShadow })
+        employer: state.employer,
+        handleHeader: (bg: string, boxShadow: string, employer: boolean = false) => {
+            setState({ bg, boxShadow, employer })
         }
 
     }
@@ -26,7 +30,10 @@ const HeaderFooterWrapper = ({ children }: Props) => {
 
     return (
         <HeaderContext.Provider value={ContextValue}>
-            <Header bg={state.bg} boxShadow={state.boxShadow} />
+            {state.employer ?
+                <EmployerHeader bg={state.bg} boxShadow={state.boxShadow} /> :
+                <Header bg={state.bg} boxShadow={state.boxShadow} />
+            }
             <div className="pt-[80px]">
                 {children}
             </div>
