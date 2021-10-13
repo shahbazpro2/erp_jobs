@@ -68,7 +68,7 @@ const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }
                 <TextFieldSimple inputError={inputError} value={state.companyName} name="companyName" label="Company Name" onChange={onChangeInput} />
                 <TextFieldSimple inputError={inputError} value={state.companyLocation} name="companyLocation" label="Company Location" onChange={onChangeInput} />
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <TextField
                         required
                         error={fromDateCheck().error}
@@ -100,7 +100,7 @@ const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }
                         }}
                     />
                 </div>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 2xl:grid-cols-3 gap-3">
                     <FormControlLabel
                         control={<Checkbox onChange={onChangeInput} checked={state.currentWorkHere} name="currentWorkHere" color="primary" />}
                         label="I Currently work here"

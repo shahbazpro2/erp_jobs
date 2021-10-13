@@ -49,7 +49,7 @@ const EducationInputs = ({ onSubmit, setState, inputError, loading, state, editI
                 </SelectField>
                 <TextFieldSimple inputError={inputError} value={state.degreeTitle} name="degreeTitle" label="Degree" onChange={onChangeInput} />
                 <TextFieldSimple inputError={inputError} value={state.institution} name="institution" label="Institution" onChange={onChangeInput} />
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <TextField
                         required
                         error={startDateCheck().error}

@@ -22,7 +22,10 @@ const PersonalInfo = ({ data, user }: any) => {
                 <GridFlow title="City" value={capitalizeFirstLetter(data?.city)} />
                 <GridFlow title="Mobile" value={data?.phone} />
                 {/*   <GridFlow title="Email" value={user?.email} /> */}
-                <GridFlow title="Address" value={data?.address} />
+                <div className="col-span-2 md:col-span-1">
+
+                    <GridFlow title="Address" value={data?.address} />
+                </div>
             </div>
         </WithEditWrapper>
     )
