@@ -6,7 +6,7 @@ const SubscriptionForm = () => {
         <div>
             <form>
 
-                <div className="grid grid-cols-7 gap-5 ">
+                <div className="grid grid-cols-1 md:grid-cols-7 gap-5 ">
                     <div className="col-span-5">
                         <TextField
                             variant="outlined"

@@ -16,9 +16,9 @@ const ClientCard = ({ title, icon }: Props) => {
                 boxShadow: '0px 34px 33px #161C2D21'
             },
         }}>
-            <div className="flex items-center h-[6rem] px-3">
+            <div className="flex items-center justify-center sm:justify-start h-[6rem] px-3">
                 <Image src={icon} alt="icon" width="70%" height="70%" />
-                <div className="text-xl font-bold ml-3">
+                <div className="text-xl font-bold ml-3 hidden sm:block">
                     {title}
                 </div>
             </div>

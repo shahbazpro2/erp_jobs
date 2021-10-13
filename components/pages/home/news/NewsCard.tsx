@@ -19,7 +19,7 @@ const NewsCard = ({ category, title, image }: Props) => {
         }}>
             <CardMedia
                 component="img"
-                height="140"
+                sx={{ height: '300px' }}
                 image={`${image}`}
                 alt="green iguana"
             />
