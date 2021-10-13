@@ -5,7 +5,7 @@ import PopularSearches from './PopularSearches'
 const TopSection = () => {
     return (
         <div className="bg-[#473BF017] h-screen">
-            <div className="flex h-[80vh] items-center justify-center">
+            <div className="flex h-[100vh] items-center justify-center">
                 <div className="grid grid-cols-8 gap-4">
                     <div className="col-start-2 col-span-6">
                         <div className="text-center">
