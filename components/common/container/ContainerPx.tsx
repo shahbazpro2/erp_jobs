@@ -5,8 +5,8 @@ interface Props {
 }
 const ContainerPx = ({ children }: Props) => {
     return (
-        <div className="lg:container px-5 md:mx-auto lg:px-5">
-            <div className="px-5 sm:px-10 md:px-20">
+        <div className="lg:container px-3 md:mx-auto lg:px-5">
+            <div className="px-5 sm:px-10 lg:px-20">
                 {children}
             </div>
         </div>

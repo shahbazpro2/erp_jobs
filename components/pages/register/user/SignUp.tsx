@@ -69,8 +69,8 @@ const SignUp = () => {
 
     return (
         <div className="container mx-auto">
-            <div className="flex justiy-center items-center h-[91vh]">
-                <div className="md:w-[600px] px-10 md:px-0 mx-auto justify-center w-full">
+            <div className="flex justiy-center items-center lg:h-[91vh]">
+                <div className="md:w-[600px] px-5 sm:px-10 md:px-0 mx-auto justify-center w-full">
                     <AuthWrapper>
                         <div className="mt-6">
                             <form noValidate autoComplete="off" onSubmit={onSubmit}>

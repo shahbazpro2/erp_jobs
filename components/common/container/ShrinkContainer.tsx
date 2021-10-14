@@ -1,5 +1,5 @@
-import Container from './Container'
 import React, { ReactNode } from 'react'
+import ContainerPx from './ContainerPx'
 
 interface Props {
     children: ReactNode
@@ -7,15 +7,11 @@ interface Props {
 
 const ShrinkContainer = ({ children }: Props) => {
     return (
-        <Container>
-            <div className="py-10">
-                <div className="grid grid-cols-6">
-                    <div className="col-start-2 col-span-4">
-                        {children}
-                    </div>
-                </div>
+        <ContainerPx>
+            <div className="py-16 xl:px-40">
+                {children}
             </div>
-        </Container>
+        </ContainerPx>
     )
 }
 

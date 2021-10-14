@@ -15,14 +15,14 @@ const TitleInfo = ({ data, user }: any) => {
                             <div className="text-3xl font-bold">
                                 {`${capitalizeFirstLetter(user?.first_name)} ${capitalizeFirstLetter(user?.last_name)}`}
                             </div>
-                            <div className="flex mt-2 space-x-2 md:justify-start justify-center">
+                            <div className="md:flex block mt-2 space-x-2 md:space-y-0 space-y-2 md:justify-start justify-center">
                                 <div className="text-base subtitle-clr">
                                     {data?.jobTitle?.name ? capitalizeFirstLetter(data?.jobTitle.name) : 'Guest'}
-                                </div> <div>|</div> <div className="subtitle-clr">{user.email}</div>
+                                </div> <div className="hidden md:block">|</div> <div className="subtitle-clr">{user.email}</div>
                             </div>
 
-                            <div className="grid md:grid-cols-12 grid-cols-1 mt-4">
-                                <div className="col-span-1 flex md:mx-0 mx-auto">
+                            <div className="grid md:grid-cols-12 grid-cols-1 md:mt-4 mt-3">
+                                <div className="col-span-1 flex md:mx-0 mx-auto mb-2">
                                     {data?.residenceCountry && <LocationOnIcon sx={{ width: 15 }} />}
                                     <div className="ml-1">{capitalizeFirstLetter(data?.residenceCountry)}</div>
                                 </div>

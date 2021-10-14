@@ -5,11 +5,11 @@ import PopularSearches from './PopularSearches'
 
 const TopSection = () => {
     return (
-        <div className="bg-[#473BF017] h-screen">
+        <div className="bg-[#473BF017] py-28 lg:py-0 lg:h-screen">
             <ContainerPx>
-                <div className="flex h-[100vh] items-center justify-center">
+                <div className="flex lg:h-screen items-center justify-center">
                     <div className="text-center">
-                        <div className="text-6xl font-bold">
+                        <div className="text-4xl md:text-6xl font-bold">
                             Find a dream job that changes life.
                         </div>
                         <div className="text-xl md:w-[730px] sm:w-full m-auto mt-10 mb-16 opacity-[0.7]">

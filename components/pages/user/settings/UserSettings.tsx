@@ -34,13 +34,13 @@ const UserSettings = () => {
                 <div className="text-3xl font-bold">
                     Setting
                 </div>
-                <div className="grid grid-cols-12 gap-3 py-7">
-                    <div className="col-span-9">
+                <div className="grid md:grid-cols-12 grid-cols-1 gap-3 py-7">
+                    <div className="md:col-span-9">
                         <BoxWrapper>
                             {getContent()}
                         </BoxWrapper>
                     </div>
-                    <div className="col-span-3">
+                    <div className="md:col-span-3 md:order-last order-first">
                         <BoxWrapper>
                             <div className="space-y-3 font-bold">
                                 {menuItems.map((item, index) => (

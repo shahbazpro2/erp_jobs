@@ -5,7 +5,7 @@ const Notification = () => {
     const [check, setCheck] = useState(false)
     return (
         <div className="font-semibold">
-            <div className="text-2xl">
+            <div className="md:text-2xl text-lg">
                 Change Notification Settings
             </div>
             <div className="mt-3 subtitle-clr">

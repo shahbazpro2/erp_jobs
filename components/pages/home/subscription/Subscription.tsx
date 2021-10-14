@@ -7,7 +7,7 @@ const Subscription = () => {
         <div className="bg-white py-20">
             <ContainerPx>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="text-3xl">
+                    <div className="md:text-3xl text-2xl">
                         Subscribe to our newsletter to get latest jobs on your inbox.
                     </div>
                     <div className="subscribe">

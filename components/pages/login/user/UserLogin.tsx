@@ -64,7 +64,7 @@ const UserLogin = () => {
     return (
         <div className="bg-[#F2F2F2] ">
             <div className="container mx-auto">
-                <div className="flex justiy-center items-center h-[91vh]">
+                <div className="flex justiy-center items-center lg:h-[91vh] lg:py-0 py-20">
                     <div className="md:w-[600px] px-10 md:px-0 mx-auto justify-center w-full">
                         <div className="">
                             <AuthWrapper>

@@ -10,10 +10,10 @@ const CareerAdvice = () => {
         <div>
             <Grid8span6>
                 <div className="py-28 text-center">
-                    <div className="text-5xl font-bold">
+                    <div className="md:text-5xl text-4xl  font-bold">
                         Career Advice
                     </div>
-                    <div className="text-xl mt-7 opacity-70 w-[900px] m-auto">
+                    <div className="text-xl mt-7 opacity-70 lg:w-[900px]  m-auto">
                         Whether you're looking to change careers or simply want to know what interview questions to prepare for, this is the place for career advice and tips.
                     </div>
                 </div>
@@ -25,14 +25,14 @@ const CareerAdvice = () => {
 
             <Grid8span6>
                 <div className="py-28 text-center">
-                    <div className="text-5xl font-bold">
+                    <div className="md:text-5xl text-4xl font-bold">
                         Why you should take career adivce?
                     </div>
-                    <div className="text-xl mt-7 w-[700px] m-auto opacity-70">
+                    <div className="text-xl mt-7 lg:w-[700px] m-auto opacity-70">
                         Finding jobseeking tips you can actually use. That's how it feels to love Mondays.
                     </div>
                     <div className="mt-24">
-                        <div className="grid grid-cols-3 gap-28">
+                        <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10 lg:gap-28">
                             <CareerAdviceCard title="Planning a Job Search" content="To help you work out what your qualifications really mean and where to go next...." />
                             <CareerAdviceCard title="Salary & Benefits" content="Learn about average salaries, employee benefits and how to negotiate with The Boss." />
                             <CareerAdviceCard title="CV Writing Tips" content="Writing a CV can be a stressful task, especially if you’re starting from scratch…" />
@@ -46,7 +46,7 @@ const CareerAdvice = () => {
             </Grid8span6>
             <div className="bg-[#F4F7FA] py-28 text-center">
                 <Grid8span6>
-                    <div className="text-5xl font-bold">
+                    <div className="md:text-5xl text-4xl font-bold">
                         Latest Tool & Tips
                     </div>
                     <div className="mt-20 text-left space-y-4">
