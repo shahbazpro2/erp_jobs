@@ -4,9 +4,7 @@ export const AllCareers = gql`
     query allCareers{
         allCareers{
             id,
-            jobTitle{
-            id,name
-            },
+            jobTitle,
             companyName,
             companyLocation,
             confidential,

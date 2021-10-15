@@ -71,7 +71,7 @@ const CareerContent = () => {
 
     const submitData = async (state: CareerProps, api: any, message: string) => {
         setLoading(true)
-        const stateData = { ...state, jobTitle: Number(state.jobTitle) }
+        const stateData = { ...state }
 
         const { error, data } = await graphqlRes(api({ variables: { ...stateData, id: Number(editId) } }))
         if (error) {

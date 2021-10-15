@@ -23,7 +23,7 @@ const CareerCard = ({ data, onDelete }: Props) => {
                 >
                     <div className="text-sm">
                         <div className="font-medium">
-                            {data.jobTitle.name}
+                            {data.jobTitle}
                         </div>
                         <div className="subtitle-clr">
                             {data.companyName} | {data.companyLocation}
