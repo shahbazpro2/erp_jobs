@@ -1,24 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { SyntheticEvent, useEffect, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
-import { useLazyQuery, useMutation } from '@apollo/client'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import HeadingStyle1 from '@components/common/headerStyles/HeadingStyle1'
-import { LoginCandidate } from '@graphql/queries/LoginCandidate'
-import { CreateProfile } from '@graphql/mutations/user/CreateProfile'
 import { initialJobStates } from './initialStates'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import graphqlRes from '@components/functions/graphqlRes'
 import { useRouter } from 'next/router'
-import { url_jobsDetails, url_userProfile } from '@components/functions/pageUrls'
-import { jobStatusOptions, profileVisibilityOptions } from '@components/functions/dropDowns'
-import getDropdownKey from '@components/functions/getDropdownKey'
+import { url_userProfile } from '@components/functions/pageUrls'
+
 import JobDetailsInput from './JobDetailsInput'
+import { addUserJobDetails } from '@api/jobDetails'
+import moment from 'moment'
+
 
 
 const JobDetails = () => {
-    /* const [getLoginCandidate, { data }] = useLazyQuery(LoginCandidate)
-    const [createCandidate] = useMutation(CreateProfile, { refetchQueries: [LoginCandidate], onError: () => null }) */
     const router = useRouter()
     const [state, setState] = useState(initialJobStates)
 
@@ -47,30 +44,26 @@ const JobDetails = () => {
 
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
-        console.log('submit')
-        router.push(url_userProfile)
-        /*  setInputError(false)
- 
-         if (EmptyFieldCheck({
-             ...state
-         })) {
-             setInputError(true)
-             return
-         }
-         setLoading(true)
-         const { error, data } = await graphqlRes(createCandidate({
-             variables: { ...state }
-         }))
-         if (error) {
-             setApiError(data)
-             setLoading(false)
-             return
-         }
-         setLoading(false)
-         setApiSuccess(['Profile updated successfully'])
-         setTimeout(() => {
-             router.push(url_userProfile)
-         }, 200); */
+        setInputError(false)
+        console.log('stat', state)
+        if (EmptyFieldCheck({
+            ...state
+        }) || new Date(state.availability_date) <= new Date() || state.min_salary >= state.max_salary) {
+            setInputError(true)
+            return
+        }
+        setLoading(true)
+        const res = await addUserJobDetails(state)
+        if (res?.error) {
+            setApiError(res?.data)
+            setLoading(false)
+            return
+        }
+        setLoading(false)
+        setApiSuccess(['Job details updated successfully'])
+        setTimeout(() => {
+            //router.push(url_userProfile)
+        }, 200);
 
     }
 
