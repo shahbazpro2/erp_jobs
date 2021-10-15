@@ -2,10 +2,10 @@
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
-import { getDropdown, jobStatusOptions, profileVisibilityOptions } from '@components/functions/dropDowns'
+import { AllIndustry } from '@graphql/queries/common/AllIndustry'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
-import { Button, Checkbox, FormControlLabel, MenuItem } from '@mui/material'
+import { MenuItem } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
 import { JobProps } from './types'
 
@@ -20,7 +20,7 @@ interface Props {
 
 const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Props) => {
     const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
-
+    const [allIndustries, { data: indusData }] = useLazyQuery(AllIndustry)
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         if (e.nativeEvent?.type === 'click') {
@@ -31,6 +31,7 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
 
     useEffect(() => {
         allJobtitles()
+        allIndustries()
     }, [])
 
 
@@ -39,36 +40,40 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
             <div className="grid gap-5">
                 <SelectField
                     inputError={inputError}
-                    value={state.job_type}
+                    value={state.jobType}
                     name="jobType"
                     label="Job Type"
                     onChange={onChangeInput}
                 >
                     <MenuItem disabled value={" "}>
-                        Select job title
+                        Select job type
                     </MenuItem>
-                    {data?.allJobtitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
+                    <MenuItem value="PERMANENT" >Permanent</MenuItem>
+                    <MenuItem value="CONTRACT" >Contract</MenuItem>
                 </SelectField>
                 <SelectField
                     inputError={inputError}
-                    value={state.industy}
-                    name="industy"
+                    value={state.industry}
+                    name="industry"
                     label="Industries"
                     onChange={onChangeInput}
                 >
                     <MenuItem disabled value={" "}>
                         Select industry
                     </MenuItem>
-                    <MenuItem value={"accounting"}>{"Accounting and financial management."}</MenuItem>
-                    <MenuItem value={"crm"}>{"Customer relationship management (CRM)"}</MenuItem>
-                    <MenuItem value={"ai"}>{"Business intelligence (BI) and artificial intelligence (AI)"}</MenuItem>
-                    <MenuItem value={"hr"}>{"Human resources (HR)"}</MenuItem>
+                    {indusData?.allIndustries?.map((indus: any) => <MenuItem key={indus.id} value={indus.id}>{indus.name}</MenuItem>)}
                 </SelectField>
 
-                <TextFieldSimple inputError={inputError} type="date" name="dateAvailable" label="Date Available" value={state.availability_date} onChange={onChangeInput} />
+
+                <TextFieldSimple inputError={inputError} type="date" name="availabilityDate" label="Available Date" value={state.availabilityDate} onChange={onChangeInput} />
 
 
 
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <TextFieldSimple inputError={inputError} value={state.maxSalary} name="maxSalary" label="Minimum Salary" onChange={onChangeInput} type="number" />
+                    <TextFieldSimple inputError={inputError} value={state.minSalary} name="minSalary" label="Maximum Salary" onChange={onChangeInput} type="number" />
+                </div>
 
                 <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
                     Update
