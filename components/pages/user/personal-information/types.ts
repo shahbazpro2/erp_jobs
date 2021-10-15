@@ -9,7 +9,4 @@ export interface BasicInfoProps {
     jobStatus: string,
     profileVisibility: string,
     yearOfExperience: string,
-    minSalary: string,
-    currency: string,
-    confidential: boolean
 }

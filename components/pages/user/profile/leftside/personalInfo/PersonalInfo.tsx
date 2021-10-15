@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useRouter } from 'next/router';
 import React from 'react'
 import WithEditWrapper from '../common/WithEditWrapper';
-import GridFlow from './GridFlow';
+import GridFlow from '../common/GridFlow';
 
 
 
@@ -17,11 +17,8 @@ const PersonalInfo = ({ data, user }: any) => {
                 <GridFlow title="Gender" value={user?.gender} />
                 <GridFlow title="Experience" value={data ? `${data.yearOfExperience} Years` : ''} />
                 <GridFlow title="Country" value={capitalizeFirstLetter(data?.residenceCountry)} />
-                <GridFlow title="Minimum Salary" value={`${data ? data.minSalary : ''} ${data ? data.currency.toUpperCase() : ''}`} />
-                {/*     <GridFlow title="Profile Visibility" value="Registered only" /> */}
                 <GridFlow title="City" value={capitalizeFirstLetter(data?.city)} />
                 <GridFlow title="Mobile" value={data?.phone} />
-                {/*   <GridFlow title="Email" value={user?.email} /> */}
                 <div className="col-span-2 md:col-span-1">
 
                     <GridFlow title="Address" value={data?.address} />

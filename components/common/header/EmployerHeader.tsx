@@ -62,7 +62,7 @@ const EmployerHeader = ({ bg, boxShadow }: Props) => {
                     <div className="hidden lg:block ml-16">
                         <div className="links flex items-center h-full w-full xl:space-x-10 md:space-x-5">
                             {linkList.map((link, index) => (
-                                <Link key={index} href={link.link}><a className={classNames("user-links", { "active-links": path === link.link })}>{link.title}</a></Link>
+                                <Link key={index} href={link.link}><a className={classNames("font-bold hover:text-gray-300", { "active-links": path === link.link })}>{link.title}</a></Link>
                             ))}
                         </div>
 
@@ -70,7 +70,7 @@ const EmployerHeader = ({ bg, boxShadow }: Props) => {
                     {objectIsEmpty(user) ?
                         <div className="hidden sm:block ml-auto">
                             <div className="auth-links flex items-center justify-end h-full space-x-5">
-                                <Link href={url_registerUser}><a className={classNames("user-links", { "active-links": path === url_registerUser })}>Looking For Job?</a></Link>
+                                <Link href={url_registerUser}><a className={classNames("font-bold hover:text-gray-300", { "active-links": path === url_registerUser })}>Looking For Job?</a></Link>
                                 <div>
                                     <Button onClick={() => router.push(url_registerEmp)} variant="contained" color="primary" disableElevation>
                                         Add Job

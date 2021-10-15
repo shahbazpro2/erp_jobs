@@ -1,7 +1,7 @@
 import moment from "moment"
 
 export const initialCareerState = {
-    jobTitle: ' ',
+    jobTitle: '',
     companyName: '',
     companyLocation: '',
     fromDate: '',
@@ -13,12 +13,6 @@ export const initialCareerState = {
 
 export const initialCareerEditState = {
     id: '',
-    jobTitle: { id: '', name: ' ' },
-    companyName: '',
-    companyLocation: '',
-    fromDate: '',
+    ...initialCareerState,
     toDate: '',
-    currentWorkHere: false,
-    confidential: false,
-    description: ''
 }

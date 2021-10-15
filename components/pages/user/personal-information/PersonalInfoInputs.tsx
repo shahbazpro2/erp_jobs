@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { getDropdown, jobStatusOptions, profileVisibilityOptions } from '@components/functions/dropDowns'
-import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
 import { Button, Checkbox, FormControlLabel, MenuItem } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
@@ -19,7 +17,6 @@ interface Props {
 }
 
 const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: Props) => {
-    const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -29,15 +26,11 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
             setState({ ...state, [name]: value })
     }
 
-    useEffect(() => {
-        allJobtitles()
-    }, [])
-
 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-5">
-                <SelectField
+                {/* <SelectField
                     inputError={inputError}
                     value={state.jobTitle}
                     name="jobTitle"
@@ -48,8 +41,8 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
                         Select job title
                     </MenuItem>
                     {data?.allJobtitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
-                </SelectField>
-
+                </SelectField> */}
+                <TextFieldSimple inputError={inputError} name="jobTitle" label="Job Title" value={state.jobTitle} onChange={onChangeInput} />
 
                 <TextFieldSimple inputError={inputError} type="date" name="dateOfBirth" label="Date Of Birth" value={state.dateOfBirth} onChange={onChangeInput} />
 
@@ -94,7 +87,7 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
 
 
                 <TextFieldSimple inputError={inputError} name="yearOfExperience" label="Years Of Experience" value={state.yearOfExperience} onChange={onChangeInput} />
-                <div className="grid grid-cols-12 gap-3">
+                {/*   <div className="grid grid-cols-12 gap-3">
                     <div className="col-span-7">
                         <TextFieldSimple inputError={inputError} name="minSalary" label="Minimum Salary" value={state.minSalary} onChange={onChangeInput} />
                     </div>
@@ -109,7 +102,7 @@ const PersonalInfoInputs = ({ setState, state, loading, inputError, onSubmit }: 
                         control={<Checkbox onChange={onChangeInput} checked={state.confidential} name="confidential" color="primary" />}
                         label="Confidential"
                     />
-                </div>
+                </div> */}
 
                 <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
                     Update

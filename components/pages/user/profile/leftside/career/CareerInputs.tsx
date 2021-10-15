@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useLazyQuery } from '@apollo/client'
-import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
-import { Checkbox, FormControlLabel, MenuItem, TextField } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
+import { Checkbox, FormControlLabel, TextField } from '@mui/material'
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
 import { CareerProps } from './types'
 
 
@@ -20,7 +19,6 @@ interface Props {
 
 const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }: Props) => {
     const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
-
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         if (e.nativeEvent?.type === 'click') {
@@ -32,7 +30,6 @@ const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }
     useEffect(() => {
         allJobtitles()
     }, [])
-
 
 
     const fromDateCheck = () => {
@@ -47,13 +44,15 @@ const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }
             return { error: true, message: 'From Date is greater then today date' }
         } else return { error: false, message: '' }
     }
-
+    { console.log(data?.allJobtitles?.map((title: any) => { return { key: title.id, title: title.name } })) }
 
 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
+
             <div className="grid gap-5">
-                <SelectField
+                <TextFieldSimple inputError={inputError} value={state.jobTitle} name="jobTitle" label="Jobtitle" onChange={onChangeInput} />
+                {/* <SelectField
                     inputError={inputError}
                     value={state.jobTitle}
                     name="jobTitle"
@@ -64,7 +63,7 @@ const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }
                         Select job title
                     </MenuItem>
                     {data?.allJobtitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
-                </SelectField>
+                </SelectField> */}
                 <TextFieldSimple inputError={inputError} value={state.companyName} name="companyName" label="Company Name" onChange={onChangeInput} />
                 <TextFieldSimple inputError={inputError} value={state.companyLocation} name="companyLocation" label="Company Location" onChange={onChangeInput} />
 

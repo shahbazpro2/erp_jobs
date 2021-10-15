@@ -6,6 +6,7 @@ import TitleInfo from './TitleInfo'
 import EducationWrapper from './education/EducationWrapper'
 import CertificatesWrapper from './certificates/CertificatesWrapper'
 import Skills from './Skills'
+import JobDetails from './jobDetails/JobDetails'
 
 
 
@@ -18,6 +19,7 @@ const LeftSide = ({ data, user }: any) => {
             </div>
             <Summary />
             <PersonalInfo data={data?.loginCandidate} user={user?.user} />
+            <JobDetails data={data?.loginCandidate} user={user?.user} />
             <CareerWrapper />
             <EducationWrapper />
             <Skills />

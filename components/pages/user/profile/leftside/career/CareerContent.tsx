@@ -33,7 +33,7 @@ const CareerContent = () => {
 
     useEffect(() => {
         if (context.editData?.id) {
-            setState({ ...context.editData, toDate: context.editData.toDate || moment(Date.now()).format('YYYY-MM-DD'), jobTitle: context.editData.jobTitle.id })
+            setState({ ...context.editData, toDate: context.editData.toDate || moment(Date.now()).format('YYYY-MM-DD') })
             setEditId(context.editData.id)
         }
 

@@ -1,5 +1,5 @@
 export const initialBasicState = {
-    jobTitle: ' ',
+    jobTitle: '',
     dateOfBirth: '',
     residenceCountry: '',
     city: '',
@@ -8,7 +8,4 @@ export const initialBasicState = {
     jobStatus: ' ',
     profileVisibility: ' ',
     yearOfExperience: '',
-    minSalary: '',
-    currency: 'GBP',
-    confidential: false
 }
