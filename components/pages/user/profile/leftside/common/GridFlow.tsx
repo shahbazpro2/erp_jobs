@@ -8,7 +8,7 @@ interface Props {
 
 const GridFlow = ({ title, value }: Props) => {
     return (
-        <div className="grid grid-rows-2 md:grid-cols-12">
+        <div className="grid md:grid-cols-12">
             <div className="col-span-4 subtitle-clr">
                 {title}
             </div>
