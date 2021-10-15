@@ -80,7 +80,7 @@ const SignUp = () => {
                                         helperText={inputError && !state.firstname ? 'Please provide a firstname' : ''}
                                         required
                                         name="firstname"
-                                        label="Firstname"
+                                        label="First Name"
                                         variant="outlined"
                                         value={state.firstname}
                                         className="w-full"
@@ -94,7 +94,7 @@ const SignUp = () => {
                                         helperText={inputError && !state.lastname ? 'Please provide a lastname' : ''}
                                         required
                                         name="lastname"
-                                        label="Lastname"
+                                        label="Last Name"
                                         value={state.lastname}
                                         variant="outlined"
                                         className="w-full"
