@@ -1,8 +1,10 @@
+import moment from "moment";
+
 export const initialJobStates = {
-    job_type: '',
-    availability_date: '',
+    job_type: ' ',
+    availability_date: moment(new Date()).add(1, 'days').format('YYYY-MM-DD'),
     min_salary: "",
     max_salary: "",
-    industy: '',
-    desire_job_title: ''
+    industry: ' ',
+    desire_job_title: ' '
 }
