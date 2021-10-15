@@ -5,7 +5,7 @@ import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { AllIndustry } from '@graphql/queries/common/AllIndustry'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
-import { MenuItem } from '@mui/material'
+import { MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
 import { JobProps } from './types'
 
@@ -21,6 +21,7 @@ interface Props {
 const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Props) => {
     const [allJobtitles, { data }] = useLazyQuery(AllJobtitles)
     const [allIndustries, { data: indusData }] = useLazyQuery(AllIndustry)
+
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         if (e.nativeEvent?.type === 'click') {
@@ -40,16 +41,16 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
             <div className="grid gap-5">
                 <SelectField
                     inputError={inputError}
-                    value={state.jobType}
-                    name="jobType"
+                    value={state.job_type}
+                    name="job_type"
                     label="Job Type"
                     onChange={onChangeInput}
                 >
                     <MenuItem disabled value={" "}>
                         Select job type
                     </MenuItem>
-                    <MenuItem value="PERMANENT" >Permanent</MenuItem>
-                    <MenuItem value="CONTRACT" >Contract</MenuItem>
+                    <MenuItem value="permanent" >Permanent</MenuItem>
+                    <MenuItem value="contract" >Contract</MenuItem>
                 </SelectField>
                 <SelectField
                     inputError={inputError}
@@ -63,16 +64,66 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                     </MenuItem>
                     {indusData?.allIndustries?.map((indus: any) => <MenuItem key={indus.id} value={indus.id}>{indus.name}</MenuItem>)}
                 </SelectField>
-
-
-                <TextFieldSimple inputError={inputError} type="date" name="availabilityDate" label="Available Date" value={state.availabilityDate} onChange={onChangeInput} />
-
-
-
+                <SelectField
+                    inputError={inputError}
+                    value={state.desire_job_title}
+                    name="desire_job_title"
+                    label="Desire Job"
+                    onChange={onChangeInput}
+                >
+                    <MenuItem disabled value={" "}>
+                        Select desire job
+                    </MenuItem>
+                    {data?.allJobtitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
+                </SelectField>
+                <TextField
+                    required
+                    error={inputError && !state.availability_date ? true : inputError && new Date(state.availability_date) <= new Date() ? true : false}
+                    helperText={inputError && !state.availability_date ? 'Please select date' : inputError && new Date(state.availability_date) <= new Date() ? "Date must greater then today date" : ""}
+                    type="date"
+                    name="availability_date"
+                    label="Date Available"
+                    variant="outlined"
+                    className="w-full"
+                    value={state.availability_date}
+                    onChange={onChangeInput}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <TextFieldSimple inputError={inputError} value={state.maxSalary} name="maxSalary" label="Minimum Salary" onChange={onChangeInput} type="number" />
-                    <TextFieldSimple inputError={inputError} value={state.minSalary} name="minSalary" label="Maximum Salary" onChange={onChangeInput} type="number" />
+                    <TextField
+                        required
+                        error={inputError && !state.min_salary ? true : inputError && state.min_salary > state.max_salary ? true : false}
+                        helperText={inputError && !state.min_salary ? 'Please provide minimum salary' : inputError && state.min_salary > state.max_salary ? "Minimum salary must less then maximum salary" : ""}
+                        type="number"
+                        name="min_salary"
+                        label="Minimum Salary"
+                        variant="outlined"
+                        className="w-full"
+                        value={state.min_salary}
+                        onChange={onChangeInput}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <TextField
+                        required
+                        error={inputError && !state.max_salary ? true : inputError && state.min_salary > state.max_salary ? true : false}
+                        helperText={inputError && !state.max_salary ? 'Please provide maximum salary' : ''}
+                        type="number"
+                        name="max_salary"
+                        label="Maximum Salary"
+                        variant="outlined"
+                        className="w-full"
+                        value={state.max_salary}
+                        onChange={onChangeInput}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+
                 </div>
 
                 <LoadingButton loading={loading} type="submit" variant="contained" color="primary" disableElevation >
