@@ -1,23 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { SyntheticEvent, useEffect, useState } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import HeadingStyle1 from '@components/common/headerStyles/HeadingStyle1'
 import { initialJobStates } from './initialStates'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
-import graphqlRes from '@components/functions/graphqlRes'
 import { useRouter } from 'next/router'
 import { url_userProfile } from '@components/functions/pageUrls'
 
 import JobDetailsInput from './JobDetailsInput'
 import { addUserJobDetails } from '@api/jobDetails'
-import moment from 'moment'
+import { JobProps } from './types'
 
 
 
 const JobDetails = () => {
     const router = useRouter()
-    const [state, setState] = useState(initialJobStates)
+    const [state, setState] = useState<JobProps>(initialJobStates)
 
     const [inputError, setInputError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState<string[]>([])
@@ -25,27 +24,9 @@ const JobDetails = () => {
     const [loading, setLoading] = useState(false)
 
 
-    /*   useEffect(() => {
-          if (data?.loginCandidate) {
-              const { jobTitle, currency, jobStatus, profileVisibility } = data?.loginCandidate
-  
-              const jobStatusKey: string = getDropdownKey(jobStatus, jobStatusOptions)
-              const profileVisibilityKey: string = getDropdownKey(profileVisibility, profileVisibilityOptions)
-  
-              setState({ ...data?.loginCandidate, currency: currency?.toUpperCase(), jobTitle: jobTitle.id, jobStatus: jobStatusKey, profileVisibility: profileVisibilityKey })
-          }
-      }, [data]) */
-
-    /*    useEffect(() => {
-           getLoginCandidate()
-       }, []) */
-
-
-
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        console.log('stat', state)
         if (EmptyFieldCheck({
             ...state
         }) || new Date(state.availability_date) <= new Date() || state.min_salary >= state.max_salary) {
@@ -62,7 +43,7 @@ const JobDetails = () => {
         setLoading(false)
         setApiSuccess(['Job details updated successfully'])
         setTimeout(() => {
-            //router.push(url_userProfile)
+            router.push(url_userProfile)
         }, 200);
 
     }
