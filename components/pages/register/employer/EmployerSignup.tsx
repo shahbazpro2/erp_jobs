@@ -9,12 +9,17 @@ import ORDivider from '@components/common/dividers/ORDivider'
 import SocialsLogin from '@components/common/socialsLogin/SocialsLogin'
 import { Button } from '@mui/material'
 import EmployerAuthWrapper from '@components/pages/auth/EmployerAuthWrapper'
+import RegisterForm from '@components/common/forms/RegisterForm'
 
 const EmployerSignup = () => {
     const context = useContext(HeaderContext)
     const [state, setState] = useState({
-        username: '',
-        password: ''
+        firstname: '',
+        lastname: '',
+        email: '',
+        gender: '',
+        password1: '',
+        password2: ''
     })
     const [loading, setLoading] = useState(false)
     const [inputError, setInputError] = useState(false)
@@ -42,7 +47,7 @@ const EmployerSignup = () => {
                             Start managing your account
                         </div>
                     </div>
-                    <LoginForm
+                    <RegisterForm
                         state={state}
                         onSubmit={onSubmit}
                         loading={loading}
@@ -57,6 +62,7 @@ const EmployerSignup = () => {
                         <span className="text-base md:text-xl">Already have an account ? Sign In</span></Button>
                 </div>
             </EmployerAuthWrapper>
+
         </>
 
 
