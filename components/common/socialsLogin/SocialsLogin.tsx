@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-const SocialLogins = () => {
+const SocialsLogin = () => {
     return (
         <div className="grid grid-cols-3 gap-3 social-links">
             <div className="social-box">
@@ -17,4 +17,4 @@ const SocialLogins = () => {
     )
 }
 
-export default SocialLogins
+export default SocialsLogin
