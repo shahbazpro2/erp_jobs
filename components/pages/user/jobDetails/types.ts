@@ -1,6 +1,6 @@
 
 export interface JobProps {
-    job_type: string,
+    job_type: string[],
     availability_date: string,
     min_salary: string,
     max_salary: string,
