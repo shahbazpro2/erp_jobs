@@ -36,7 +36,7 @@ const EmployerSignup = () => {
                 <BoxWrapper>
                     <div className="text-center mb-12">
                         <div className="text-xl md:text-2xl font-bold">
-                            Employer Account Sign up
+                            Employer Account Register
                         </div>
                         <div className="text-base subtitle-clr mt-2">
                             Start managing your account
