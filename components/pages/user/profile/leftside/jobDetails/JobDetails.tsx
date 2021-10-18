@@ -19,6 +19,8 @@ const JobDetails = () => {
                     const { industry, desire_job_title } = res?.data[0]
                     setData({ ...res?.data[0], industry: industry.name, desire_job_title: desire_job_title.name })
 
+                } else {
+                    setData({ ...data, availability_date: '' })
                 }
             }
         })()
