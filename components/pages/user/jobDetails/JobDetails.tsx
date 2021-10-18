@@ -29,7 +29,7 @@ const JobDetails = () => {
         setInputError(false)
         if (EmptyFieldCheck({
             ...state
-        }) || new Date(state.availability_date) <= new Date() || state.min_salary >= state.max_salary) {
+        }) || new Date(state.availability_date) <= new Date() || Number(state.min_salary) >= Number(state.max_salary)) {
             setInputError(true)
             return
         }
