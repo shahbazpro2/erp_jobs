@@ -2,7 +2,6 @@
 import { getUserJobDetails } from '@api/jobDetails'
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
-import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { AllIndustry } from '@graphql/queries/common/AllIndustry'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
@@ -35,9 +34,9 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
             (async () => {
                 const res = await getUserJobDetails();
                 if (!res?.error) {
-                    setState(res?.data[0])
+                    const { industry, desire_job_title } = res?.data[0]
+                    setState({ ...res?.data[0], industry: industry.id, desire_job_title: desire_job_title.id })
                 }
-                console.log('jobDetails', res)
             })()
     }, [data, indusData])
 
