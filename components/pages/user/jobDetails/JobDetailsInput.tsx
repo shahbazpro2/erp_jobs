@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { getUserJobDetails } from '@api/jobDetails'
 import { useLazyQuery } from '@apollo/client'
 import SelectField from '@components/common/textFields/SelectField'
 import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
@@ -29,6 +30,16 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
         } else
             setState({ ...state, [name]: value })
     }
+    useEffect(() => {
+        if (indusData?.allIndustries && data?.allJobtitles)
+            (async () => {
+                const res = await getUserJobDetails();
+                if (!res?.error) {
+                    setState(res?.data[0])
+                }
+                console.log('jobDetails', res)
+            })()
+    }, [data, indusData])
 
     useEffect(() => {
         allJobtitles()
@@ -42,15 +53,16 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                 <SelectField
                     inputError={inputError}
                     value={state.job_type}
+                    multiple={true}
                     name="job_type"
                     label="Job Type"
                     onChange={onChangeInput}
                 >
-                    <MenuItem disabled value={" "}>
+                    {/* <MenuItem disabled value={' '}>
                         Select job type
-                    </MenuItem>
-                    <MenuItem value="permanent" >Permanent</MenuItem>
-                    <MenuItem value="contract" >Contract</MenuItem>
+                    </MenuItem> */}
+                    <MenuItem value="Permanent" >Permanent</MenuItem>
+                    <MenuItem value="Contract" >Contract</MenuItem>
                 </SelectField>
                 <SelectField
                     inputError={inputError}
