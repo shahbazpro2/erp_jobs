@@ -15,8 +15,11 @@ const JobDetails = () => {
         (async () => {
             const res = await getUserJobDetails();
             if (!res?.error) {
-                const { industry, desire_job_title } = res?.data[0]
-                setData({ ...res?.data[0], industry: industry.name, desire_job_title: desire_job_title.name })
+                if (res?.data.length) {
+                    const { industry, desire_job_title } = res?.data[0]
+                    setData({ ...res?.data[0], industry: industry.name, desire_job_title: desire_job_title.name })
+
+                }
             }
         })()
     }, [])

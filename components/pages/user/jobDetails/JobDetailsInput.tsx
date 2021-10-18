@@ -34,8 +34,10 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
             (async () => {
                 const res = await getUserJobDetails();
                 if (!res?.error) {
-                    const { industry, desire_job_title } = res?.data[0]
-                    setState({ ...res?.data[0], industry: industry.id, desire_job_title: desire_job_title.id })
+                    if (res?.data.length) {
+                        const { industry, desire_job_title } = res?.data[0]
+                        setState({ ...res?.data[0], industry: industry.id, desire_job_title: desire_job_title.id })
+                    }
                 }
             })()
     }, [data, indusData])
