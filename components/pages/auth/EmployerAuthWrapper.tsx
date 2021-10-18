@@ -33,7 +33,7 @@ const EmployerAuthWrapper = ({ children, title }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-center lg:justify-end mt-10 lg:mt-0 mb-20 lg:h-[67rem]">
+                    <div className={`flex items-center justify-center lg:justify-end mt-10 lg:mt-0 mb-20 ${title === 'Sign In' ? 'lg:h-[67rem]' : 'lg:h-[80rem]'}`}>
                         <div className="xl:w-[80%] w-full">
                             <div className="grid grid-cols-1 md:grid-cols-2 mb-4">
                                 <div className="text-2xl flex items-center text-white font-bold mb-2 md:mb-0">
