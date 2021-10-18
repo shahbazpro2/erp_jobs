@@ -19,7 +19,7 @@ const LeftSide = ({ data, user }: any) => {
             </div>
             <Summary />
             <PersonalInfo data={data?.loginCandidate} user={user?.user} />
-            <JobDetails data={data?.loginCandidate} user={user?.user} />
+            <JobDetails />
             <CareerWrapper />
             <EducationWrapper />
             <Skills />
