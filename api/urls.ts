@@ -6,4 +6,4 @@ export const userCertificates = `${hostUrl}/candidate/certificates/`
 export const userSkills = `${hostUrl}/candidate/skills/`
 export const userCv = `${hostUrl}/candidate/resume/`
 export const changePassword = `${hostUrl}/password/change/`
-export const userJobDetails = `${hostUrl}/candidate/job_detail/`
+export const userJobDetails = `${hostUrl}/job-detail/`
