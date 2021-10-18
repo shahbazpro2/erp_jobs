@@ -5,14 +5,15 @@ import { TextField } from '@mui/material'
 interface Props {
     required?: boolean,
     inputError?: boolean,
-    value: string,
+    value: string | string[],
     name: string,
     label?: string,
+    multiple?: boolean,
     children: ReactNode,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const SelectField = ({ required = true, inputError = false, value, name, label, onChange, children }: Props) => {
+const SelectField = ({ required = true, inputError = false, multiple = false, value, name, label, onChange, children }: Props) => {
     return (
         <TextField
             required={required}
@@ -25,7 +26,9 @@ const SelectField = ({ required = true, inputError = false, value, name, label, 
             className="w-full h-full text-left"
             value={value}
             onChange={onChange}
+
             SelectProps={{
+                multiple,
                 MenuProps: {
                     disableScrollLock: true
                 }
