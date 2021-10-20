@@ -4,6 +4,9 @@ body {
   font-family: "DM Sans", sans-serif !important;
   color: $text-clr;
 }
+:focus-visible {
+  outline: none;
+}
 .light-clr {
   color: $light-clr;
 }
