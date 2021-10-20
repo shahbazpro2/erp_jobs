@@ -3,7 +3,7 @@ import React from 'react'
 
 interface Props {
     title: string,
-    value: string
+    value: string | undefined
 }
 
 const GridFlow = ({ title, value }: Props) => {
