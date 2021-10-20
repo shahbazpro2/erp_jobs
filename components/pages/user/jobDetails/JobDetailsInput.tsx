@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { getUserJobDetails } from '@api/jobDetails'
 import { useLazyQuery } from '@apollo/client'
+import AutoCompleteField from '@components/common/textFields/AutoCompleteField'
 import SelectField from '@components/common/textFields/SelectField'
+import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import { AllIndustry } from '@graphql/queries/common/AllIndustry'
 import { AllJobtitles } from '@graphql/queries/common/AllJobTitles'
 import { LoadingButton } from '@mui/lab'
-import { MenuItem, TextField } from '@mui/material'
+import { Autocomplete, MenuItem, TextField } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
-import { JobProps } from './types'
+import { JsonType, JobProps } from './types'
 
 
 interface Props {
@@ -35,17 +37,18 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                 const res = await getUserJobDetails();
                 if (!res?.error) {
                     if (res?.data.length) {
-                        const { industry, desire_job_title } = res?.data[0]
-                        setState({ ...res?.data[0], industry: industry.id, desire_job_title: desire_job_title.id })
+                        setState({ ...res?.data[0] })
                     }
                 }
             })()
+
     }, [data, indusData])
 
     useEffect(() => {
         allJobtitles()
         allIndustries()
     }, [])
+
 
 
     return (
@@ -59,36 +62,28 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                     label="Job Type"
                     onChange={onChangeInput}
                 >
-                    {/* <MenuItem disabled value={' '}>
-                        Select job type
-                    </MenuItem> */}
                     <MenuItem value="Permanent" >Permanent</MenuItem>
                     <MenuItem value="Contract" >Contract</MenuItem>
                 </SelectField>
-                <SelectField
+                <AutoCompleteField
                     inputError={inputError}
-                    value={state.industry}
-                    name="industry"
+                    onChange={(event, newValue) => {
+                        setState({ ...state, 'industry': newValue })
+                    }}
+                    options={indusData ? indusData?.allIndustries : []}
                     label="Industries"
-                    onChange={onChangeInput}
-                >
-                    <MenuItem disabled value={" "}>
-                        Select industry
-                    </MenuItem>
-                    {indusData?.allIndustries?.map((indus: any) => <MenuItem key={indus.id} value={indus.id}>{indus.name}</MenuItem>)}
-                </SelectField>
-                <SelectField
+                    value={state.industry}
+                />
+                <AutoCompleteField
                     inputError={inputError}
-                    value={state.desire_job_title}
-                    name="desire_job_title"
+                    onChange={(event, newValue) => {
+                        setState({ ...state, 'desire_job_title': newValue })
+                    }}
+                    options={data ? data?.allJobtitles : []}
                     label="Desire Job"
-                    onChange={onChangeInput}
-                >
-                    <MenuItem disabled value={" "}>
-                        Select desire job
-                    </MenuItem>
-                    {data?.allJobtitles?.map((title: any) => <MenuItem key={title.id} value={title.id}>{title.name}</MenuItem>)}
-                </SelectField>
+                    value={state.desire_job_title}
+                />
+
                 <TextField
                     required
                     error={inputError && !state.availability_date ? true : inputError && new Date(state.availability_date) <= new Date() ? true : false}
