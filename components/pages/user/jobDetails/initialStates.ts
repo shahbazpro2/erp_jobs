@@ -5,6 +5,6 @@ export const initialJobStates = {
     availability_date: moment(new Date()).add(1, 'days').format('YYYY-MM-DD'),
     min_salary: "",
     max_salary: "",
-    industry: ' ',
-    desire_job_title: ' '
+    industry: null,
+    desire_job_title: null
 }
