@@ -83,12 +83,11 @@ const Skills = () => {
     return (
         <>
             <SimpleWrapper title="Skills">
-                <div className="mt-7">
+                <div className="mt-7" id="skills-autocomplete">
                     <Autocomplete
                         disableClearable
                         multiple
                         value={value}
-                        id="multiple-limit-tags"
                         onChange={(event, newValue) => {
                             setValue(newValue)
                         }}
