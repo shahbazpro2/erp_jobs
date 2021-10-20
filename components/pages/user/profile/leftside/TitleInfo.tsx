@@ -22,7 +22,7 @@ const TitleInfo = ({ data, user }: any) => {
                             </div>
 
                             <div className="grid md:grid-cols-12 grid-cols-1 md:mt-4 mt-3">
-                                <div className="col-span-1 flex md:mx-0 mx-auto mb-2">
+                                <div className="col-span-3 flex md:mx-0 mx-auto mb-2">
                                     {data?.residenceCountry && <LocationOnIcon sx={{ width: 15 }} />}
                                     <div className="ml-1">{capitalizeFirstLetter(data?.residenceCountry)}</div>
                                 </div>
