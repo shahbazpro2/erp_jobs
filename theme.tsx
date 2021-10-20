@@ -39,13 +39,6 @@ const theme = createTheme({
         }
       }
     },
-    MuiAutocomplete: {
-      styleOverrides: {
-        root: {
-          height: '100'
-        },
-      }
-    },
     MuiStepIcon: {
       styleOverrides: {
         root: {
@@ -63,16 +56,24 @@ const theme = createTheme({
         },
       }
     },
+    MuiAutocomplete: {
+      styleOverrides: {
+        inputRoot: {
+          paddingTop: 5
+        }
+      }
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
           background: 'white',
           borderRadius: '10px',
-          height: '48px'
+          height: '48px',
         },
         multiline: {
           height: '100%',
         },
+
       }
     }
   },
