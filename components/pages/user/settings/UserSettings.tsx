@@ -8,7 +8,7 @@ import Notification from './notification/Notification'
 import OtherSettings from './otherSettings/OtherSettings'
 
 
-const menuItems = [['Change Password', 'changePassword'], ['Notification', 'notification'], ['Other Setting', 'otherSetting']]
+const menuItems = [['Change Password', 'changePassword'], ['Notification', 'notification'], ['Deactivate Account', 'deactivateAccount']]
 
 const UserSettings = () => {
     const [currentSetting, setCurrentSetting] = useState('changePassword')

@@ -7,7 +7,7 @@ const OtherSettings = () => {
     return (
         <div className="font-semibold">
             <div className="md:text-2xl text-lg">
-                Other Settings
+                Deactivate Account
             </div>
             <div className="mt-3 subtitle-clr">
                 Deactivate your account:
