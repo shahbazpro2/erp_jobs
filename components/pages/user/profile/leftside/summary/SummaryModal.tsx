@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useMutation } from '@apollo/client';
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper';
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
@@ -27,10 +28,6 @@ const SummaryModal = () => {
         if (context.editData) {
             setState({ ...context.editData })
         }
-
-    }, [context.editData])
-
-    useEffect(() => {
         return () => {
             setInputError(false)
             setState(initialSummaryState)
