@@ -28,13 +28,13 @@ const JobDetails = () => {
         e.preventDefault()
         setInputError(false)
         if (EmptyFieldCheck({
-            ...state
+            ...state,
         }) || new Date(state.availability_date) <= new Date() || Number(state.min_salary) >= Number(state.max_salary)) {
             setInputError(true)
             return
         }
         setLoading(true)
-        const res = await addUserJobDetails(state)
+        const res = await addUserJobDetails({ ...state, industry: Number(state.industry?.id), desire_job_title: Number(state.desire_job_title?.id) })
         if (res?.error) {
             setApiError(res?.data)
             setLoading(false)
