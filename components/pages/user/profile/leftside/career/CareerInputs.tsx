@@ -44,14 +44,13 @@ const CareerInputs = ({ onSubmit, setState, inputError, loading, state, editId }
             return { error: true, message: 'From Date is greater then today date' }
         } else return { error: false, message: '' }
     }
-    { console.log(data?.allJobtitles?.map((title: any) => { return { key: title.id, title: title.name } })) }
 
 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
 
             <div className="grid gap-5">
-                <TextFieldSimple inputError={inputError} value={state.jobTitle} name="jobTitle" label="Jobtitle" onChange={onChangeInput} />
+                <TextFieldSimple inputError={inputError} value={state.jobTitle} name="jobTitle" label="Job Title" onChange={onChangeInput} />
                 {/* <SelectField
                     inputError={inputError}
                     value={state.jobTitle}
