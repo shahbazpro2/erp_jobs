@@ -2,10 +2,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactNode, useContext, useEffect } from 'react'
 import Container from '@components/common/container/Container'
-import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import { HeaderContext } from '@context/HeaderContext'
 import router from 'next/router'
 import { url_loginEmp, url_registerEmp } from '@components/functions/pageUrls'
+import DualButton from '@components/common/dualButton/DualButton'
 
 interface Props {
     title: string,
@@ -39,19 +39,13 @@ const EmployerAuthWrapper = ({ children, title }: Props) => {
                                 <div className="text-2xl flex items-center text-white font-bold mb-2 md:mb-0">
                                     {title}
                                 </div>
-                                <BoxWrapper className="py-2 px-5">
-                                    <div className="flex justify-around">
-                                        <span className={`primary-clr-hover font-bold cursor-pointer ${title === 'Sign In' ? 'active-links' : ''}`} onClick={() => router.push(url_loginEmp)}>
-                                            Sign in
-                                        </span>
-                                        <span className="mx-2">
-                                            |
-                                        </span>
-                                        <span className={`primary-clr-hover font-bold cursor-pointer ${title === 'Sign Up' ? 'active-links' : ''}`} onClick={() => router.push(url_registerEmp)}>
-                                            Register
-                                        </span>
-                                    </div>
-                                </BoxWrapper>
+                                <DualButton
+                                    first="Sign In"
+                                    second="Sign Up"
+                                    active={title}
+                                    firstClick={() => router.push(url_loginEmp)}
+                                    secondClick={() => router.push(url_registerEmp)}
+                                />
                             </div>
 
                             {children}
