@@ -29,7 +29,7 @@ const EnterpriseCard = ({ list }: Props) => {
                     }
                 </List>
                 <div className="absolute bottom-0 left-0 right-0">
-                    <Button variant="contained" color="success">Contact Sales</Button>
+                    <Button variant="contained" color="success" sx={{ color: 'white' }}>Contact Sales</Button>
                 </div>
             </div>
         </div>
