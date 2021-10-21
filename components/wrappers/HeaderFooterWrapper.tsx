@@ -1,5 +1,5 @@
 import Footer from '@components/common/footer/Footer'
-import EmployerHeader from '@components/common/header/EmployerHeader'
+import EmployerHeader from '@components/common/header/employer/EmployerHeader'
 import Header from '@components/common/header/Header'
 import { HeaderContext } from '@context/HeaderContext'
 import React, { ReactNode, useState } from 'react'
