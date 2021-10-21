@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router";
-import { url_careerAdvice, url_loginUser, url_registerEmp, url_registerUser, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
+import { url_careerAdvice, url_loginUser, url_pricing, url_registerEmp, url_registerUser, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -74,7 +74,7 @@ const Header = ({ bg, boxShadow }: Props) => {
                 <Link href="/login/user"><a className={classNames("user-links", { "active-links": path === url_loginUser })}>Login</a></Link>
                 <Link href={url_registerUser}><a className={classNames("user-links", { "active-links": path === url_registerUser })}>Sign up</a></Link>
                 <div>
-                  <Button onClick={() => router.push(url_registerEmp)} variant="contained" color="secondary" disableElevation>
+                  <Button onClick={() => router.push(url_pricing)} variant="contained" color="secondary" disableElevation>
                     Post a Job
                   </Button>
                 </div>
