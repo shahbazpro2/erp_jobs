@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link'
 import classNames from 'classnames'
-import { url_loginUser, url_registerUser } from '@components/functions/pageUrls';
+import { url_loginUser, url_pricing, url_registerUser } from '@components/functions/pageUrls';
 import { useRouter } from 'next/router';
 import { linkList } from './Header';
 import { Button } from '@mui/material';
@@ -36,7 +36,7 @@ const SideDrawer = () => {
                     <ListItemText primary={<Link href={url_registerUser}><a className={classNames("user-links", { "active-links": path === url_registerUser })}>Sign up</a></Link>} />
                 </ListItem>
                 <ListItem>
-                    <Button variant="contained" fullWidth color="secondary" disableElevation>
+                    <Button variant="contained" onClick={() => router.push(url_pricing)} fullWidth color="secondary" disableElevation>
                         Post a Job
                     </Button>
                 </ListItem>
