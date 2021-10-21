@@ -3,7 +3,7 @@ import IncDecCounter from '@components/common/counters/IncDecCounter'
 import { url_registerEmp } from '@components/functions/pageUrls'
 import { Button, Divider, List, ListItem } from '@mui/material'
 import router from 'next/router'
-import React from 'react'
+import React, { Fragment } from 'react'
 
 interface Props {
     plan: string,
@@ -27,14 +27,14 @@ const PricingCard = ({ list, plan, price, btnColor }: Props) => {
                 </div>
                 <List >
                     {
-                        list.map((l) => <>
+                        list.map((l, index) => <Fragment key={index}>
                             <Divider />
                             <ListItem>
                                 <div className="text-lg m-auto py-4">
                                     {l}
                                 </div>
                             </ListItem>
-                        </>
+                        </Fragment>
                         )
                     }
                 </List>

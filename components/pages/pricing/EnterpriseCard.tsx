@@ -1,5 +1,5 @@
 import { Button, Divider, List, ListItem } from '@mui/material'
-import React from 'react'
+import React, { Fragment } from 'react'
 
 interface Props {
     list: string[]
@@ -17,14 +17,14 @@ const EnterpriseCard = ({ list }: Props) => {
                 </div>
                 <List >
                     {
-                        list.map((l) => <>
+                        list.map((l, index) => <Fragment key={index}>
                             <Divider />
                             <ListItem>
                                 <div className="text-lg m-auto py-4">
                                     {l}
                                 </div>
                             </ListItem>
-                        </>
+                        </Fragment>
                         )
                     }
                 </List>
