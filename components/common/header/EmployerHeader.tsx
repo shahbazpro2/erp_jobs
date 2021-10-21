@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router";
-import { url_careerAdvice, url_loginUser, url_registerEmp, url_registerUser, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
+import { url_careerAdvice, url_loginUser, url_pricing, url_registerEmp, url_registerUser, url_userProfile, url_userSettings } from "@components/functions/pageUrls";
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -26,7 +26,7 @@ interface Props {
 
 export const linkList = [
     { link: '/', title: 'Products' },
-    { link: '/findjobs', title: 'Pricing' },
+    { link: url_pricing, title: 'Pricing' },
     { link: url_careerAdvice, title: 'Resources' },
 ]
 
@@ -62,7 +62,7 @@ const EmployerHeader = ({ bg, boxShadow }: Props) => {
                     <div className="hidden lg:block ml-16">
                         <div className="links flex items-center h-full w-full xl:space-x-10 md:space-x-5">
                             {linkList.map((link, index) => (
-                                <Link key={index} href={link.link}><a className={classNames("font-bold hover:text-gray-300", { "active-links": path === link.link })}>{link.title}</a></Link>
+                                <Link key={index} href={link.link}><a className={classNames(`font-bold ${bg.search('transparent') !== -1 ? 'hover:text-gray-300' : 'primary-clr-hover'} `, { "active-links": path === link.link })}>{link.title}</a></Link>
                             ))}
                         </div>
 
@@ -70,7 +70,7 @@ const EmployerHeader = ({ bg, boxShadow }: Props) => {
                     {objectIsEmpty(user) ?
                         <div className="hidden sm:block ml-auto">
                             <div className="auth-links flex items-center justify-end h-full space-x-5">
-                                <Link href={url_registerUser}><a className={classNames("font-bold hover:text-gray-300", { "active-links": path === url_registerUser })}>Looking For Job?</a></Link>
+                                <Link href={url_registerUser}><a className={classNames(`font-bold ${bg.search('transparent') !== -1 ? 'hover:text-gray-300' : 'primary-clr-hover'} `, { "active-links": path === url_registerUser })}>Looking For Job?</a></Link>
                                 <div>
                                     <Button onClick={() => router.push(url_registerEmp)} variant="contained" color="primary" disableElevation>
                                         Add Job
