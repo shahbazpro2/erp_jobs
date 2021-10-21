@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from 'next/link'
 import { useAppSelector } from "@redux/Store";
 import objectIsEmpty from "@components/functions/objectIsEmpty";
-import { url_careerAdvice, url_pricing, } from "@components/functions/pageUrls";
+import { url_careerAdvice, url_dashboard, url_pricing, } from "@components/functions/pageUrls";
 import Image from 'next/image'
 import Container from '@components/common/container/Container'
 import SideDrawer from "../SideDrawer";
@@ -49,7 +49,7 @@ const EmployerHeader = ({ bg, boxShadow }: Props) => {
                     </Drawer>
                     <div className="ml-5 md:ml-0">
                         <div className="logo text-base md:text-2xl flex items-center h-full">
-                            <h2><Link href="/"><a href="#">Erp jobs</a></Link></h2>
+                            <h2><Link href={url_dashboard}><a href="#">Erp jobs</a></Link></h2>
                         </div>
                     </div>
 
