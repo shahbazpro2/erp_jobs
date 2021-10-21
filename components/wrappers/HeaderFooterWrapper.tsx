@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Footer from '@components/common/footer/Footer'
 import EmployerHeader from '@components/common/header/employer/EmployerHeader'
 import Header from '@components/common/header/Header'
 import { HeaderContext } from '@context/HeaderContext'
-import React, { ReactNode, useState } from 'react'
+import { useAppSelector } from '@redux/Store'
+import React, { ReactNode, useEffect, useState } from 'react'
 
 
 interface Props {
@@ -11,11 +13,18 @@ interface Props {
 
 
 const HeaderFooterWrapper = ({ children }: Props) => {
+    const auth: any = useAppSelector(state => state.authReducer)
     const [state, setState] = useState({
         bg: 'bg-white',
         boxShadow: 'boxShadow',
         employer: false
     })
+
+    useEffect(() => {
+        if (auth.user.type === 'organization') {
+            setState({ ...state, employer: true })
+        }
+    }, [auth.user])
 
     const ContextValue = {
         bg: state.bg,
