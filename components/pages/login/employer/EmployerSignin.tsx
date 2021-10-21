@@ -14,6 +14,7 @@ import { getUserApi } from '@api/auth'
 import router from 'next/router'
 import { loginEmployer } from '@api/employerAuth'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
+import { url_dashboard } from '@components/functions/pageUrls'
 
 const EmployerSignin = () => {
     const dispatch = useAppDispatch()
@@ -44,7 +45,7 @@ const EmployerSignin = () => {
             localStorage.setItem('token', res?.data.token)
             dispatch(getUserApi())
             setTimeout(() => {
-                //router.push(url_userProfile)
+                router.push(url_dashboard)
             }, 1000);
             setState({
                 username: '',

@@ -14,7 +14,7 @@ import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
 import validateEmail from '@components/functions/emailValidation'
 import { registerEmployer } from '@api/employerAuth'
-import { url_loginEmp } from '@components/functions/pageUrls'
+import { url_dashboard, url_loginEmp } from '@components/functions/pageUrls'
 import router from 'next/router'
 
 
@@ -64,10 +64,10 @@ const EmployerSignup = () => {
             console.log(res?.data)
             localStorage.setItem('token', res?.data.token)
             setTimeout(() => {
-                //router.push(url_userProfile)
+                router.push(url_dashboard)
             }, 1000);
             setState(initialState)
-            setApiSuccess(['User registered successfully'])
+            setApiSuccess(['Employer registered successfully'])
             setLoading(false)
 
         }
