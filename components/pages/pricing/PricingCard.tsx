@@ -1,6 +1,8 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import IncDecCounter from '@components/common/counters/IncDecCounter'
+import { url_registerEmp } from '@components/functions/pageUrls'
 import { Button, Divider, List, ListItem } from '@mui/material'
+import router from 'next/router'
 import React from 'react'
 
 interface Props {
@@ -36,7 +38,7 @@ const PricingCard = ({ list, plan, price, btnColor }: Props) => {
                         )
                     }
                 </List>
-                <div className="absolute bottom-0 left-0 right-0">
+                <div className="absolute bottom-0 left-0 right-0" onClick={() => router.push(`${url_registerEmp}?plan=${plan}`)}>
                     <Button variant="contained" color={btnColor}>Get Started Now</Button>
                 </div>
 
