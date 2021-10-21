@@ -24,7 +24,7 @@ const WithUser = () => {
             <div className="hidden lg:block ml-16">
                 <div className="links flex items-center h-full w-full xl:space-x-10 md:space-x-5">
                     {withUserList.map((link, index) => (
-                        <Link key={index} href={link.url}><a className={classNames(`font-bold transparent hover:text-gray-300 `, { "active-links": path === link.url })}>{link.title}</a></Link>
+                        <Link key={index} href={link.url}><a className={classNames(`font-bold primary-clr-hover `, { "active-links": path === link.url })}>{link.title}</a></Link>
                     ))}
                 </div>
 
