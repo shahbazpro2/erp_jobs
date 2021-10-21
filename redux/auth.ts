@@ -1,10 +1,10 @@
-import { url_loginUser } from "@components/functions/pageUrls";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { url_loginEmp, url_loginUser } from "@components/functions/pageUrls";
+import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import router from "next/router";
 import { getUserApi } from "../api/auth";
 
 interface userTypes {
-    user: {}
+    user: any
 }
 
 const initialState: userTypes = {
@@ -20,7 +20,11 @@ export const authSlice = createSlice({
             state.user = action.payload
         },
         setLogoutState: (state) => {
-            router.push(url_loginUser)
+            const { user } = current(state)
+            user?.type === 'organization' ?
+                router.push(url_loginEmp)
+                :
+                router.push(url_loginUser)
             state.user = {}
             localStorage.removeItem('token')
         },
