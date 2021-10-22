@@ -1,11 +1,11 @@
+import RouterCard from '@components/common/routerCard/RouterCard'
 import { url_userJobApplications } from '@components/functions/pageUrls'
 import router from 'next/router'
 import React from 'react'
-import WithBadgeWrapper from './WithBadgeWrapper'
 
 const JobApplications = () => {
     return (
-        <WithBadgeWrapper content="My Job Applications" badgeValue={10} onHandleClick={() => router.push(url_userJobApplications)} />
+        <RouterCard image="/assets/images/file.svg" content="My Job Applications" badgeValue={10} onHandleClick={() => router.push(url_userJobApplications)} />
     )
 }
 
