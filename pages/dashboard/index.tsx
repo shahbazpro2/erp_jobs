@@ -1,14 +1,13 @@
 import React from 'react'
-import Head from 'next/head'
-import Dashboard from '@components/pages/dashboard/Dashboard'
+import router from 'next/router'
+import { url_dashboardJobs } from '@components/functions/pageUrls'
+import Spinner from '@components/common/spinner/Spinner'
 
 const index = () => {
+    router.push(url_dashboardJobs)
     return (
         <div>
-            <Head>
-                <title>Dashboard</title>
-            </Head>
-            <Dashboard />
+            <Spinner />
         </div>
     )
 }
