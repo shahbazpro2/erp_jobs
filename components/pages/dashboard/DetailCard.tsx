@@ -1,3 +1,4 @@
+import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import React from 'react'
 
 interface Props {
@@ -6,17 +7,20 @@ interface Props {
 }
 const DetailCard = ({ count, title }: Props) => {
     return (
-        <div className="bg-white rounded-[15px] py-5 text-center flex items-center justify-center">
-            <div>
-                <div className="text-xl font-bold">
-                    {count}
-                </div>
-                <div className="mt-1 text-base subtitle-clr">
-                    {title}
-                </div>
+        <BoxWrapper className="rounded-[15px] py-5">
+            <div className="text-center flex items-center justify-center h-full">
+                <div>
+                    <div className="text-xl font-bold">
+                        {count}
+                    </div>
+                    <div className="mt-1 text-base subtitle-clr">
+                        {title}
+                    </div>
 
+                </div>
             </div>
-        </div>
+
+        </BoxWrapper>
     )
 }
 
