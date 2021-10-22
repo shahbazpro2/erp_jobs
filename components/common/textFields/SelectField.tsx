@@ -26,11 +26,11 @@ const SelectField = ({ required = true, inputError = false, multiple = false, va
             className="w-full h-full text-left"
             value={value}
             onChange={onChange}
-
             SelectProps={{
                 multiple,
                 MenuProps: {
-                    disableScrollLock: true
+                    disablePortal: true,
+                    disableScrollLock: false
                 }
             }}
             InputLabelProps={{
