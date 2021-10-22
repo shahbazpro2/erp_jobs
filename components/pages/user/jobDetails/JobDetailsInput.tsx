@@ -64,6 +64,7 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                 >
                     <MenuItem value="Permanent" >Permanent</MenuItem>
                     <MenuItem value="Contract" >Contract</MenuItem>
+                    <MenuItem value="Temporary" >Temporary</MenuItem>
                 </SelectField>
                 <AutoCompleteField
                     inputError={inputError}
@@ -104,7 +105,7 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                     <TextField
                         required
                         error={inputError && !state.min_salary ? true : inputError && state.min_salary > state.max_salary ? true : false}
-                        helperText={inputError && !state.min_salary ? 'Please provide minimum salary' : inputError && state.min_salary > state.max_salary ? "Minimum salary must less then maximum salary" : ""}
+                        helperText={inputError && !state.min_salary ? 'Please provide minimum salary' : inputError && Number(state.min_salary) > Number(state.max_salary) ? "Minimum salary must less then maximum salary" : ""}
                         type="number"
                         name="min_salary"
                         label="Minimum Salary"
@@ -118,7 +119,7 @@ const JobDetailsInput = ({ setState, state, loading, inputError, onSubmit }: Pro
                     />
                     <TextField
                         required
-                        error={inputError && !state.max_salary ? true : inputError && state.min_salary > state.max_salary ? true : false}
+                        error={inputError && !state.max_salary ? true : inputError && Number(state.min_salary) > Number(state.max_salary) ? true : false}
                         helperText={inputError && !state.max_salary ? 'Please provide maximum salary' : ''}
                         type="number"
                         name="max_salary"
