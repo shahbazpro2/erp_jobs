@@ -2,10 +2,11 @@ import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import Container from '@components/common/container/Container'
 import DualButton from '@components/common/dualButton/DualButton'
 import RouterCard from '@components/common/routerCard/RouterCard'
-import { Button } from '@mui/material'
+import { Button, Divider, TextField } from '@mui/material'
 import router from 'next/router'
 import React from 'react'
 import DetailCard from './DetailCard'
+import JobsCard from './JobsCard'
 import PlanCard from './PlanCard'
 
 const Dashboard = () => {
@@ -35,6 +36,32 @@ const Dashboard = () => {
                                     />
                                 </div>
                             </div>
+                        </div>
+                        <div className="my-5">
+                            <Divider />
+                        </div>
+                        <div className="grid grid-cols-8 gap-5 mb-5">
+                            <div className="col-span-4">
+                                <TextField variant="outlined" sx={{
+                                    '.MuiInputBase-formControl': {
+                                        borderRadius: '7px', '.MuiOutlinedInput-notchedOutline': { borderColor: '#d6d6d6' }
+                                    }
+                                }} placeholder="Search Job" fullWidth />
+                            </div>
+                            <div className="col-span-2">
+                                <TextField sx={{
+                                    '.MuiInputBase-formControl': {
+                                        borderRadius: '7px', '.MuiOutlinedInput-notchedOutline': { borderColor: '#d6d6d6' }
+                                    }
+                                }} placeholder="Search Job" type="date" fullWidth />
+                            </div>
+                            <div className="col-span-2">
+                                <BoxWrapper className="py-[0.7rem] px-3">Sort by:</BoxWrapper>
+                            </div>
+
+                        </div>
+                        <div className="space-y-5">
+                            <JobsCard />
                         </div>
                     </div>
                     <div className="col-span-2">
