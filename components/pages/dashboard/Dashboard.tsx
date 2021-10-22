@@ -1,81 +1,42 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import Container from '@components/common/container/Container'
-import DualButton from '@components/common/dualButton/DualButton'
-import RouterCard from '@components/common/routerCard/RouterCard'
-import { Button, Divider, TextField } from '@mui/material'
-import router from 'next/router'
+import { Button } from '@mui/material'
 import React from 'react'
-import DetailCard from './DetailCard'
-import JobsCard from './JobsCard'
-import PlanCard from './PlanCard'
+import EditCompanyDetails from './editCompanyDetails/EditCompanyDetails'
+import Jobs from './jobs/Jobs'
+import SideMenu from './SideMenu'
 
-const Dashboard = () => {
+interface Props {
+    active: string
+}
+
+
+const Dashboard = ({ active }: Props) => {
+
+    const showContent = () => {
+        switch (active) {
+            case 'jobs':
+                return <Jobs />
+            case 'editCompanyDetails':
+                return <EditCompanyDetails />
+
+            default:
+                break;
+        }
+    }
+
     return (
         <div className="gray-bg">
             <Container>
                 <div className="grid grid-cols-6 px-10 py-14 gap-10">
                     <div className="col-span-4">
-                        <div className="grid grid-cols-4 gap-10">
-                            <DetailCard title="Total Job Ads" count="09" />
-                            <DetailCard title="Active Ads" count="04" />
-                            <DetailCard title="Inactive Ads" count="05" />
-                            <PlanCard plan="Silver Package" cv="55" days="25" />
-                        </div>
-                        <div className="mt-14">
-                            <div className="grid grid-cols-6">
-                                <div className="text-lg col-span-4 flex items-center">
-                                    Active Jobs
-                                </div>
-                                <div className="col-span-2">
-                                    <DualButton
-                                        first="Active Jobs"
-                                        second="Expired Jobs"
-                                        active="Active Jobs"
-                                        firstClick={() => console.log('click')}
-                                        secondClick={() => console.log('click')}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="my-5">
-                            <Divider />
-                        </div>
-                        <div className="grid grid-cols-8 gap-5 mb-5">
-                            <div className="col-span-4">
-                                <TextField variant="outlined" sx={{
-                                    '.MuiInputBase-formControl': {
-                                        borderRadius: '7px', '.MuiOutlinedInput-notchedOutline': { borderColor: '#d6d6d6' }
-                                    }
-                                }} placeholder="Search Job" fullWidth />
-                            </div>
-                            <div className="col-span-2">
-                                <TextField sx={{
-                                    '.MuiInputBase-formControl': {
-                                        borderRadius: '7px', '.MuiOutlinedInput-notchedOutline': { borderColor: '#d6d6d6' }
-                                    }
-                                }} placeholder="Search Job" type="date" fullWidth />
-                            </div>
-                            <div className="col-span-2">
-                                <BoxWrapper className="py-[0.7rem] px-3">Sort by:</BoxWrapper>
-                            </div>
-
-                        </div>
-                        <div className="space-y-5">
-                            <JobsCard />
-                        </div>
+                        {showContent()}
                     </div>
                     <div className="col-span-2">
                         <BoxWrapper className="text-center py-5">
                             <Button variant="contained" className="w-[85%]">Add A New Job +</Button>
                         </BoxWrapper>
-                        <div className="mt-7 space-y-3">
-                            <RouterCard image="/assets/images/my-jobs-purple.png" content="My Jobs" onHandleClick={() => router.push('/')} active={true} />
-                            <RouterCard image="/assets/images/cv-search-blue.png" content="CV Search" onHandleClick={() => router.push('/')} />
-                            <RouterCard image="/assets/images/cv-folder-blue.png" content="CV Folders" onHandleClick={() => router.push('/')} />
-                            <RouterCard image="/assets/images/recrtmnt-pkgs-blue.png" content="Recruitment Packages" onHandleClick={() => router.push('/')} />
-                            <RouterCard image="/assets/images/setting-blue.png" content="Setting" onHandleClick={() => router.push('/')} />
-                            <RouterCard image="/assets/images/logout-blue.png" content="Logout" onHandleClick={() => router.push('/')} />
-                        </div>
+                        <SideMenu active={active} />
                     </div>
                 </div>
             </Container>
