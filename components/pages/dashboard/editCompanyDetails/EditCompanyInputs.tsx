@@ -5,7 +5,7 @@ import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { companyIndustry, companySize, getDropdown } from '@components/functions/dropDowns'
 import { LoadingButton } from '@mui/lab'
 import { MenuItem } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useEffect,useState } from 'react'
 import { EditCompanyDetailsProps } from './types'
 import { useDropzone } from 'react-dropzone';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -22,7 +22,7 @@ interface Props {
 }
 
 const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: Props) => {
-
+    const [editorContent,setEditorContent]=useState('')
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ multiple: false, accept: 'image/jpeg, image/png' });
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +37,11 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
         if (acceptedFiles.length)
             setState({ ...state, 'image': acceptedFiles[0] })
     }, [acceptedFiles])
+
+    useEffect(() => {
+        setState({ ...state, 'about': editorContent })
+    }, [editorContent])
+  
 
     const file = state.image ?
         <li key={state.image?.name}>
@@ -84,7 +89,7 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                 <div>
                     <div className="text-base mb-3 font-bold">Description</div>
                     <div className={`border-[1px] rounded-[7px] p-2 min-h-[300px] w-full max-w-full ${!state.about && inputError ? 'border-danger' : 'border-[#D9D9D9]'}`}>
-                        <SunEditor setContents={state.about} onChange={(content: string) => setState({ ...state, 'about': content })} setDefaultStyle="font-family: cursive; font-size: 16px;" setOptions={{
+                        <SunEditor setContents={state.about} onChange={(content:string)=>setEditorContent(content)} setDefaultStyle="font-family: cursive; font-size: 16px;" setOptions={{
                             minHeight: '300',
                             width: "100%",
                             maxHeight: 'auto',
