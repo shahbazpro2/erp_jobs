@@ -1,5 +1,5 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 const EditCompanyInputs = dynamic(() => import(
     './EditCompanyInputs'
@@ -8,8 +8,8 @@ import { initialEditCompanyStates } from './initialStates'
 import { EditCompanyDetailsProps } from './types'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
-import router from 'next/router'
-import { addCompanyInformation } from '@api/employer/companyInformation'
+import { addCompanyInformation, getCompanyInformation } from '@api/employer/companyInformation'
+import { createFileFromUrl } from '@components/functions/createFileFromUrl'
 
 const EditCompanyDetails = () => {
     const [state, setState] = useState<EditCompanyDetailsProps>(initialEditCompanyStates)
@@ -20,12 +20,28 @@ const EditCompanyDetails = () => {
     const [loading, setLoading] = useState(false)
 
 
+    useEffect(() => {
+        (async () => {
+            const res = await getCompanyInformation()
+            if (!res?.error) {
+                if (res?.data[0]) {
+                    const stateData = res?.data[0]
+                    delete stateData['subscription']
+                    delete stateData['uid']
+                    const file = await createFileFromUrl(stateData.image, stateData.image.split('/').pop())
+                    setState({ ...stateData, image: file })
+                }
+            }
+
+        })()
+    }, [])
+
+
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setInputError(false)
-        console.log('state', state)
         if (EmptyFieldCheck({
-            ...state
+            ...state,
         })) {
             setInputError(true)
             return
@@ -34,8 +50,10 @@ const EditCompanyDetails = () => {
 
         const formData = new FormData()
         Object.entries(state).forEach(([key, value]) => {
+            console.log(key, value)
             formData.append(key, value)
         });
+        formData.append('subscription', '')
 
         const res = await addCompanyInformation(formData)
         if (res?.error) {
@@ -45,9 +63,6 @@ const EditCompanyDetails = () => {
         }
         setLoading(false)
         setApiSuccess(['Company updated successfully'])
-        setTimeout(() => {
-            //router.push(url_userProfile)
-        }, 200);
 
     }
 
