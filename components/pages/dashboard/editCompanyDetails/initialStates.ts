@@ -6,7 +6,7 @@ export const initialEditCompanyStates = {
     country: '',
     state: '',
     address: '',
-    about: ' ',
+    about: '',
     website: '',
     image: null,
 }
