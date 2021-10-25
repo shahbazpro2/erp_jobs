@@ -1,10 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { SyntheticEvent, useContext, useEffect, useState } from 'react'
-import { HeaderContext } from '@context/HeaderContext'
-import Container from '@components/common/container/Container'
+import React, { SyntheticEvent, useState } from 'react'
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
-import LoginForm from '@components/common/forms/LoginForm'
 import ORDivider from '@components/common/dividers/ORDivider'
 import SocialsLogin from '@components/common/socialsLogin/SocialsLogin'
 import { Button } from '@mui/material'
@@ -28,19 +25,11 @@ const initialState = {
 }
 
 const EmployerSignup = () => {
-    const context = useContext(HeaderContext)
     const [state, setState] = useState(initialState)
     const [loading, setLoading] = useState(false)
     const [inputError, setInputError] = useState(false)
     const [apiError, setApiError] = useState<any[]>([])
     const [apiSuccess, setApiSuccess] = useState<any[]>([])
-
-    useEffect(() => {
-        context.handleHeader('bg-transparent', 'none', true)
-        return (() => {
-            context.handleHeader('bg-white', 'boxShadow', false)
-        })
-    }, [])
 
     const onSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
