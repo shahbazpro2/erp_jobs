@@ -5,13 +5,13 @@ import TextFieldSimple from '@components/common/textFields/TextFieldSimple'
 import { companyIndustry, companySize, getDropdown } from '@components/functions/dropDowns'
 import { LoadingButton } from '@mui/lab'
 import { MenuItem } from '@mui/material'
-import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useEffect } from 'react'
 import { EditCompanyDetailsProps } from './types'
-import { Editor, RawDraftContentState } from 'react-draft-wysiwyg'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDropzone } from 'react-dropzone';
 import FormHelperText from '@mui/material/FormHelperText';
-import draftToHtml from 'draftjs-to-html'
+import SunEditor from 'suneditor-react'
+import 'suneditor/dist/css/suneditor.min.css';
+
 
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
@@ -21,30 +21,9 @@ interface Props {
     inputError: boolean,
 }
 
-const content = {
-    entityMap: {},
-    blocks: [
-        {
-            key: "637gr",
-            text: "",
-            type: "unstyled",
-            depth: 0,
-            inlineStyleRanges: [],
-            entityRanges: [],
-            data: {},
-        },
-    ],
-}
-
 const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: Props) => {
-    const [editorState, setEditorState] = useState<any>();
+
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ multiple: false, accept: 'image/jpeg, image/png' });
-
-
-    const onContentStateChange = (contentState: RawDraftContentState) => {
-        console.log('as HTML:', draftToHtml(contentState));
-        setState({ ...state, 'about': draftToHtml(contentState) })
-    }
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -59,11 +38,10 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
             setState({ ...state, 'image': acceptedFiles[0] })
     }, [acceptedFiles])
 
-    const files = acceptedFiles.map((file: any) => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
-        </li>
-    ));
+    const file = state.image ?
+        <li key={state.image?.name}>
+            {state.image?.name} - {state.image?.size} bytes
+        </li> : ''
 
     return (
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
@@ -105,13 +83,22 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                 <TextFieldSimple inputError={inputError} name="website" label="Company Website" value={state.website} onChange={onChangeInput} />
                 <div>
                     <div className="text-base mb-3 font-bold">Description</div>
-                    <div className={`border-[1px] rounded-[7px] p-2 min-h-[300px] w-full max-w-full ${!editorState?.blocks[0]?.text && inputError ? 'border-danger' : 'border-[#D9D9D9]'}`}>
-                        <Editor
-                            initialContentState={content}
-                            onContentStateChange={onContentStateChange}
-                        />
+                    <div className={`border-[1px] rounded-[7px] p-2 min-h-[300px] w-full max-w-full ${!state.about && inputError ? 'border-danger' : 'border-[#D9D9D9]'}`}>
+                        <SunEditor setContents={state.about} onChange={(content: string) => setState({ ...state, 'about': content })} setDefaultStyle="font-family: cursive; font-size: 16px;" setOptions={{
+                            minHeight: '300',
+                            width: "100%",
+                            maxHeight: 'auto',
+                            buttonList:
+                                [
+                                    ['bold', 'underline', 'italic', 'strike'],
+                                    ['align', 'horizontalRule', 'list', 'lineHeight'],
+                                    ['undo', 'redo'],
+                                    ['font', 'fontSize'],
+                                    ['codeView']
+                                ]
+                        }} />
                     </div>
-                    {(!editorState?.blocks[0]?.text && inputError) && <FormHelperText className="px-4" error={true}>Please provide company description</FormHelperText>}
+                    {(!state.about && inputError) && <FormHelperText className="px-4" error={true}>Please provide company description</FormHelperText>}
                 </div>
                 <section className="">
                     <div className="text-base mb-3 font-bold">Company Image</div>
@@ -121,7 +108,7 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                     </div>
                     {(!state.image && inputError) && <FormHelperText className="px-4" error={true}>Please select company image</FormHelperText>}
                     <aside>
-                        <ul>{files}</ul>
+                        <ul>{file}</ul>
                     </aside>
                 </section>
 
