@@ -1,6 +1,6 @@
 import MenuCard from '@components/common/menu/MenuCard'
 import RouterCard from '@components/common/routerCard/RouterCard'
-import { url_dashboardEditCompanyDetails } from '@components/functions/pageUrls'
+import { url_dashboardEditCompanyDetails, url_dashboardJobs } from '@components/functions/pageUrls'
 import router from 'next/router'
 import React from 'react'
 
@@ -19,7 +19,7 @@ interface Props {
 const SideMenu = ({ active }: Props) => {
     return (
         <div className="mt-7 space-y-3">
-            <RouterCard image="/assets/images/my-jobs-purple.png" content="My Jobs" onHandleClick={() => router.push('/')} active={active === 'jobs'} />
+            <RouterCard image="/assets/images/my-jobs-purple.png" content="My Jobs" onHandleClick={() => router.push(url_dashboardJobs)} active={active === 'jobs'} />
             <RouterCard image="/assets/images/cv-search-blue.png" content="CV Search" onHandleClick={() => router.push('/')} />
             <RouterCard image="/assets/images/cv-folder-blue.png" content="CV Folders" onHandleClick={() => router.push('/')} />
             <RouterCard image="/assets/images/recrtmnt-pkgs-blue.png" content="Recruitment Packages" onHandleClick={() => router.push('/')} />
