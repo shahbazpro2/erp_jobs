@@ -8,6 +8,8 @@ import { initialEditCompanyStates } from './initialStates'
 import { EditCompanyDetailsProps } from './types'
 import FeedbackApi from '@components/common/feedback/FeedbackAPi'
 import EmptyFieldCheck from '@components/functions/emptyFieldCheck'
+import router from 'next/router'
+import { addCompanyInformation } from '@api/employer/companyInformation'
 
 const EditCompanyDetails = () => {
     const [state, setState] = useState<EditCompanyDetailsProps>(initialEditCompanyStates)
@@ -29,19 +31,23 @@ const EditCompanyDetails = () => {
             return
         }
         setLoading(true)
-        /*  const { error, data } = await graphqlRes(createCandidate({
-             variables: { ...state }
-         }))
-         if (error) {
-             setApiError(data)
-             setLoading(false)
-             return
-         }
-         setLoading(false)
-         setApiSuccess(['Profile updated successfully'])
-         setTimeout(() => {
-             router.push(url_userProfile)
-         }, 200); */
+
+        const formData = new FormData()
+        Object.entries(state).forEach(([key, value]) => {
+            formData.append(key, value)
+        });
+
+        const res = await addCompanyInformation(formData)
+        if (res?.error) {
+            setApiError(res?.data)
+            setLoading(false)
+            return
+        }
+        setLoading(false)
+        setApiSuccess(['Company added successfully'])
+        setTimeout(() => {
+            //router.push(url_userProfile)
+        }, 200);
 
     }
 
