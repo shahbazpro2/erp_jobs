@@ -33,8 +33,8 @@ export const companySize = {
 export const companyIndustry = {
     "COMPUTER": "Computer Industry",
     "IT": "IT Industry",
-    "TELECOMUNICATION": "Telecommunication industry",
-    "EDUCATIO": "Education Industry",
+    "TELECOMUNICATION": "Telecommunication Industry",
+    "EDUCATION": "Education Industry",
     "PHARMACEUTICAL": "Pharmaceutical Industry",
     "FOOD": "Food Industry",
     "MANUFACTURING": "Manufacturing Industry",
