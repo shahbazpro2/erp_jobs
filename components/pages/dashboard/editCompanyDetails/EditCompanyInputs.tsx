@@ -7,11 +7,11 @@ import { LoadingButton } from '@mui/lab'
 import { MenuItem } from '@mui/material'
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
 import { EditCompanyDetailsProps } from './types'
-import { Editor } from 'react-draft-wysiwyg'
+import { Editor, RawDraftContentState } from 'react-draft-wysiwyg'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDropzone } from 'react-dropzone';
 import FormHelperText from '@mui/material/FormHelperText';
-
+import draftToHtml from 'draftjs-to-html'
 
 interface Props {
     onSubmit: (e: SyntheticEvent) => Promise<void>,
@@ -21,12 +21,30 @@ interface Props {
     inputError: boolean,
 }
 
+const content = {
+    entityMap: {},
+    blocks: [
+        {
+            key: "637gr",
+            text: "",
+            type: "unstyled",
+            depth: 0,
+            inlineStyleRanges: [],
+            entityRanges: [],
+            data: {},
+        },
+    ],
+}
+
 const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: Props) => {
     const [editorState, setEditorState] = useState<any>();
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ multiple: false, accept: 'image/jpeg, image/png' });
-    useEffect(() => {
-        setState({ ...state, 'about': editorState?.blocks[0]?.text })
-    }, [editorState])
+
+
+    const onContentStateChange = (contentState: RawDraftContentState) => {
+        console.log('as HTML:', draftToHtml(contentState));
+        setState({ ...state, 'about': draftToHtml(contentState) })
+    }
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -89,8 +107,8 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                     <div className="text-base mb-3">Description</div>
                     <div className={`border-[1px] rounded-[7px] p-2 min-h-[300px] w-full max-w-full ${!editorState?.blocks[0]?.text && inputError ? 'border-danger' : 'border-[#D9D9D9]'}`}>
                         <Editor
-                            initialContentState={editorState}
-                            onContentStateChange={setEditorState}
+                            initialContentState={content}
+                            onContentStateChange={onContentStateChange}
                         />
                     </div>
                     {(!editorState?.blocks[0]?.text && inputError) && <FormHelperText className="px-4" error={true}>Please provide company description</FormHelperText>}
