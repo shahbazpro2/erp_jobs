@@ -9,3 +9,4 @@ export const changePassword = `${hostUrl}/password/change/`
 export const userJobDetails = `${hostUrl}/candidate/job-detail/`
 export const registerEmployerUrl = `${hostUrl}/register/org/`
 export const loginEmployerUrl = `${hostUrl}/login/org/`
+export const empCompanyInformation = `${hostUrl}/organization/`
