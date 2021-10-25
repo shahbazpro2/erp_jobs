@@ -21,25 +21,25 @@ export const degreeOptions = {
 }
 
 export const companySize = {
-    "ONE": "1-10",
-    "TWO": "11-50",
-    "THREE": "51-100",
-    "FOUR": "101-200",
-    "FIVE": "201-500",
-    "SIX": "501-1000",
-    "SEVEN": "1001-2000"
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-100": "51-100",
+    "101-200": "101-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-2000": "1001-2000"
 }
 
 export const companyIndustry = {
-    "COMPUTER": "Computer Industry",
-    "IT": "IT Industry",
-    "TELECOMUNICATION": "Telecommunication Industry",
-    "EDUCATION": "Education Industry",
-    "PHARMACEUTICAL": "Pharmaceutical Industry",
-    "FOOD": "Food Industry",
-    "MANUFACTURING": "Manufacturing Industry",
-    "WWW": "Worldwide web",
-    "ELECTRONICS": "Electronics Industry"
+    "Computer Industry": "Computer Industry",
+    "IT Industry": "IT Industry",
+    "Telecommunication Industry": "Telecommunication Industry",
+    "Education Industry": "Education Industry",
+    "Pharmaceutical Industry": "Pharmaceutical Industry",
+    "Food Industry": "Food Industry",
+    "Manufacturing Industry": "Manufacturing Industry",
+    "Worldwide web": "Worldwide web",
+    "Electronics Industry": "Electronics Industry"
 }
 
 export const getDropdown = (options: any) => {
