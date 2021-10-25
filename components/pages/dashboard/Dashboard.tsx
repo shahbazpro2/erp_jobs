@@ -1,5 +1,6 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import Container from '@components/common/container/Container'
+import { url_dashboardEditCompanyDetails, url_dashboardJobs } from '@components/functions/pageUrls'
 import { Button } from '@mui/material'
 import React from 'react'
 import EditCompanyDetails from './editCompanyDetails/EditCompanyDetails'
@@ -15,9 +16,9 @@ const Dashboard = ({ active }: Props) => {
 
     const showContent = () => {
         switch (active) {
-            case 'jobs':
+            case url_dashboardJobs:
                 return <Jobs />
-            case 'editCompanyDetails':
+            case url_dashboardEditCompanyDetails:
                 return <EditCompanyDetails />
 
             default:
