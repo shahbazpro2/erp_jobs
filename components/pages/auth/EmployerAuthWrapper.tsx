@@ -13,12 +13,16 @@ interface Props {
 }
 const EmployerAuthWrapper = ({ children, title }: Props) => {
     const context = useContext(HeaderContext)
+
     useEffect(() => {
+
         context.handleHeader('bg-transparent', 'none', true)
+
         return (() => {
             context.handleHeader('bg-white', 'boxShadow', false)
         })
-    }, [])
+    }, [router?.router?.asPath])
+
     return (
         <div className="bg-mario bg-cover w-full">
             <Container>
