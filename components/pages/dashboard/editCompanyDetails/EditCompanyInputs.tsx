@@ -74,8 +74,8 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                     <MenuItem disabled value={" "}>
                         Select company type
                     </MenuItem>
-                    <MenuItem value="PUBLIC_COMPANY">Public Company</MenuItem>
-                    <MenuItem value="PRIVATE_COMPANY">Private Company</MenuItem>
+                    <MenuItem value="Public Company">Public Company</MenuItem>
+                    <MenuItem value="Private Company">Private Company</MenuItem>
                 </SelectField>
 
                 <SelectField inputError={inputError} name="size" label="Company Size" value={state.size} onChange={onChangeInput} >
@@ -99,12 +99,12 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                 <TextFieldSimple inputError={inputError} name="country" label="Country" value={state.country} onChange={onChangeInput} />
 
                 <TextFieldSimple inputError={inputError} name="state" label="State" value={state.state} onChange={onChangeInput} />
-                <div className="text-xl font-bold mt-3 mb-1">About Company</div>
+                <div className="text-xl font-bold mt-3 mb-1 ">About Company</div>
                 <TextFieldSimple inputError={inputError} name="address" label="Company Address" value={state.address} onChange={onChangeInput} />
 
                 <TextFieldSimple inputError={inputError} name="website" label="Company Website" value={state.website} onChange={onChangeInput} />
                 <div>
-                    <div className="text-base mb-3">Description</div>
+                    <div className="text-base mb-3 font-bold">Description</div>
                     <div className={`border-[1px] rounded-[7px] p-2 min-h-[300px] w-full max-w-full ${!editorState?.blocks[0]?.text && inputError ? 'border-danger' : 'border-[#D9D9D9]'}`}>
                         <Editor
                             initialContentState={content}
@@ -114,10 +114,10 @@ const EditCompanyInputs = ({ setState, state, loading, inputError, onSubmit }: P
                     {(!editorState?.blocks[0]?.text && inputError) && <FormHelperText className="px-4" error={true}>Please provide company description</FormHelperText>}
                 </div>
                 <section className="">
-                    <div className="text-base mb-3">Company Image</div>
-                    <div {...getRootProps({ className: `w-full h-[5rem] flex items-center justify-center mb-2 rounded-[7px] border-dashed border-2 ${!state.image && inputError ? 'border-danger' : 'border-[#D9D9D9]'}` })}>
+                    <div className="text-base mb-3 font-bold">Company Image</div>
+                    <div {...getRootProps({ className: `w-full h-[5rem] flex items-center justify-center mb-2 rounded-[7px] border-dashed border-2 cursor-pointer  ${!state.image && inputError ? 'border-danger' : 'border-[#D9D9D9] hover:border-blue-300'}` })}>
                         <input {...getInputProps()} />
-                        <p>Drag 'n' drop file here, or click to select file</p>
+                        <p className="subtitle-clr">Drag 'n' drop file here, or click to select file</p>
                     </div>
                     {(!state.image && inputError) && <FormHelperText className="px-4" error={true}>Please select company image</FormHelperText>}
                     <aside>
