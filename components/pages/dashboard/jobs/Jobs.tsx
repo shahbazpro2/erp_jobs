@@ -1,12 +1,13 @@
 import BoxWrapper from '@components/common/boxWrapper/BoxWrapper'
 import DualButton from '@components/common/dualButton/DualButton'
 import { Divider, TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import DetailCard from './DetailCard'
 import JobsCard from './JobsCard'
 import PlanCard from './PlanCard'
 
 const Jobs = () => {
+    const [active, setActive] = useState('Active Jobs')
     return (
         <div>
             <div className="grid grid-cols-4 gap-10">
@@ -18,15 +19,15 @@ const Jobs = () => {
             <div className="mt-14">
                 <div className="grid grid-cols-6">
                     <div className="text-lg col-span-4 flex items-center">
-                        Active Jobs
+                        {active}
                     </div>
                     <div className="col-span-2">
                         <DualButton
                             first="Active Jobs"
                             second="Expired Jobs"
-                            active="Active Jobs"
-                            firstClick={() => console.log('click')}
-                            secondClick={() => console.log('click')}
+                            active={active}
+                            firstClick={() => setActive('Active Jobs')}
+                            secondClick={() => setActive('Expired Jobs')}
                         />
                     </div>
                 </div>
