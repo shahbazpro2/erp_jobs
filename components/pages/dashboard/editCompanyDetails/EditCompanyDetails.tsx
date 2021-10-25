@@ -44,7 +44,7 @@ const EditCompanyDetails = () => {
             return
         }
         setLoading(false)
-        setApiSuccess(['Company added successfully'])
+        setApiSuccess(['Company updated successfully'])
         setTimeout(() => {
             //router.push(url_userProfile)
         }, 200);
