@@ -20,6 +20,28 @@ export const degreeOptions = {
     "DOCTORAL": "Doctoral degree"
 }
 
+export const companySize = {
+    "ONE": "1-10",
+    "TWO": "11-50",
+    "THREE": "51-100",
+    "FOUR": "101-200",
+    "FIVE": "201-500",
+    "SIX": "501-1000",
+    "SEVEN": "1001-2000"
+}
+
+export const companyIndustry = {
+    "COMPUTER": "Computer Industry",
+    "IT": "IT Industry",
+    "TELECOMUNICATION": "Telecommunication industry",
+    "EDUCATIO": "Education Industry",
+    "PHARMACEUTICAL": "Pharmaceutical Industry",
+    "FOOD": "Food Industry",
+    "MANUFACTURING": "Manufacturing Industry",
+    "WWW": "Worldwide web",
+    "ELECTRONICS": "Electronics Industry"
+}
+
 export const getDropdown = (options: any) => {
     const dropArr = []
     for (var key in options) {
